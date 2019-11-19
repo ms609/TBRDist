@@ -6,7 +6,7 @@ Authors@R: c(person("Martin R.", 'Smith',
                   role=c("aut", "cre", "cph"), 
                   comment=c(ORCID = "0000-0001-5660-1727")),
                person(given = "Chris", family="Whidden", role = c("cph"),
-                  email="cwhidden@fredhutch.org"))
+                  email="cwhidden@fredhutch.org")
             )
 License: GPL (>= 3)
 Copyright: Underlying C++ code copyright 2018 Chris Whidden.

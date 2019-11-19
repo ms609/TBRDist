@@ -1,0 +1,3 @@
+[submodule "src/uspr"]
+	path = src/uspr
+	url = https://github.com/cwhidden/uspr.git

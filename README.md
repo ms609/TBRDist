@@ -33,6 +33,15 @@ if(!require(devtools)) install.packages("devtools")
 devtools::install_github('ms609/uspr')
 ```
 
+Advanced users wishing to use check out the source code using git should note
+that the project contains
+[submodules](https://github.blog/2016-02-01-working-with-submodules/).
+To download the contents of these subdirectories, check out the project using
+`git clone --recursive https://github.com/ms609/uspr`,
+or if you've already checked out the project, run
+`git submodule update --init --recursive`.  
+
+
 Please note that the 'uspr' project is released with a
 [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
 By contributing to this project, you agree to abide by its terms.
