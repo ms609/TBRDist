@@ -24,7 +24,7 @@ library('uspr')
 We'll work with some simple trees generated using the 
 [`TreeTools`](https://ms609.github.io/TreeTools) package.
 
-```{r, fig.width=80%}
+```{r, align='center', fig.width=7}
 library('TreeTools')
 tree1 <- BalancedTree(10)
 tree2 <- TreeTools::PectinateTree(10)
@@ -37,6 +37,12 @@ To generate an approximate SPR distance between two unrooted trees, use:
 
 ```{r}
 USPRDist(tree1, tree2)
+```
+
+For Replug distances, it's:
+
+```{R}
+ReplugDist(tree1, tree2)
 ```
 
 For TBR distances, use:
@@ -58,4 +64,17 @@ of the TBR distance:
 
 ```{r}
 TBRDist(tree1, tree2, exact = FALSE)
+```
+
+To avoid multiple calls, each function can also be used to compare lists of 
+trees (or multiPhylo objects) against a single tree:
+
+```{r}
+TBRDist(tree1, list(tree1, tree2), exact = TRUE, maf = TRUE)
+```
+
+Or against each corresponding entry in a second list:
+
+```{r}
+USPRDist(list(tree1, tree2, tree2), list(tree2, tree1, tree2))
 ```
