@@ -1,0 +1,36 @@
+Package: uspr
+Title: Calculate SPR and TBR distance between unrooted phylogenetic trees
+Version: 0.0.0.9000
+Authors@R: c(person("Martin R.", 'Smith',
+                  email="martin.smith@durham.ac.uk", 
+                  role=c("aut", "cre", "cph"), 
+                  comment=c(ORCID = "0000-0001-5660-1727")),
+               person(given = "Chris", family="Whidden", role = c("cph"),
+                  email="cwhidden@fredhutch.org"))
+            )
+License: GPL (>= 3)
+Copyright: Underlying C++ code copyright 2018 Chris Whidden.
+Description: Core functions for the creation, modification and analysis of 
+  phylogenetic trees.
+URL: https://ms609.github.io/uspr,
+    https://github.com/ms609/uspr, 
+    https://github.com/cwhidden/uspr
+BugReports: https://github.com/ms609/uspr/issues
+Depends: R (>= 3.4.0),
+Imports:
+    TreeTools
+Suggests:
+    knitr,
+    Rdpack,
+    rmarkdown,
+    testthat
+RdMacros: Rdpack
+LazyData: true
+ByteCompile: true
+Encoding: UTF-8
+Language: en-GB
+LinkingTo: BH,
+    Rcpp
+VignetteBuilder: knitr
+RoxygenNote: 6.1.1
+Roxygen: list(markdown = TRUE)

@@ -1,0 +1,26 @@
+vers <- paste("R package version", meta$Version)
+
+citHeader("If using this package, please cite Whidden and Matsen (2017). Optionally, a citation
+to the R package (Smith 2019) would also be welcome.")
+
+citEntry(entry = "Article",
+        title = "Calculating the Unrooted Subtree-Prune-and-Regraft Distance. eprint arXiv:1511.07529. http://arxiv.org/abs/1511.07529TreeTools: create, modify and analyse phylogenetic trees",
+        author = personList(as.person("Chris Whidden"),
+        as.person("Frederick A. Matsen"),
+        year = 2017,
+        arxiv = "1511.07529",
+
+        textVersion =
+        paste0("Whidden & Matsen (2017). Calculating the Unrooted Subtree Prune-and-Regraft Distance. arXiv:1511.07529"))
+
+citEntry(entry = "Manual",
+        title = "uspr: Calculate SPR and TBR distance between unrooted phylogenetic trees",
+        author = personList(as.person("Martin R. Smith")),
+        note = vers,
+        year = 2019,
+        doi = "10.5281/zenodo.######TODO",
+
+        textVersion =
+        paste0("Smith (2019). uspr: Calculate SPR and TBR distance between unrooted phylogenetic treess. doi: 10.5281/zenodo.######TODO"))
+
+
