@@ -4,7 +4,7 @@ citHeader("If using this package, please cite Whidden and Matsen (2017). Optiona
 to the R package (Smith 2019) would also be welcome.")
 
 citEntry(entry = "Article",
-        title = "Calculating the Unrooted Subtree-Prune-and-Regraft Distance. eprint arXiv:1511.07529. http://arxiv.org/abs/1511.07529TreeTools: create, modify and analyse phylogenetic trees",
+        title = "Calculating the Unrooted Subtree-Prune-and-Regraft Distance.",
         author = personList(as.person("Chris Whidden"),
         as.person("Frederick A. Matsen"),
         year = 2017,

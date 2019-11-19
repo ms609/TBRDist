@@ -1,5 +1,5 @@
 .onUnload <- function (libpath) {
-  library.dynam.unload("TreeTools", libpath)
+  library.dynam.unload("uspr", libpath)
 }
 
 ## Reminders when releasing for CRAN

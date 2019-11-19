@@ -1,4 +1,4 @@
-url: https://ms609.github.io/TreeTools
+url: https://ms609.github.io/uspr
 
 authors:
   Martin R. Smith:
@@ -100,5 +100,5 @@ reference:
 template:
   params:
     docsearch:
-      api_key: 6078115fdeb422f23fe2f8c478c70150
-      index_name: treetools
+      api_key: #TODO
+      index_name: uspr
