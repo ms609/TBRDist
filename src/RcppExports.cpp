@@ -6,15 +6,18 @@
 using namespace Rcpp;
 
 // uspr_dist
-IntegerVector uspr_dist(StringVector tree1, StringVector tree2, LogicalVector keepLabels);
-RcppExport SEXP _uspr_uspr_dist(SEXP tree1SEXP, SEXP tree2SEXP, SEXP keepLabelsSEXP) {
+IntegerVector uspr_dist(StringVector tree1, StringVector tree2, LogicalVector keepLabels, LogicalVector useTbrApproxEstimate, LogicalVector useTbrEstimate, LogicalVector useReplugEstimate);
+RcppExport SEXP _uspr_uspr_dist(SEXP tree1SEXP, SEXP tree2SEXP, SEXP keepLabelsSEXP, SEXP useTbrApproxEstimateSEXP, SEXP useTbrEstimateSEXP, SEXP useReplugEstimateSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type tree1(tree1SEXP);
     Rcpp::traits::input_parameter< StringVector >::type tree2(tree2SEXP);
     Rcpp::traits::input_parameter< LogicalVector >::type keepLabels(keepLabelsSEXP);
-    rcpp_result_gen = Rcpp::wrap(uspr_dist(tree1, tree2, keepLabels));
+    Rcpp::traits::input_parameter< LogicalVector >::type useTbrApproxEstimate(useTbrApproxEstimateSEXP);
+    Rcpp::traits::input_parameter< LogicalVector >::type useTbrEstimate(useTbrEstimateSEXP);
+    Rcpp::traits::input_parameter< LogicalVector >::type useReplugEstimate(useReplugEstimateSEXP);
+    rcpp_result_gen = Rcpp::wrap(uspr_dist(tree1, tree2, keepLabels, useTbrApproxEstimate, useTbrEstimate, useReplugEstimate));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -40,24 +43,23 @@ BEGIN_RCPP
 END_RCPP
 }
 // replug_dist
-IntegerVector replug_dist(StringVector tree1, StringVector tree2, LogicalVector keepLabels, LogicalVector replugEstimate);
-RcppExport SEXP _uspr_replug_dist(SEXP tree1SEXP, SEXP tree2SEXP, SEXP keepLabelsSEXP, SEXP replugEstimateSEXP) {
+List replug_dist(StringVector tree1, StringVector tree2, LogicalVector keepLabels);
+RcppExport SEXP _uspr_replug_dist(SEXP tree1SEXP, SEXP tree2SEXP, SEXP keepLabelsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type tree1(tree1SEXP);
     Rcpp::traits::input_parameter< StringVector >::type tree2(tree2SEXP);
     Rcpp::traits::input_parameter< LogicalVector >::type keepLabels(keepLabelsSEXP);
-    Rcpp::traits::input_parameter< LogicalVector >::type replugEstimate(replugEstimateSEXP);
-    rcpp_result_gen = Rcpp::wrap(replug_dist(tree1, tree2, keepLabels, replugEstimate));
+    rcpp_result_gen = Rcpp::wrap(replug_dist(tree1, tree2, keepLabels));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_uspr_uspr_dist", (DL_FUNC) &_uspr_uspr_dist, 3},
+    {"_uspr_uspr_dist", (DL_FUNC) &_uspr_uspr_dist, 6},
     {"_uspr_tbr_dist", (DL_FUNC) &_uspr_tbr_dist, 11},
-    {"_uspr_replug_dist", (DL_FUNC) &_uspr_replug_dist, 4},
+    {"_uspr_replug_dist", (DL_FUNC) &_uspr_replug_dist, 3},
     {NULL, NULL, 0}
 };
 

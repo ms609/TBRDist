@@ -22,9 +22,16 @@ using namespace std;
 // [[Rcpp::export]]
 IntegerVector uspr_dist (StringVector tree1,
                          StringVector tree2,
-                         LogicalVector keepLabels) {
+                         LogicalVector keepLabels,
+                         LogicalVector useTbrApproxEstimate,
+                         LogicalVector useTbrEstimate,
+                         LogicalVector useReplugEstimate) {
   /* opt, protectB and *Estimate default to TRUE, all others to FALSE */
   KEEP_LABELS = keepLabels[0];
+
+  USE_TBR_APPROX_ESTIMATE = useTbrApproxEstimate[0];
+  USE_TBR_ESTIMATE = useTbrEstimate[0];
+  USE_REPLUG_ESTIMATE = useReplugEstimate[0];
 
   // label maps to allow string labels
   map<string, int> label_map = map<string, int>();
@@ -137,10 +144,9 @@ List tbr_dist (StringVector tree1,
 }
 
 // [[Rcpp::export]]
-IntegerVector replug_dist (StringVector tree1,
-                           StringVector tree2,
-                           LogicalVector keepLabels,
-                           LogicalVector replugEstimate) {
+List replug_dist (StringVector tree1,
+                  StringVector tree2,
+                  LogicalVector keepLabels) {
   /* opt, replugEstimate defaults to TRUE */
 
   KEEP_LABELS = keepLabels[0];
@@ -154,6 +160,8 @@ IntegerVector replug_dist (StringVector tree1,
     throw length_error("Number of trees in tree1 and tree2 must match");
   }
   IntegerVector replug(tree1.size());
+  StringVector maf_1(tree1.size()),
+    maf_2(tree1.size());
   for (int i = 0; i < tree1.size(); i++) {
     // load into data structures
     string tr1 = as<string>(tree1(i));
@@ -168,14 +176,16 @@ IntegerVector replug_dist (StringVector tree1,
     replug(i) = replug_distance(F1, F2, false, &MAF1, &MAF2);
 
     if (MAF1 != NULL) {
-      Rcout << "F1: " << MAF1->str(false, &reverse_label_map) << endl;
+      maf_1(i) = MAF1->str(false, &reverse_label_map);
       delete MAF1;
     }
     if (MAF2 != NULL) {
-      Rcout << "F2: " << MAF2->str(false, &reverse_label_map) << endl;
+      maf_2(i) = MAF2->str(false, &reverse_label_map);
       delete MAF2;
     }
 
   }
-  return (replug);
+
+  List ret = List::create(replug, maf_1, maf_2);
+  return (ret);
 }

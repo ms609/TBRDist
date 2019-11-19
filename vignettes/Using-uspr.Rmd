@@ -42,18 +42,19 @@ USPRDist(tree1, tree2)
 For TBR distances, use:
 
 ```{r}
-TBRDist(tree1, tree2)
+TBRDist(tree1, tree2, exact = TRUE)
 ```
 
 When calculating an exact TBR distance, we receive information on the
 maximum agreement forest for free (i.e. with no extra processing cost):
 
 ```{r}
-TBRDist(tree1, tree2, returnMaf = TRUE)
+TBRDist(tree1, tree2, exact = TRUE, maf = TRUE)
 ```
 
-For larger trees, we may wish to approximate the value of the TBR distance for 
-a faster result:
+Once trees have more than about a dozen tips, it becomes slow to calculate the 
+exact distance.  In the interests of speed, we may wish to approximate the value
+of the TBR distance:
 
 ```{r}
 TBRDist(tree1, tree2, exact = FALSE)

@@ -1,24 +1,52 @@
-#' @name Tree Rearrangement Distances
+#' Tree Rearrangement Distances
+#'
+#' @param tree1,tree2 Trees of class `phylo`, or lists thereof.
+#' @param checks Logical specifying whether to check that trees are properly
+#' formatted and labelled.  Specify `FALSE` at your peril, as improper
+#' input is likely to crash R.
+#'
+#' @name TreeRearrangementDistances
 #' @export
 #' @template MRS
-#' @importFrom ape write.tree
-USPRDist <- function (tree1, tree2, checks = TRUE) {
+USPRDist <- function (tree1, tree2, checks = TRUE,
+                      useTbrApproxEstimate = TRUE,
+                      useTbrEstimate = TRUE,
+                      useReplugEstimate = TRUE) {
   treeLists <- .PrepareTrees(tree1, tree2, checks)
-  uspr_dist(write.tree(treeLists[[1]]), write.tree(treeLists[[2]]), keepLabels = FALSE)
+  uspr_dist(treeLists[[1]], treeLists[[2]], keepLabels = FALSE,
+            useTbrApproxEstimate = useTbrApproxEstimate,
+            useTbrEstimate = useTbrEstimate,
+            useReplugEstimate = useReplugEstimate)
 }
 
+#' @rdname TreeRearrangementDistances
+#' @param maf Logical specifying whether to report a maximum agreement forest
+#' corresponding to the optimal score.
 #' @export
-#' @importFrom ape write.tree
-TBRDist <- function (tree1, tree2, checks = TRUE, keepLabels = FALSE,
-                     returnMaf = FALSE, printMafs = FALSE, countMafs = FALSE,
+ReplugDist <- function (tree1, tree2, checks = TRUE, maf = FALSE,
+                        exact = FALSE) {
+  treeLists <- .PrepareTrees(tree1, tree2, checks)
+  ret <- replug_dist(treeLists[[1]], treeLists[[2]], keepLabels = FALSE)
+  if (maf) {
+    names(ret) <- c('replug_dist', 'maf_1', 'maf_2')
+    ret
+  } else {
+    ret[[1]]
+  }
+}
+
+#' @rdname TreeRearrangementDistances
+#' @export
+TBRDist <- function (tree1, tree2, checks = TRUE,
+                     maf = FALSE, printMafs = FALSE, countMafs = FALSE,
                      optimize = TRUE, protectB = TRUE,
-                     exact = TRUE, approximate = !exact,
+                     exact = FALSE, approximate = !exact,
                      approxEstimate = TRUE, tbrEstimate = TRUE) {
   treeLists <- .PrepareTrees(tree1, tree2, checks)
 
   whichRets <- c(exact, rep(approximate, 2L), countMafs,
-                 rep(exact && returnMaf, 2L))
-  ret <- tbr_dist(write.tree(treeLists[[1]]), write.tree(treeLists[[2]]),
+                 rep(exact && maf, 2L))
+  ret <- tbr_dist(treeLists[[1]], treeLists[[2]],
                   printMafs = printMafs, countMafs = countMafs,
                   keepLabels = FALSE,
                   optimize = optimize, protectB = protectB,
@@ -33,6 +61,7 @@ TBRDist <- function (tree1, tree2, checks = TRUE, keepLabels = FALSE,
 }
 
 #' @keywords internal
+#' @importFrom ape write.tree
 #' @export
 .PrepareTrees <- function (tree1, tree2, checks = TRUE) {
   if (checks) {
@@ -54,7 +83,7 @@ TBRDist <- function (tree1, tree2, checks = TRUE, keepLabels = FALSE,
            integer(0))
   }
   class(tree1) <- class(tree2) <- 'multiPhylo'
-  list(tree1, tree2)
+  list(write.tree(tree1), write.tree(tree2))
 }
 
 #' @keywords internal
