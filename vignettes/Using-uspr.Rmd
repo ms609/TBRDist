@@ -1,5 +1,5 @@
 ---
-title: "Using uSPR"
+title: "Using _uspr_"
 author: "Martin R. Smith"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -11,6 +11,25 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-#TODO
+_uspr_ is a package to compare phylogenetic trees.
+
+This vignette assumes familiarity with the process of [loading trees into R](https://ms609.github.io/TreeTools/articles/load-trees.html).
+
+To load the `uspr` library into the R namespace, use 
+
+```{r}
+library('uspr')
+```
+
+To generate an approximate SPR distance between two unrooted trees, use:
+
+```{r}
+tree1 <- TreeTools::BalancedTree(10)
+tree2 <- TreeTools::PectinateTree(10)
+USPRDist(tree1, tree2)
+
+```
+
+
 
 This vignette will detail the basic usage of the `uspr` package.

@@ -20,38 +20,33 @@ using namespace std;
 #include "uspr/uspr.h"
 
 // [[Rcpp::export]]
-int uspr_uspr (StringVector tree1,
-               StringVector tree2,
-               LogicalVector printMafs,
-               LogicalVector countMafs,
-               LogicalVector keepLabels,
-               LogicalVector noOpt,
-               LogicalVector protectB,
-               LogicalVector tbrApprox,
-               LogicalVector tbr,
-               LogicalVector replug,
-               LogicalVector uspr,
-               LogicalVector approxEstimate,
-               LogicalVector tbrEstimate,
-               LogicalVector replugEstimate
-               ) {
-  /* protectB and *Estimate default to TRUE, all others to FALSE */
-  PRINT_mAFS = printMafs[0];
-  COUNT_mAFS = countMafs[0];
+int r_uspr (StringVector tree1,
+            StringVector tree2,
+            LogicalVector printMafs,
+            LogicalVector countMafs,
+            LogicalVector keepLabels,
+            LogicalVector opt,
+            LogicalVector protectB,
+            LogicalVector tbrApprox,
+            LogicalVector tbr,
+            LogicalVector replug,
+            LogicalVector uspr,
+            LogicalVector approxEstimate,
+            LogicalVector tbrEstimate,
+            LogicalVector replugEstimate) {
+  /* opt, protectB and *Estimate default to TRUE, all others to FALSE */
+  bool PRINT_mAFS = printMafs[0];
+  bool COUNT_mAFS = countMafs[0];
   KEEP_LABELS = keepLabels[0];
-  DEFAULT_OPTIMIZATIONS = !noOpt[0];
+  bool DEFAULT_OPTIMIZATIONS = opt[0];
   OPTIMIZE_PROTECT_B = protectB[0];
-  COMPUTE_TBR_APPROX = tbrApprox[0];
-  COMPUTE_TBR = tbr[0];
-  COMPUTE_REPLUG = replug[0];
-  COMPUTE_USPR = uspr[0];
+  bool COMPUTE_TBR_APPROX = tbrApprox[0];
+  bool COMPUTE_TBR = tbr[0];
+  bool COMPUTE_REPLUG = replug[0];
+  bool COMPUTE_USPR = uspr[0];
   USE_TBR_APPROX_ESTIMATE = approxEstimate[0];
   USE_TBR_ESTIMATE = tbrEstimate[0];
   USE_REPLUG_ESTIMATE = replugEstimate[0];
-
-  ALL_DISTANCES = !(COMPUTE_TBR_APPROX || COMPUTE_TBR || COMPUTE_REPLUG
-                      || COMPUTE_USPR);
-
 
   if (DEFAULT_OPTIMIZATIONS == false) {
     OPTIMIZE_2B = false;
@@ -59,13 +54,6 @@ int uspr_uspr (StringVector tree1,
     OPTIMIZE_PROTECT_B = false;
     OPTIMIZE_BRANCH_AND_BOUND = false;
     Rcout << "NO OPTIMIZATIONS" << endl;
-  }
-
-  if (ALL_DISTANCES) {
-    COMPUTE_TBR_APPROX = true;
-    COMPUTE_TBR = true;
-    COMPUTE_REPLUG = true;
-    COMPUTE_USPR = true;
   }
 
   // label maps to allow string labels
@@ -81,9 +69,11 @@ int uspr_uspr (StringVector tree1,
   }
   for (int i = 0; i < tree1.size(); i++) {
     // load into data structures
-    uforest F1 = uforest(tree1[i], &label_map, &reverse_label_map);
+    string tr1 = as<string>(tree1(i));
+    string tr2 = as<string>(tree2(i));
+    uforest F1 = uforest(tr1, &label_map, &reverse_label_map);
     F1.normalize_order();
-    uforest F2 = uforest(tree2[i], &label_map, &reverse_label_map);
+    uforest F2 = uforest(tr2, &label_map, &reverse_label_map);
     F2.normalize_order();
     Rcout << "T1: " << F1.str(false, &reverse_label_map) << endl;
     Rcout << "T2: " << F2.str(false, &reverse_label_map) << endl;
@@ -136,4 +126,5 @@ int uspr_uspr (StringVector tree1,
     }
 
   }
+  return (0);
 }

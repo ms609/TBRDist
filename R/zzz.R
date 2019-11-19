@@ -1,3 +1,4 @@
+#' @useDynLib uspr
 .onUnload <- function (libpath) {
   library.dynam.unload("uspr", libpath)
 }
