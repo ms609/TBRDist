@@ -24,6 +24,7 @@ Suggests:
     Rdpack,
     rmarkdown,
     testthat
+SystemRequirements: C++11
 RdMacros: Rdpack
 LazyData: true
 ByteCompile: true
