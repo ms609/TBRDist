@@ -9,19 +9,27 @@ USPRDist <- function (tree1, tree2, checks = TRUE) {
 
 #' @export
 #' @importFrom ape write.tree
-TBRDist <- function (tree1, tree2, checks = TRUE,
-                     printMafs = FALSE, countMafs = FALSE, keepLabels = FALSE,
+TBRDist <- function (tree1, tree2, checks = TRUE, keepLabels = FALSE,
+                     returnMaf = FALSE, printMafs = FALSE, countMafs = FALSE,
                      optimize = TRUE, protectB = TRUE,
-                     tbrApprox = FALSE,
+                     exact = TRUE, approximate = !exact,
                      approxEstimate = TRUE, tbrEstimate = TRUE) {
   treeLists <- .PrepareTrees(tree1, tree2, checks)
 
-  tbr_dist(write.tree(treeLists[[1]]), write.tree(treeLists[[2]]),
-           printMafs = printMafs, countMafs = countMafs,
-           keepLabels = FALSE,
-           optimize = optimize, protectB = protectB,
-           tbrApprox = tbrApprox,
-           approxEstimate = approxEstimate, tbrEstimate = tbrEstimate)
+  whichRets <- c(exact, rep(approximate, 2L), countMafs,
+                 rep(exact && returnMaf, 2L))
+  ret <- tbr_dist(write.tree(treeLists[[1]]), write.tree(treeLists[[2]]),
+                  printMafs = printMafs, countMafs = countMafs,
+                  keepLabels = FALSE,
+                  optimize = optimize, protectB = protectB,
+                  exact = exact, approximate = approximate,
+                  approxEstimate = approxEstimate, tbrEstimate = tbrEstimate)[whichRets]
+  if (exact && sum(whichRets) == 1) {
+    ret[[1]]
+  } else {
+    names(ret) <- c('tbr_exact', 'tbr_min', 'tbr_max', 'n_maf', 'maf_1', 'maf_2')[whichRets]
+    ret
+  }
 }
 
 #' @keywords internal

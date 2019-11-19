@@ -11,8 +11,9 @@ test_that("Bad tree input is handled correctly", {
 test_that("SPR distances are calculated correctly", {
   tree1 <- TreeTools::BalancedTree(10)
   tree2 <- TreeTools::PectinateTree(10)
-  expect_equivalent(phangorn::SPR.dist(tree1, tree2),
-                    USPRDist(tree1, tree2))
+  expect_equivalent(2L, USPRDist(tree1, tree2))
 
   expect_true(USPRDist(tree1, tree2) >= TBRDist(tree1, tree2))
+  tbrDist <- TBRDist(tree1, tree2, exact = TRUE, approximate = TRUE)
+  expect_true($tbr_exact)
 })

@@ -19,8 +19,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // tbr_dist
-List tbr_dist(StringVector tree1, StringVector tree2, LogicalVector printMafs, LogicalVector countMafs, LogicalVector keepLabels, LogicalVector optimize, LogicalVector protectB, LogicalVector tbrApprox, LogicalVector tbr, LogicalVector approxEstimate, LogicalVector tbrEstimate);
-RcppExport SEXP _uspr_tbr_dist(SEXP tree1SEXP, SEXP tree2SEXP, SEXP printMafsSEXP, SEXP countMafsSEXP, SEXP keepLabelsSEXP, SEXP optimizeSEXP, SEXP protectBSEXP, SEXP tbrApproxSEXP, SEXP tbrSEXP, SEXP approxEstimateSEXP, SEXP tbrEstimateSEXP) {
+List tbr_dist(StringVector tree1, StringVector tree2, LogicalVector printMafs, LogicalVector countMafs, LogicalVector keepLabels, LogicalVector optimize, LogicalVector protectB, LogicalVector exact, LogicalVector approximate, LogicalVector approxEstimate, LogicalVector tbrEstimate);
+RcppExport SEXP _uspr_tbr_dist(SEXP tree1SEXP, SEXP tree2SEXP, SEXP printMafsSEXP, SEXP countMafsSEXP, SEXP keepLabelsSEXP, SEXP optimizeSEXP, SEXP protectBSEXP, SEXP exactSEXP, SEXP approximateSEXP, SEXP approxEstimateSEXP, SEXP tbrEstimateSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -31,11 +31,11 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< LogicalVector >::type keepLabels(keepLabelsSEXP);
     Rcpp::traits::input_parameter< LogicalVector >::type optimize(optimizeSEXP);
     Rcpp::traits::input_parameter< LogicalVector >::type protectB(protectBSEXP);
-    Rcpp::traits::input_parameter< LogicalVector >::type tbrApprox(tbrApproxSEXP);
-    Rcpp::traits::input_parameter< LogicalVector >::type tbr(tbrSEXP);
+    Rcpp::traits::input_parameter< LogicalVector >::type exact(exactSEXP);
+    Rcpp::traits::input_parameter< LogicalVector >::type approximate(approximateSEXP);
     Rcpp::traits::input_parameter< LogicalVector >::type approxEstimate(approxEstimateSEXP);
     Rcpp::traits::input_parameter< LogicalVector >::type tbrEstimate(tbrEstimateSEXP);
-    rcpp_result_gen = Rcpp::wrap(tbr_dist(tree1, tree2, printMafs, countMafs, keepLabels, optimize, protectB, tbrApprox, tbr, approxEstimate, tbrEstimate));
+    rcpp_result_gen = Rcpp::wrap(tbr_dist(tree1, tree2, printMafs, countMafs, keepLabels, optimize, protectB, exact, approximate, approxEstimate, tbrEstimate));
     return rcpp_result_gen;
 END_RCPP
 }

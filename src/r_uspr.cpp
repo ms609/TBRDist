@@ -56,18 +56,20 @@ List tbr_dist (StringVector tree1,
                         LogicalVector keepLabels,
                         LogicalVector optimize,
                         LogicalVector protectB,
-                        LogicalVector tbrApprox,
-                        LogicalVector tbr,
+                        LogicalVector exact,
+                        LogicalVector approximate,
                         LogicalVector approxEstimate,
                         LogicalVector tbrEstimate) {
   /* optimize, protectB and *Estimate default to TRUE, all others to FALSE */
   bool PRINT_mAFS = printMafs[0];
   bool COUNT_mAFS = countMafs[0];
+
   KEEP_LABELS = keepLabels[0];
   bool DEFAULT_OPTIMIZATIONS = optimize[0];
   OPTIMIZE_PROTECT_B = protectB[0];
-  bool COMPUTE_TBR_APPROX = tbrApprox[0];
-  bool COMPUTE_TBR = tbr[0];
+
+  bool COMPUTE_TBR = exact[0];
+  bool COMPUTE_TBR_APPROX = approximate[0];
 
   USE_TBR_APPROX_ESTIMATE = approxEstimate[0];
   USE_TBR_ESTIMATE = tbrEstimate[0];
@@ -89,7 +91,8 @@ List tbr_dist (StringVector tree1,
   }
   IntegerVector tbr_exact(tree1.size()),
     tbr_above(tree1.size()),
-    tbr_below(tree1.size());
+    tbr_below(tree1.size()),
+    n_maf(tree1.size());
   StringVector maf_1(tree1.size()),
     maf_2(tree1.size());
   for (int i = 0; i < tree1.size(); i++) {
@@ -108,7 +111,7 @@ List tbr_dist (StringVector tree1,
     if (COMPUTE_TBR) {
       uforest *MAF1 = NULL;
       uforest *MAF2 = NULL;
-      tbr_exact[i] = tbr_distance(F1, F2, false, &MAF1, &MAF2);
+      tbr_exact[i] = tbr_distance(F1, F2, /*quiet = */ true, &MAF1, &MAF2);
 
       if (MAF1 != NULL) {
         maf_1(i) = MAF1->str(false, &reverse_label_map);
@@ -119,17 +122,14 @@ List tbr_dist (StringVector tree1,
         delete MAF2;
       }
     }
-    int count;
     if (PRINT_mAFS) {
-      count = tbr_print_mAFs(F1, F2);
-      Rcout << count << " mAFs" << endl;
+      n_maf(i) = tbr_print_mAFs(F1, F2);
     }
     else if (COUNT_mAFS) {
-      count = tbr_count_mAFs(F1, F2);
-      Rcout << count << " mAFs" << endl;
+      n_maf(i) = tbr_count_mAFs(F1, F2);
     }
   }
-  List ret = List::create(tbr_exact, tbr_above, tbr_below, maf_1, maf_2);
+  List ret = List::create(tbr_exact, tbr_above, tbr_below, n_maf, maf_1, maf_2);
   return (ret);
 }
 

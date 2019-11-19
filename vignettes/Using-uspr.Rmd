@@ -21,11 +21,40 @@ To load the `uspr` library into the R namespace, use
 library('uspr')
 ```
 
+We'll work with some simple trees generated using the 
+[`TreeTools`](https://ms609.github.io/TreeTools) package.
+
+```{r, fig.width=80%}
+library('TreeTools')
+tree1 <- BalancedTree(10)
+tree2 <- TreeTools::PectinateTree(10)
+par(mfrow=1:2, mar=rep(0.2, 4)) # Set up plotting area
+plot(tree1)
+plot(tree2)
+```
+
 To generate an approximate SPR distance between two unrooted trees, use:
 
 ```{r}
-tree1 <- TreeTools::BalancedTree(10)
-tree2 <- TreeTools::PectinateTree(10)
 USPRDist(tree1, tree2)
 ```
 
+For TBR distances, use:
+
+```{r}
+TBRDist(tree1, tree2)
+```
+
+When calculating an exact TBR distance, we receive information on the
+maximum agreement forest for free (i.e. with no extra processing cost):
+
+```{r}
+TBRDist(tree1, tree2, returnMaf = TRUE)
+```
+
+For larger trees, we may wish to approximate the value of the TBR distance for 
+a faster result:
+
+```{r}
+TBRDist(tree1, tree2, exact = FALSE)
+```
