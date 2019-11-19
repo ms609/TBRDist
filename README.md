@@ -8,20 +8,12 @@
 -->
 [![Project Status: Active – – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 
-This package provides functions for creating, modifying and analysing 
-phylogenetic trees.  It complements packages such as 
-[ape](https://cran.r-project.org/package=ape),
-[phangorn](https://cran.r-project.org/package=phangorn) and
-[phytools](https://cran.r-project.org/package=phytools),
-aiming for efficient and robust implementations of functions, typically
-applied to unweighted trees (i.e. those without edge lengths).
-
-Version 0.1.0 is a pre-release; some functionality may change in version 1.0.0,
-due early 2020.
+This package allows the calculation of SPR, TBR and Replug distances between
+unrooted phylogenetic trees from within R, using Chris Whidden's `uspr` C++ code.
 
 # Installation
 
-Install and load the library from CRAN as follows:
+Install and load the library from CRAN (coming soon!) as follows:
 ```
 install.packages('uspr')
 library('uspr')
@@ -41,6 +33,12 @@ To download the contents of these subdirectories, check out the project using
 or if you've already checked out the project, run
 `git submodule update --init --recursive`.  
 
+
+# Usage
+
+If you use uspr in your research, please cite:
+
+Chris Whidden and Frederick A. Matsen IV. Calculating the Unrooted Subtree-Prune-and-Regraft Distance. eprint arXiv:1511.07529. http://arxiv.org/abs/1511.07529
 
 Please note that the 'uspr' project is released with a
 [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
