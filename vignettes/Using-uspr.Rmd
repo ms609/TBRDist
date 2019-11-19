@@ -13,13 +13,15 @@ vignette: >
 
 _uspr_ is a package to compare phylogenetic trees.
 
-This vignette assumes familiarity with the process of [loading trees into R](https://ms609.github.io/TreeTools/articles/load-trees.html).
-
-To load the `uspr` library into the R namespace, use 
+To load the _uspr_ library into the R namespace, use 
 
 ```{r}
 library('uspr')
 ```
+
+## Loading trees
+
+This vignette assumes familiarity with the process of [loading trees into R](https://ms609.github.io/TreeTools/articles/load-trees.html).
 
 We'll work with some simple trees generated using the 
 [`TreeTools`](https://ms609.github.io/TreeTools) package.
@@ -32,6 +34,8 @@ par(mfrow=1:2, mar=rep(0.2, 4)) # Set up plotting area
 plot(tree1)
 plot(tree2)
 ```
+
+## Calculating distances
 
 To generate an approximate SPR distance between two unrooted trees, use:
 
@@ -66,6 +70,8 @@ of the TBR distance:
 TBRDist(tree1, tree2, exact = FALSE)
 ```
 
+## Comparing multiple trees
+
 To avoid multiple calls, each function can also be used to compare lists of 
 trees (or multiPhylo objects) against a single tree:
 
@@ -78,3 +84,13 @@ Or against each corresponding entry in a second list:
 ```{r}
 USPRDist(list(tree1, tree2, tree2), list(tree2, tree1, tree2))
 ```
+
+## Citation
+
+If you use _uspr_ in your research, please cite:
+
+* Chris Whidden and Frederick A. Matsen IV. Calculating the Unrooted Subtree-Prune-and-Regraft Distance. eprint arXiv:1511.07529. http://arxiv.org/abs/1511.07529
+
+Optionally, a citation to this R package would be welcome:
+
+* Smith (2019). uspr: Calculate SPR and TBR distance between unrooted phylogenetic treess. doi: 10.5281/zenodo.######TODO
