@@ -173,7 +173,7 @@ List replug_dist (StringVector tree1,
 
     uforest *MAF1 = NULL;
     uforest *MAF2 = NULL;
-    replug(i) = replug_distance(F1, F2, false, &MAF1, &MAF2);
+    replug(i) = replug_distance(F1, F2,  /*quiet = */ true, &MAF1, &MAF2);
 
     if (MAF1 != NULL) {
       maf_1(i) = MAF1->str(false, &reverse_label_map);
