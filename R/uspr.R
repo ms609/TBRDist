@@ -21,7 +21,7 @@ TBRDist <- function (tree1, tree2, checks = TRUE) {
 
 #' @keywords internal
 #' @export
-.PrepareTrees <- function (tree1, tree2, checks) {
+.PrepareTrees <- function (tree1, tree2, checks = TRUE) {
   if (checks) {
 
     if (class(tree1) == 'phylo') tree1 <- list(tree1)
@@ -38,8 +38,9 @@ TBRDist <- function (tree1, tree2, checks = TRUE) {
     }
 
     vapply(seq_along(tree1), function (i) .CatchBadPair(i, tree1[[i]], tree2[[i]]),
-           invisible())
+           integer(0))
   }
+  class(tree1) <- class(tree2) <- 'multiPhylo'
   list(tree1, tree2)
 }
 
@@ -54,5 +55,5 @@ TBRDist <- function (tree1, tree2, checks = TRUE) {
   if (length(setdiff(tree1$tip.label, tree2$tip.label)) > 0){
     stop("Problem with tree pair " , i, ": Trees must bear identical labels")
   }
-  invisible()
+  integer(0)
 }
