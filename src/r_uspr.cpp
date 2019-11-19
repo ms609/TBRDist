@@ -54,17 +54,17 @@ List tbr_dist (StringVector tree1,
                         LogicalVector printMafs,
                         LogicalVector countMafs,
                         LogicalVector keepLabels,
-                        LogicalVector opt,
+                        LogicalVector optimize,
                         LogicalVector protectB,
                         LogicalVector tbrApprox,
                         LogicalVector tbr,
                         LogicalVector approxEstimate,
                         LogicalVector tbrEstimate) {
-  /* opt, protectB and *Estimate default to TRUE, all others to FALSE */
+  /* optimize, protectB and *Estimate default to TRUE, all others to FALSE */
   bool PRINT_mAFS = printMafs[0];
   bool COUNT_mAFS = countMafs[0];
   KEEP_LABELS = keepLabels[0];
-  bool DEFAULT_OPTIMIZATIONS = opt[0];
+  bool DEFAULT_OPTIMIZATIONS = optimize[0];
   OPTIMIZE_PROTECT_B = protectB[0];
   bool COMPUTE_TBR_APPROX = tbrApprox[0];
   bool COMPUTE_TBR = tbr[0];

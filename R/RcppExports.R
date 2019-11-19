@@ -5,8 +5,8 @@ uspr_dist <- function(tree1, tree2, keepLabels) {
     .Call('_uspr_uspr_dist', PACKAGE = 'uspr', tree1, tree2, keepLabels)
 }
 
-tbr_dist <- function(tree1, tree2, printMafs, countMafs, keepLabels, opt, protectB, tbrApprox, tbr, approxEstimate, tbrEstimate) {
-    .Call('_uspr_tbr_dist', PACKAGE = 'uspr', tree1, tree2, printMafs, countMafs, keepLabels, opt, protectB, tbrApprox, tbr, approxEstimate, tbrEstimate)
+tbr_dist <- function(tree1, tree2, printMafs, countMafs, keepLabels, optimize, protectB, tbrApprox, tbr, approxEstimate, tbrEstimate) {
+    .Call('_uspr_tbr_dist', PACKAGE = 'uspr', tree1, tree2, printMafs, countMafs, keepLabels, optimize, protectB, tbrApprox, tbr, approxEstimate, tbrEstimate)
 }
 
 replug_dist <- function(tree1, tree2, keepLabels, replugEstimate) {

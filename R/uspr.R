@@ -9,14 +9,19 @@ USPRDist <- function (tree1, tree2, checks = TRUE) {
 
 #' @export
 #' @importFrom ape write.tree
-TBRDist <- function (tree1, tree2, checks = TRUE) {
+TBRDist <- function (tree1, tree2, checks = TRUE,
+                     printMafs = FALSE, countMafs = FALSE, keepLabels = FALSE,
+                     optimize = TRUE, protectB = TRUE,
+                     tbrApprox = FALSE,
+                     approxEstimate = TRUE, tbrEstimate = TRUE) {
   treeLists <- .PrepareTrees(tree1, tree2, checks)
 
-  tbr_dist(write.tree(treeLists[[1]]), write.tree(treeLists[[2]]), keepLabels = FALSE,
-           printMafs = FALSE, countMafs = FALSE, keepLabels = FALSE,
-           opt = TRUE, protectB = TRUE,
-           tbrApprox = FALSE,
-           approxEstimate = TRUE, tbrEstimate = TRUE)
+  tbr_dist(write.tree(treeLists[[1]]), write.tree(treeLists[[2]]),
+           printMafs = printMafs, countMafs = countMafs,
+           keepLabels = FALSE,
+           optimize = optimize, protectB = protectB,
+           tbrApprox = tbrApprox,
+           approxEstimate = approxEstimate, tbrEstimate = tbrEstimate)
 }
 
 #' @keywords internal
