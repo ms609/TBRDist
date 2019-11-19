@@ -27,9 +27,5 @@ To generate an approximate SPR distance between two unrooted trees, use:
 tree1 <- TreeTools::BalancedTree(10)
 tree2 <- TreeTools::PectinateTree(10)
 USPRDist(tree1, tree2)
-
 ```
 
-
-
-This vignette will detail the basic usage of the `uspr` package.
