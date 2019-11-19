@@ -25,6 +25,8 @@ Suggests:
     Rdpack,
     rmarkdown,
     testthat
+Remotes:
+    ms609/TreeTools
 SystemRequirements: C++11
 RdMacros: Rdpack
 LazyData: true
