@@ -2,14 +2,14 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 uspr_dist <- function(tree1, tree2, keepLabels, useTbrApproxEstimate, useTbrEstimate, useReplugEstimate) {
-    .Call('_uspr_uspr_dist', PACKAGE = 'uspr', tree1, tree2, keepLabels, useTbrApproxEstimate, useTbrEstimate, useReplugEstimate)
+    .Call('_TBRDist_uspr_dist', PACKAGE = 'TBRDist', tree1, tree2, keepLabels, useTbrApproxEstimate, useTbrEstimate, useReplugEstimate)
 }
 
 tbr_dist <- function(tree1, tree2, printMafs, countMafs, keepLabels, optimize, protectB, exact, approximate) {
-    .Call('_uspr_tbr_dist', PACKAGE = 'uspr', tree1, tree2, printMafs, countMafs, keepLabels, optimize, protectB, exact, approximate)
+    .Call('_TBRDist_tbr_dist', PACKAGE = 'TBRDist', tree1, tree2, printMafs, countMafs, keepLabels, optimize, protectB, exact, approximate)
 }
 
 replug_dist <- function(tree1, tree2, keepLabels) {
-    .Call('_uspr_replug_dist', PACKAGE = 'uspr', tree1, tree2, keepLabels)
+    .Call('_TBRDist_replug_dist', PACKAGE = 'TBRDist', tree1, tree2, keepLabels)
 }
 

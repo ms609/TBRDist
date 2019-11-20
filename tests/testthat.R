@@ -1,4 +1,4 @@
 library('testthat')
-library('uspr')
+library('TBRDist')
 
-test_check("uspr")
+test_check("TBRDist")

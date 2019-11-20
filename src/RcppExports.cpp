@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // uspr_dist
 IntegerVector uspr_dist(StringVector tree1, StringVector tree2, LogicalVector keepLabels, LogicalVector useTbrApproxEstimate, LogicalVector useTbrEstimate, LogicalVector useReplugEstimate);
-RcppExport SEXP _uspr_uspr_dist(SEXP tree1SEXP, SEXP tree2SEXP, SEXP keepLabelsSEXP, SEXP useTbrApproxEstimateSEXP, SEXP useTbrEstimateSEXP, SEXP useReplugEstimateSEXP) {
+RcppExport SEXP _TBRDist_uspr_dist(SEXP tree1SEXP, SEXP tree2SEXP, SEXP keepLabelsSEXP, SEXP useTbrApproxEstimateSEXP, SEXP useTbrEstimateSEXP, SEXP useReplugEstimateSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -23,7 +23,7 @@ END_RCPP
 }
 // tbr_dist
 List tbr_dist(StringVector tree1, StringVector tree2, LogicalVector printMafs, LogicalVector countMafs, LogicalVector keepLabels, LogicalVector optimize, LogicalVector protectB, LogicalVector exact, LogicalVector approximate);
-RcppExport SEXP _uspr_tbr_dist(SEXP tree1SEXP, SEXP tree2SEXP, SEXP printMafsSEXP, SEXP countMafsSEXP, SEXP keepLabelsSEXP, SEXP optimizeSEXP, SEXP protectBSEXP, SEXP exactSEXP, SEXP approximateSEXP) {
+RcppExport SEXP _TBRDist_tbr_dist(SEXP tree1SEXP, SEXP tree2SEXP, SEXP printMafsSEXP, SEXP countMafsSEXP, SEXP keepLabelsSEXP, SEXP optimizeSEXP, SEXP protectBSEXP, SEXP exactSEXP, SEXP approximateSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -42,7 +42,7 @@ END_RCPP
 }
 // replug_dist
 List replug_dist(StringVector tree1, StringVector tree2, LogicalVector keepLabels);
-RcppExport SEXP _uspr_replug_dist(SEXP tree1SEXP, SEXP tree2SEXP, SEXP keepLabelsSEXP) {
+RcppExport SEXP _TBRDist_replug_dist(SEXP tree1SEXP, SEXP tree2SEXP, SEXP keepLabelsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -55,13 +55,13 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_uspr_uspr_dist", (DL_FUNC) &_uspr_uspr_dist, 6},
-    {"_uspr_tbr_dist", (DL_FUNC) &_uspr_tbr_dist, 9},
-    {"_uspr_replug_dist", (DL_FUNC) &_uspr_replug_dist, 3},
+    {"_TBRDist_uspr_dist", (DL_FUNC) &_TBRDist_uspr_dist, 6},
+    {"_TBRDist_tbr_dist", (DL_FUNC) &_TBRDist_tbr_dist, 9},
+    {"_TBRDist_replug_dist", (DL_FUNC) &_TBRDist_replug_dist, 3},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_uspr(DllInfo *dll) {
+RcppExport void R_init_TBRDist(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }

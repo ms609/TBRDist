@@ -1,5 +1,5 @@
-Package: uspr
-Title: Calculate SPR and TBR distance between unrooted phylogenetic trees
+Package: TBRDist
+Title: Calculate rearrangement distances between unrooted phylogenetic trees
 Version: 0.0.0.9000
 Authors@R: c(person("Martin R.", 'Smith',
                   email="martin.smith@durham.ac.uk", 
@@ -10,22 +10,22 @@ Authors@R: c(person("Martin R.", 'Smith',
             )
 License: GPL (>= 3)
 Copyright: Underlying C++ code copyright 2018 Chris Whidden.
-Description: Fast calculation of the SPR distance between unrooted trees,
-  as well as the TBR and replug distances, using the algorithms of Whidden and 
+Description: Fast calculation of the SPR, TBR and Replug distances between 
+  unrooted trees, using the algorithms of Whidden and 
   Matsen (2017) <arxiv:1511.07529>.
-URL: https://ms609.github.io/uspr/,
-    https://github.com/ms609/uspr/, 
+URL: https://ms609.github.io/TBRDist/,
+    https://github.com/ms609/TBRDist/, 
     https://github.com/cwhidden/uspr/
-BugReports: https://github.com/ms609/uspr/issues/
+BugReports: https://github.com/ms609/TBRDist/issues/
 Depends: R (>= 3.4.0),
 Imports:
     ape,
-    TreeTools
 Suggests:
     knitr,
     Rdpack,
     rmarkdown,
-    testthat
+    testthat,
+    TreeTools
 Remotes:
     ms609/TreeTools
 SystemRequirements: C++11

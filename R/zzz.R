@@ -1,6 +1,6 @@
-#' @useDynLib uspr
+#' @useDynLib TBRDist
 .onUnload <- function (libpath) {
-  library.dynam.unload("uspr", libpath)
+  library.dynam.unload("TBRDist", libpath)
 }
 
 ## Reminders when releasing for CRAN

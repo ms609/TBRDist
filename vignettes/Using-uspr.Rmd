@@ -1,22 +1,22 @@
 ---
-title: "Using _uspr_"
+title: "Using _TBRDist_"
 author: "Martin R. Smith"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 bibliography: ../inst/REFERENCES.bib
 csl: ../inst/apa-old-doi-prefix.csl
 vignette: >
-  %\VignetteIndexEntry{Using uSPR}
+  %\VignetteIndexEntry{Using TBRDist}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-_uspr_ is a package to compare phylogenetic trees.
+_TBRDist_ is a package to compare phylogenetic trees.
 
-To load the _uspr_ library into the R namespace, use 
+To load the _TBRDist_ package into the R namespace, use 
 
 ```{r}
-library('uspr')
+library('TBRDist')
 ```
 
 ## Loading trees
@@ -93,4 +93,4 @@ If you use _uspr_ in your research, please cite:
 
 Optionally, a citation to this R package would be welcome:
 
-* Smith (2019). uspr: Calculate SPR and TBR distance between unrooted phylogenetic treess. doi:[10.5281/zenodo.3548333](https://dx.doi.org/10.5281/zenodo.3548333)
+* Smith (2019). TBRDist: Calculate SPR and TBR distance between unrooted phylogenetic treess. doi:[10.5281/zenodo.3548333](https://dx.doi.org/10.5281/zenodo.3548333)
