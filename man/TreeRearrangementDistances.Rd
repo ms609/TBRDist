@@ -107,8 +107,11 @@ if this would be useful to you.
   TBRDist(list(tree1, tree2), tree2, exact = FALSE)
 
   # Compare all pairs in two lists
-  TBRDist(list(tree1, tree2), list(tree1, tree2, tree2), pairwise = TRUE,
+  TBRDist(list(tree1, tree2), list(tree1, tree2, tree2), allPairs = TRUE,
           exact = FALSE)
+
+  # Compare each tree in a list against each other
+  TBRDist(list(one = tree1, two = tree2, twoAgain = tree2))
 
   # Compare each pair in two lists
   TBRDist(list(tree1, tree2, tree2),
