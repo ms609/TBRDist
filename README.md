@@ -1,4 +1,4 @@
-# uspr
+# TBRDist
 
 [![Build Status](https://travis-ci.org/ms609/uspr.svg?branch=master)](https://travis-ci.org/ms609/uspr)
 [![codecov](https://codecov.io/gh/ms609/uspr/branch/master/graph/badge.svg)](https://codecov.io/gh/ms609/uspr)
@@ -8,7 +8,7 @@
 -->
 [![Project Status: Active – – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 
-`uspr` allows the calculation of SPR, TBR and Replug distances between
+`TBRDist` allows the calculation of SPR, TBR and Replug distances between
 unrooted phylogenetic trees from within R, using [algorithms](https://github.com/cwhidden/uspr) written in C++
 by [Chris Whidden](https://web.cs.dal.ca/~whidden/). Whidden and Matsen (2017)
 provide more information on the motivation behind this project, 
