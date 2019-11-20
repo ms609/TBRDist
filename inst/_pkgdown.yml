@@ -3,102 +3,15 @@ url: https://ms609.github.io/uspr
 authors:
   Martin R. Smith:
     href: https://community.dur.ac.uk/martin.smith/
+  Chris Whidden:
+    href: https://web.cs.dal.ca/~whidden/
 
 development:
   mode: auto
 
-reference:
-  - title: "Node support"
-    desc: "Functions that describe support for nodes in trees."
-    contents:
-      - SplitFrequency
-      - SupportColour
-
-  - title: "Tree manipulation"
-    desc: >
-      Functions for editing phylogenetic trees.
-    contents:
-      - AddTip
-      - AllAncestors
-      - AncestorEdge
-      - CladeSizes
-      - CollapseNode
-      - ConsensusWithout
-      - DescendantEdges
-      - EdgeAncestry
-      - EnforceOutgroup
-      - MRCA
-      - NPartitions
-      - NewickTree
-      - has_concept('tree generation functions')
-      - NonDuplicateRoot
-      - Renumber
-      - RootTree
-      - SingleTaxonTree
-      - SortTree
-      - Subtree
-      - RenumberTips
-      - TreeIsRooted
-
-  - title: "Tree navigation"
-    desc: >
-      Functions to navigate phylogenetic trees.
-    contents:
-      - has_concept('tree navigation')
-
-  - title: "Phylogenetic data"
-    desc: "Functions for modifying and evaluating datasets."
-    contents:
-      - MatrixToPhyDat
-      - PhyDatToMatrix
-      - PhyToString
-      - StringToPhyDat
-
-  - title: "Parsers"
-    desc: "Functions to parse files."
-    contents:
-      - ApeTime
-      - ExtractTaxa
-      - NewickTree
-      - ReadCharacters
-      - ReadTntTree
-      - TNTText2Tree
-
-  - title: "Partitions"
-    desc: "Functions that manipulate bipartition splits."
-    contents:
-      - matches('Split')
-      - has_concept("split manipulation functions")
-
-  - title: "Information and combinatorics"
-    desc: "Functions to calculate factorial quantities."
-    contents:
-    - starts_with('IC')
-    - NRooted
-    - N1Spr
-    - DoubleFactorial
-    - has_concept("split information functions")
-
-  - title: "Datasets"
-    desc: "Data that accompanies the package."
-    contents:
-      - brewer
-      - doubleFactorials
-      - Lobo.data
-      - Lobo.phy
-      - logDoubleFactorials
-     #- has_concept('datasets') # Not yet implemented by pkgdown
-
-  - title: "Utility functions"
-    desc: "Miscellaneous functions to simplify or expedite basic functionality."
-    contents:
-      - ListToMatrix
-      - MatrixToList
-      - RightmostCharacter
-      - SampleOne
-
-template:
-  params:
-    docsearch:
-      api_key: #TODO
-      index_name: uspr
+#template:
+#  params:
+#    docsearch:
+#      api_key: #TODO
+#      index_name: uspr
+#
