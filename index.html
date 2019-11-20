@@ -84,11 +84,11 @@
       </header><div class="row">
   <div class="contents col-md-9">
 
-<div id="uspr" class="section level1">
+<div id="tbrdist" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#uspr" class="anchor"></a>uspr</h1></div>
+<a href="#tbrdist" class="anchor"></a>TBRDist</h1></div>
 
-<p><code>uspr</code> allows the calculation of SPR, TBR and Replug distances between unrooted phylogenetic trees from within R, using <a href="https://github.com/cwhidden/uspr">algorithms</a> written in C++ by <a href="https://web.cs.dal.ca/~whidden/">Chris Whidden</a>. Whidden and Matsen (2017) provide more information on the motivation behind this project, the algorithms used and their expected performance.</p>
+<p><code>TBRDist</code> allows the calculation of SPR, TBR and Replug distances between unrooted phylogenetic trees from within R, using <a href="https://github.com/cwhidden/uspr">algorithms</a> written in C++ by <a href="https://web.cs.dal.ca/~whidden/">Chris Whidden</a>. Whidden and Matsen (2017) provide more information on the motivation behind this project, the algorithms used and their expected performance.</p>
 <p>The uSPR distance is a natural distance metric with respect to phylogenetic tree search, as common tree search and sampling software mainly use SPR operations (or NNI operations, a subset of SPR operations). The uSPR distance is also a lower bound on the number of lateral gene transfer events required to explain the difference between a reference/species tree and a gene tree.</p>
 <p>Note that the uSPR distance is NP-hard to compute (as are the TBR and replug distances) and most of the algorithms used in this software scale exponentially with the distance computed. This version of uspr is aimed at trees with up to 50 leaves and uSPR distances up to 14.</p>
 <p>If you are interested in comparing rooted trees in terms of SPR operations, you should use <a href="https://github.com/cwhidden/rspr">rspr</a> instead. rspr is also much more efficient and can easily handle pairs of binary rooted trees with 200+ leaves and distances &gt; 50. rspr is not yet incorporated in this R package; please <a href="https://github.com/ms609/uspr/issues/2">contact the maintainer</a> if this would be useful to you.</p>
