@@ -44,11 +44,12 @@ ReplugDist <- function (tree1, tree2, checks = TRUE, maf = FALSE) {
 #' @param exact Logical specifying whether to calculate the exact TBR distance.
 #' @param approximate Logical specifying whether to calculate the approximate
 #' TBR distance.  Either this or `exact` should probably be set to `TRUE`.
-#' @param printMafs Logical specifying whether to print Maximum Agreement
-#' Forests to stdout. Unfortunately it is not straightforward to capture these
-#' as R output; [capture.output] might help.
 #' @param countMafs Logical specifying whether to count the number of Maximum
 #' Agreement Forests found.
+#' @param printMafs Logical specifying whether to print Maximum Agreement
+#' Forests to stdout whilst counting.
+#' Use [`capture.output`]`(TBRDist(tree1, tree2, printMafs = TRUE))` to access
+#' these in R.
 #' @param optimize Logical specifying whether to use the default optimizations.
 #' @param protectB Logical specifying whether to use the PROTECT_B optimization.
 #' Overrides value inherited from `optimize`.
