@@ -64,22 +64,16 @@ List tbr_dist (StringVector tree1,
                         LogicalVector optimize,
                         LogicalVector protectB,
                         LogicalVector exact,
-                        LogicalVector approximate,
-                        LogicalVector approxEstimate,
-                        LogicalVector tbrEstimate) {
+                        LogicalVector approximate) {
   /* optimize, protectB and *Estimate default to TRUE, all others to FALSE */
   bool PRINT_mAFS = printMafs[0];
   bool COUNT_mAFS = countMafs[0];
 
   KEEP_LABELS = keepLabels[0];
   bool DEFAULT_OPTIMIZATIONS = optimize[0];
-  OPTIMIZE_PROTECT_B = protectB[0];
 
   bool COMPUTE_TBR = exact[0];
   bool COMPUTE_TBR_APPROX = approximate[0];
-
-  USE_TBR_APPROX_ESTIMATE = approxEstimate[0];
-  USE_TBR_ESTIMATE = tbrEstimate[0];
 
   if (DEFAULT_OPTIMIZATIONS == false) {
     OPTIMIZE_2B = false;
@@ -87,6 +81,8 @@ List tbr_dist (StringVector tree1,
     OPTIMIZE_PROTECT_B = false;
     OPTIMIZE_BRANCH_AND_BOUND = false;
   }
+
+  OPTIMIZE_PROTECT_B = protectB[0];
 
   // label maps to allow string labels
   map<string, int> label_map = map<string, int>();

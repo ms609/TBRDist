@@ -7,14 +7,14 @@
 \alias{TBRDist}
 \title{Tree Rearrangement Distances}
 \usage{
-USPRDist(tree1, tree2, checks = TRUE)
+USPRDist(tree1, tree2, checks = TRUE, useTbrApproxEstimate = TRUE,
+  useTbrEstimate = TRUE, useReplugEstimate = TRUE)
 
 ReplugDist(tree1, tree2, checks = TRUE, maf = FALSE)
 
-TBRDist(tree1, tree2, checks = TRUE, maf = FALSE, printMafs = FALSE,
-  countMafs = FALSE, optimize = TRUE, protectB = TRUE,
-  exact = FALSE, approximate = !exact, approxEstimate = TRUE,
-  tbrEstimate = TRUE)
+TBRDist(tree1, tree2, checks = TRUE, exact = FALSE,
+  approximate = !exact, maf = FALSE, countMafs = FALSE,
+  printMafs = FALSE, optimize = TRUE, protectB = TRUE)
 }
 \arguments{
 \item{tree1, tree2}{Trees of class \code{phylo}, or lists thereof.}
@@ -25,6 +25,28 @@ input is likely to crash R.}
 
 \item{maf}{Logical specifying whether to report a maximum agreement forest
 corresponding to the optimal score.}
+
+\item{exact}{Logical specifying whether to calculate the exact TBR distance.}
+
+\item{approximate}{Logical specifying whether to calculate the approximate
+TBR distance.  Either this or \code{exact} should probably be set to \code{TRUE}.}
+
+\item{countMafs}{Logical specifying whether to count the number of Maximum
+Agreement Forests found.}
+
+\item{printMafs}{Logical specifying whether to print Maximum Agreement
+Forests to stdout whilst counting.
+Use \code{\link{capture.output}}\code{(TBRDist(tree1, tree2, printMafs = TRUE))} to access
+these in R.}
+
+\item{optimize}{Logical specifying whether to use the default optimizations.}
+
+\item{protectB}{Logical specifying whether to use the PROTECT_B optimization.
+Overrides value inherited from \code{optimize}.}
+
+\item{useApproxEstimate, useTbrEstimate, useReplugEstimate}{Logical specifying
+whether to use approximate TBR distance, TBR distance or Replug distance to
+help estimate the SPR distance.}
 }
 \description{
 Tree Rearrangement Distances

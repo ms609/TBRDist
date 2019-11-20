@@ -55,11 +55,10 @@ ReplugDist <- function (tree1, tree2, checks = TRUE, maf = FALSE) {
 #' @export
 TBRDist <- function (tree1, tree2, checks = TRUE,
                      exact = FALSE, approximate = !exact,
-                     maf = FALSE, printMafs = FALSE, countMafs = FALSE,
-                     optimize = TRUE, protectB = TRUE,
-                     approxEstimate = TRUE, tbrEstimate = TRUE) {
-  if (!exact && !approximate) {
-    message("Neither exact or approximate TBR distance requested.  Doing nothing.")
+                     maf = FALSE, countMafs = FALSE, printMafs = FALSE,
+                     optimize = TRUE, protectB = TRUE) {
+  if (!exact && !approximate && !countMafs && !printMafs) {
+    message("Nothing to do in TBRDist.")
   }
   treeLists <- .PrepareTrees(tree1, tree2, checks)
 
@@ -70,8 +69,7 @@ TBRDist <- function (tree1, tree2, checks = TRUE,
                   printMafs = printMafs, countMafs = countMafs,
                   keepLabels = FALSE,
                   optimize = optimize, protectB = protectB,
-                  exact = exact, approximate = approximate,
-                  approxEstimate = approxEstimate, tbrEstimate = tbrEstimate)[whichRets]
+                  exact = exact, approximate = approximate)[whichRets]
   if (exact && sum(whichRets) == 1) {
     ret[[1]]
   } else {
