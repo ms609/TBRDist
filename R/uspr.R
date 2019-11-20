@@ -6,6 +6,10 @@
 #' @param checks Logical specifying whether to check that trees are properly
 #' formatted and labelled.  Specify `FALSE` at your peril, as improper
 #' input is likely to crash R.
+#' @param allPairs Logical; if `TRUE`, compare each tree in `tree1` with each
+#' tree in `tree2`; if `FALSE`, compare each tree in `tree1` only with the
+#' tree at the corresponding index in `tree2`.  If `tree2` is not specified,
+#' each tree in `tree1` will be compared with each other tree in `tree1`.
 #'
 #' @param useTbrApproxEstimate,useTbrEstimate,useReplugEstimate Logical specifying
 #' whether to use approximate TBR distance, TBR distance or Replug distance to
@@ -36,11 +40,12 @@
 #' [arXiv:1511.07529](http://arxiv.org/abs/1511.07529).
 #'
 #' @export
-USPRDist <- function (tree1, tree2, checks = TRUE,
+USPRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
+                      checks = TRUE,
                       useTbrApproxEstimate = TRUE,
                       useTbrEstimate = TRUE,
                       useReplugEstimate = TRUE) {
-  treeLists <- .PrepareTrees(tree1, tree2, checks)
+  treeLists <- .PrepareTrees(tree1, tree2, allPairs, checks)
   uspr_dist(treeLists[[1]], treeLists[[2]], keepLabels = FALSE,
             useTbrApproxEstimate = useTbrApproxEstimate,
             useTbrEstimate = useTbrEstimate,
@@ -61,14 +66,15 @@ USPRDist <- function (tree1, tree2, checks = TRUE,
 #'   ReplugDist(tree1, tree2, maf = TRUE)
 #'
 #' @export
-ReplugDist <- function (tree1, tree2, checks = TRUE, maf = FALSE) {
-  treeLists <- .PrepareTrees(tree1, tree2, checks)
+ReplugDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
+                        checks = TRUE, maf = FALSE) {
+  treeLists <- .PrepareTrees(tree1, tree2, allPairs, checks)
   ret <- replug_dist(treeLists[[1]], treeLists[[2]], keepLabels = FALSE)
   if (maf) {
     names(ret) <- c('replug_dist', 'maf_1', 'maf_2')
-    ret
+    .DistReturn(ret, tree1, tree2, allPairs)
   } else {
-    ret[[1]]
+    .DistReturn(ret[[1]], tree1, tree2, allPairs)
   }
 }
 
@@ -99,7 +105,11 @@ ReplugDist <- function (tree1, tree2, checks = TRUE, maf = FALSE) {
 #'   # Compare a list against one tree, using approximate distances
 #'   TBRDist(list(tree1, tree2), tree2, exact = FALSE)
 #'
-#'   # Compare two lists
+#'   # Compare all pairs in two lists
+#'   TBRDist(list(tree1, tree2), list(tree1, tree2, tree2), pairwise = TRUE,
+#'           exact = FALSE)
+#'
+#'   # Compare each pair in two lists
 #'   TBRDist(list(tree1, tree2, tree2),
 #'           list(tree2, tree1, tree2),
 #'           exact = TRUE, approximate = TRUE, countMafs = TRUE)
@@ -110,14 +120,15 @@ ReplugDist <- function (tree1, tree2, checks = TRUE, maf = FALSE) {
 #'   head(mafs)
 #'
 #' @export
-TBRDist <- function (tree1, tree2, checks = TRUE,
+TBRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
+                     checks = TRUE,
                      exact = FALSE, approximate = !exact,
                      maf = FALSE, countMafs = FALSE, printMafs = FALSE,
                      optimize = TRUE, protectB = TRUE) {
   if (!exact && !approximate && !countMafs && !printMafs) {
     message("Nothing to do in TBRDist.")
   }
-  treeLists <- .PrepareTrees(tree1, tree2, checks)
+  treeLists <- .PrepareTrees(tree1, tree2, allPairs, checks)
 
   whichRets <- c(exact, rep(approximate, 2L), countMafs,
                  rep(exact && maf, 2L))
@@ -140,19 +151,31 @@ TBRDist <- function (tree1, tree2, checks = TRUE,
 #' @keywords internal
 #' @importFrom ape write.tree
 #' @export
-.PrepareTrees <- function (tree1, tree2, checks = TRUE) {
+.PrepareTrees <- function (tree1, tree2, allPairs = FALSE, checks = TRUE) {
   if (checks) {
 
     if (class(tree1) == 'phylo') tree1 <- list(tree1)
     if (class(tree2) == 'phylo') tree2 <- list(tree2)
 
-    if (length(tree1) != length(tree2)) {
-      if (length(tree1) == 1L) {
-        tree1 <- rep(tree1, length(tree2))
-      } else if (length(tree2) == 1L) {
-        tree2 <- rep(tree2, length(tree1))
+    if (allPairs) {
+      if (is.null(tree2)) {
+        nTree <- length(tree1)
+        selector <- matrix(seq_len(nTree), nTree, nTree)
+        tree2 <- tree1[t(selector)[lower.tri(selector)]]
+        tree1 <- tree1[selector[lower.tri(selector)]]
       } else {
-        stop("tree1 and tree2 must contain the same number of trees, or a single tree.")
+        tree1 <- rep(tree1, each = length(tree2))
+        tree2 <- rep(tree2, length(tree1))
+      }
+    } else {
+      if (length(tree1) != length(tree2)) {
+        if (length(tree1) == 1L) {
+          tree1 <- rep(tree1, length(tree2))
+        } else if (length(tree2) == 1L) {
+          tree2 <- rep(tree2, length(tree1))
+        } else {
+          stop("if allPairs = FALSE, tree1 and tree2 must contain the same number of trees, or a single tree.")
+        }
       }
     }
 
@@ -175,4 +198,50 @@ TBRDist <- function (tree1, tree2, checks = TRUE,
     stop("Problem with tree pair " , i, ": Trees must bear identical labels")
   }
   integer(0)
+}
+
+#' @keywords internal
+#' @export
+.DistReturn <- function (ret, tree1, tree2, allPairs) {
+  .ReturnEntry <- function (ret) {
+    ret
+  }
+  .ReturnDist <- function (dat, nTree) {
+    if (mode(dat) == 'numeric') {
+      ret <- dat
+      attr(ret, "Size") <- nTree
+      if (!is.null(names(tree1))) {
+        attr(ret, "Labels") <- names(tree1)
+      }
+      attr(ret, "Diag") <- FALSE
+      attr(ret, "Upper") <- FALSE
+      class(ret) <- "dist"
+    } else {
+      ret <- matrix(NA, nTree, nTree)
+      ret[lower.tri(ret)] <- dat
+      ret[upper.tri(ret)] <- t(dat)
+    }
+
+    # Return:
+    ret
+  }
+  if (allPairs) {
+    if (is.null(tree2)) {
+      if (mode(ret) == 'list') {
+        lapply(ret, .ReturnDist, length(tree1))
+      } else {
+        .ReturnDist(ret, length(tree1))
+      }
+    } else {
+      names1 <- names(tree1)
+      names2 <- names(tree2)
+      if (mode(ret) == 'list') {
+        lapply(ret, .ReturnEntry)
+      } else {
+        .ReturnEntry(ret)
+      }
+    }
+  } else {
+    ret
+  }
 }

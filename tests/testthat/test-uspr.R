@@ -12,9 +12,21 @@ test_that("Bad tree input is handled correctly", {
 test_that("SPR distances are calculated correctly", {
   tree1 <- BalancedTree(10)
   tree2 <- PectinateTree(10)
+  treeR <- ape::read.tree(text="(t1, (((t5, t7), (t9, (t3, t2))), (t4, ((t6, t8), t10))));")
+  list1 <- list(one = tree1, oneAgain = tree1, two = tree2, three = treeR)
+  list2 <- list(tree1, tree2)
   expect_equivalent(2L, USPRDist(tree1, tree2))
   expect_equivalent(c(0, 2L), USPRDist(list(tree1, tree2), tree1))
   expect_equivalent(c(0, 2L), USPRDist(tree1, list(tree1, tree2)))
+
+  expect_equivalent(c(0, 2, 5, 2, 5, 4), as.integer(ReplugDist(list1)))
+  first <- ReplugDist(list1, list1[[1]], maf = TRUE)
+  each <- ReplugDist(list1, maf = TRUE)
+  expect_equivalent(first[[1]], as.matrix(each[[1]])[, 1])
+  expect_equivalent(first[[2]][-1], each[[2]][-1, 1])
+  expect_equivalent(first[[3]][-1], each[[3]][-1, 1])
+
+  TBRDist(list1, maf = TRUE)
 
 
   Test <- function (tree1, tree2) {
@@ -49,3 +61,5 @@ test_that("SPR distances are calculated correctly", {
   expect_equal(invisible(),
                TBRDist(tree1, tree2, exact = FALSE, approximate = FALSE))
 })
+
+
