@@ -4,6 +4,7 @@
 ^CRAN-RELEASE$
 /^src\-/
 CONTRIBUTING.md
+LICENSE
 README.md
 cran-comments.md
 .covrignore
