@@ -1,9 +1,15 @@
 #' Tree Rearrangement Distances
 #'
+#'
+#'
 #' @param tree1,tree2 Trees of class `phylo`, or lists thereof.
 #' @param checks Logical specifying whether to check that trees are properly
 #' formatted and labelled.  Specify `FALSE` at your peril, as improper
 #' input is likely to crash R.
+#'
+#' @param useApproxEstimate,useTbrEstimate,useReplugEstimate Logical specifying
+#' whether to use approximate TBR distance, TBR distance or Replug distance to
+#' help estimate the SPR distance.
 #'
 #' @name TreeRearrangementDistances
 #' @export
@@ -23,8 +29,7 @@ USPRDist <- function (tree1, tree2, checks = TRUE,
 #' @param maf Logical specifying whether to report a maximum agreement forest
 #' corresponding to the optimal score.
 #' @export
-ReplugDist <- function (tree1, tree2, checks = TRUE, maf = FALSE,
-                        exact = FALSE) {
+ReplugDist <- function (tree1, tree2, checks = TRUE, maf = FALSE) {
   treeLists <- .PrepareTrees(tree1, tree2, checks)
   ret <- replug_dist(treeLists[[1]], treeLists[[2]], keepLabels = FALSE)
   if (maf) {
@@ -36,16 +41,31 @@ ReplugDist <- function (tree1, tree2, checks = TRUE, maf = FALSE,
 }
 
 #' @rdname TreeRearrangementDistances
+#' @param exact Logical specifying whether to calculate the exact TBR distance.
+#' @param approximate Logical specifying whether to calculate the approximate
+#' TBR distance.  Either this or `exact` should probably be set to `TRUE`.
+#' @param printMafs Logical specifying whether to print Maximum Agreement
+#' Forests to stdout. Unfortunately it is not straightforward to capture these
+#' as R output; [capture.output] might help.
+#' @param countMafs Logical specifying whether to count the number of Maximum
+#' Agreement Forests found.
+#' @param optimize Logical specifying whether to use the default optimizations.
+#' @param protectB Logical specifying whether to use the PROTECT_B optimization.
+#' Overrides value inherited from `optimize`.
 #' @export
 TBRDist <- function (tree1, tree2, checks = TRUE,
+                     exact = FALSE, approximate = !exact,
                      maf = FALSE, printMafs = FALSE, countMafs = FALSE,
                      optimize = TRUE, protectB = TRUE,
-                     exact = FALSE, approximate = !exact,
                      approxEstimate = TRUE, tbrEstimate = TRUE) {
+  if (!exact && !approximate) {
+    message("Neither exact or approximate TBR distance requested.  Doing nothing.")
+  }
   treeLists <- .PrepareTrees(tree1, tree2, checks)
 
   whichRets <- c(exact, rep(approximate, 2L), countMafs,
                  rep(exact && maf, 2L))
+
   ret <- tbr_dist(treeLists[[1]], treeLists[[2]],
                   printMafs = printMafs, countMafs = countMafs,
                   keepLabels = FALSE,

@@ -11,6 +11,18 @@
 This package allows the calculation of SPR, TBR and Replug distances between
 unrooted phylogenetic trees from within R, using Chris Whidden's `uspr` C++ code.
 
+The uSPR distance is a natural distance metric with respect to phylogenetic tree search, as common tree search and sampling software mainly use SPR operations (or NNI operations, a subset of SPR operations). The uSPR distance is also a lower bound on the number of lateral gene transfer events required to explain the difference between a reference/species tree and a gene tree.
+
+Note that the uSPR distance is NP-hard to compute (as are the TBR and replug distances) and most of the algorithms used in this software scale exponentially with the distance computed. This version of uspr is aimed at trees with up to 50 leaves and uSPR distances up to 14.
+
+If you are interested in comparing rooted trees in terms of SPR operations, you should use [rspr](https://github.com/cwhidden/rspr) instead. rspr is also much more efficient and can easily handle pairs of binary rooted trees with 200+ leaves and distances > 50.
+rspr is not yet incorporated in this R package; please 
+[contact the maintainer](https://github.com/ms609/uspr/issues/2)
+if this would be useful to you.
+
+The C++ code within this package is discussed in Whidden and Matsen (2017), which
+provides more information on the motivation behind this project, the algorithms used and their expected performance.
+
 # Installation
 
 Install and load the library from CRAN (coming soon!) as follows:
@@ -32,7 +44,6 @@ To download the contents of these subdirectories, check out the project using
 `git clone --recursive https://github.com/ms609/uspr`,
 or if you've already checked out the project, run
 `git submodule update --init --recursive`.  
-
 
 # Usage
 
