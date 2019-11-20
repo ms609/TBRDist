@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/ms609/uspr/branch/master/graph/badge.svg)](https://codecov.io/gh/ms609/uspr)
 [![CRAN Status Badge](http://www.r-pkg.org/badges/version/uspr)](https://cran.r-project.org/package=uspr)
 [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/uspr)](https://cran.r-project.org/package=uspr)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3522726.svg)](http://doi.org/10.5281/zenodo.3522725)<!--[![Project Status: Inactive – The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows.](http://www.repostatus.org/badges/latest/inactive.svg)](http://www.repostatus.org/#inactive)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3548333.svg)](http://doi.org/10.5281/zenodo.3548333)<!--[![Project Status: Inactive – The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows.](http://www.repostatus.org/badges/latest/inactive.svg)](http://www.repostatus.org/#inactive)
 -->
 [![Project Status: Active – – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 
