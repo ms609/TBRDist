@@ -25,3 +25,4 @@ vignettes/.RData
 ^pkgdown$
 ^\.zenodo\.json$
 ^codemeta\.json$
+^src/\.git$
