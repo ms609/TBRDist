@@ -19,7 +19,15 @@ test_that("SPR distances are calculated correctly", {
   expect_equivalent(c(0, 2L), USPRDist(list(tree1, tree2), tree1))
   expect_equivalent(c(0, 2L), USPRDist(tree1, list(tree1, tree2)))
 
-  expect_equivalent(c(0, 2, 5, 2, 5, 4), as.integer(ReplugDist(list1)))
+  goodRet <- structure(c(0, 2, 5, 2, 5, 4),
+                       Size = 4L,
+                       Labels = names(list1),
+                       Diag = FALSE,
+                       Upper = FALSE,
+                       class = 'dist')
+  expect_equal(goodRet, USPRDist(list1))
+
+  expect_equal(goodRet, ReplugDist(list1))
   first <- ReplugDist(list1, list1[[1]], maf = TRUE)
   each <- ReplugDist(list1, maf = TRUE)
   expect_equivalent(first[[1]], as.matrix(each[[1]])[, 1])

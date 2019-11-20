@@ -46,10 +46,11 @@ USPRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
                       useTbrEstimate = TRUE,
                       useReplugEstimate = TRUE) {
   treeLists <- .PrepareTrees(tree1, tree2, allPairs, checks)
-  uspr_dist(treeLists[[1]], treeLists[[2]], keepLabels = FALSE,
-            useTbrApproxEstimate = useTbrApproxEstimate,
-            useTbrEstimate = useTbrEstimate,
-            useReplugEstimate = useReplugEstimate)
+  ret <- uspr_dist(treeLists[[1]], treeLists[[2]], keepLabels = FALSE,
+                   useTbrApproxEstimate = useTbrApproxEstimate,
+                   useTbrEstimate = useTbrEstimate,
+                   useReplugEstimate = useReplugEstimate)
+  .DistReturn(ret, tree1, tree2, allPairs)
 }
 
 #' @rdname TreeRearrangementDistances
@@ -141,10 +142,10 @@ TBRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
   if (!any(whichRets)) {
     invisible()
   } else if (exact && sum(whichRets) == 1) {
-    ret[[1]]
+    .DistReturn(ret[[1]], tree1, tree2, allPairs)
   } else {
     names(ret) <- c('tbr_exact', 'tbr_min', 'tbr_max', 'n_maf', 'maf_1', 'maf_2')[whichRets]
-    ret
+    .DistReturn(ret, tree1, tree2, allPairs)
   }
 }
 
