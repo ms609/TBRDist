@@ -8,8 +8,11 @@
 -->
 [![Project Status: Active – – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 
-This package allows the calculation of SPR, TBR and Replug distances between
-unrooted phylogenetic trees from within R, using Chris Whidden's `uspr` C++ code.
+`uspr` allows the calculation of SPR, TBR and Replug distances between
+unrooted phylogenetic trees from within R, using [algorithms](https://github.com/cwhidden/uspr) written in C++
+by [Chris Whidden](https://web.cs.dal.ca/~whidden/). Whidden and Matsen (2017)
+provide more information on the motivation behind this project, 
+the algorithms used and their expected performance.
 
 The uSPR distance is a natural distance metric with respect to phylogenetic tree search, as common tree search and sampling software mainly use SPR operations (or NNI operations, a subset of SPR operations). The uSPR distance is also a lower bound on the number of lateral gene transfer events required to explain the difference between a reference/species tree and a gene tree.
 
@@ -20,8 +23,6 @@ rspr is not yet incorporated in this R package; please
 [contact the maintainer](https://github.com/ms609/uspr/issues/2)
 if this would be useful to you.
 
-The C++ code within this package is discussed in Whidden and Matsen (2017), which
-provides more information on the motivation behind this project, the algorithms used and their expected performance.
 
 # Installation
 
@@ -50,6 +51,8 @@ or if you've already checked out the project, run
 If you use uspr in your research, please cite:
 
 Chris Whidden and Frederick A. Matsen IV. Calculating the Unrooted Subtree-Prune-and-Regraft Distance. eprint arXiv:1511.07529. http://arxiv.org/abs/1511.07529
+
+Some text in this README file is drawn from the [uspr readme](https://github.com/cwhidden/uspr/blob/master/README.md).
 
 Please note that the 'uspr' project is released with a
 [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
