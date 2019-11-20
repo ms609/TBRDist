@@ -5,14 +5,14 @@ Authors@R: c(person("Martin R.", 'Smith',
                   email="martin.smith@durham.ac.uk", 
                   role=c("aut", "cre", "cph"), 
                   comment=c(ORCID = "0000-0001-5660-1727")),
-               person(given = "Chris", family="Whidden", role = c("cph"),
-                  email="cwhidden@fredhutch.org")
+               person(given = "Chris", family="Whidden",
+                  email="cwhidden@fredhutch.org", role = c("cph"))
             )
 License: GPL (>= 3)
 Copyright: Underlying C++ code copyright 2018 Chris Whidden.
 Description: Fast calculation of the SPR distance between unrooted trees,
   as well as the TBR and replug distances, using the algorithms of Whidden and 
-  Matsen (2017) <https://arxiv.org/abs/1511.07529>.
+  Matsen (2017) <arxiv:1511.07529>.
 URL: https://ms609.github.io/uspr,
     https://github.com/ms609/uspr, 
     https://github.com/cwhidden/uspr
