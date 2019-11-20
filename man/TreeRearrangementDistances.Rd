@@ -23,13 +23,19 @@ TBRDist(tree1, tree2, checks = TRUE, exact = FALSE,
 formatted and labelled.  Specify \code{FALSE} at your peril, as improper
 input is likely to crash R.}
 
+\item{useTbrApproxEstimate, useTbrEstimate, useReplugEstimate}{Logical specifying
+whether to use approximate TBR distance, TBR distance or Replug distance to
+help estimate the SPR distance.}
+
 \item{maf}{Logical specifying whether to report a maximum agreement forest
 corresponding to the optimal score.}
 
 \item{exact}{Logical specifying whether to calculate the exact TBR distance.}
 
 \item{approximate}{Logical specifying whether to calculate the approximate
-TBR distance.  Either this or \code{exact} should probably be set to \code{TRUE}.}
+TBR distance.  By default, is set to the opposite of \code{exact}; either
+\code{approximate} or \code{exact} should usually be set to \code{TRUE} if a distance is
+required.}
 
 \item{countMafs}{Logical specifying whether to count the number of Maximum
 Agreement Forests found.}
@@ -43,14 +49,62 @@ these in R.}
 
 \item{protectB}{Logical specifying whether to use the PROTECT_B optimization.
 Overrides value inherited from \code{optimize}.}
+}
+\value{
+\code{USPRDist} returns a vector of SPR distances between each pair of
+unrooted trees.
 
-\item{useApproxEstimate, useTbrEstimate, useReplugEstimate}{Logical specifying
-whether to use approximate TBR distance, TBR distance or Replug distance to
-help estimate the SPR distance.}
+\code{ReplugDist} returns a vector of Replug distances between each pair
+of trees, or (if \code{maf = TRUE}) a named list whose second and third elements
+list a vector of maximum agreement forests for each pair of trees.
+
+\code{TBRDist} returns a named list, each element of which bears a vector
+corresponding to the requested value for each tree pair.  If only the exact
+value is requested (\code{exact = TRUE}), an unnamed vector of distances is
+returned.
 }
 \description{
 Tree Rearrangement Distances
 }
+\examples{
+  tree1 <- TreeTools::BalancedTree(9)
+  tree2 <- TreeTools::PectinateTree(9)
+
+  # SPR distance
+  USPRDist(tree1, tree2)
+
+
+  # Replug distance
+  ReplugDist(tree1, tree2)
+  ReplugDist(tree1, tree2, maf = TRUE)
+
+  # TBR distance between two trees
+  TBRDist(tree1, tree2, exact = TRUE)
+
+  # Compare a list against one tree, using approximate distances
+  TBRDist(list(tree1, tree2), tree2, exact = FALSE)
+
+  # Compare two lists
+  TBRDist(list(tree1, tree2, tree2),
+          list(tree2, tree1, tree2),
+          exact = TRUE, approximate = TRUE, countMafs = TRUE)
+
+  # Capture maximum agreement forests
+  mafs <- capture.output(TBRDist(tree1, tree2, approximate = FALSE,
+                          printMafs = TRUE))
+  head(mafs)
+
+}
+\references{
+If you use \emph{uspr} in your research, please cite:
+\itemize{
+\item Chris Whidden and Frederick A. Matsen IV. Calculating the Unrooted
+Subtree-Prune-and-Regraft Distance. eprint
+\href{http://arxiv.org/abs/1511.07529}{arXiv:1511.07529}.
+}
+}
 \author{
-Martin R. Smith (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
+Algorithm by Chris Whidden (\href{mailto:cwhidden@fredhutch.org}{cwhidden@fredhutch.org})
+
+R wrappers by Martin R. Smith (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
 }

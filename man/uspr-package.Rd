@@ -6,8 +6,9 @@
 \alias{uspr-package}
 \title{uspr: Calculate SPR and TBR distance between unrooted phylogenetic trees}
 \description{
-Core functions for the creation, modification and analysis of 
-  phylogenetic trees.
+Fast calculation of the SPR distance between unrooted trees,
+  as well as the TBR and replug distances, using the algorithms of Whidden and 
+  Matsen (2017) <https://arxiv.org/abs/1511.07529>.
 }
 \seealso{
 Useful links:

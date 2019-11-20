@@ -7,13 +7,35 @@
 #' formatted and labelled.  Specify `FALSE` at your peril, as improper
 #' input is likely to crash R.
 #'
-#' @param useApproxEstimate,useTbrEstimate,useReplugEstimate Logical specifying
+#' @param useTbrApproxEstimate,useTbrEstimate,useReplugEstimate Logical specifying
 #' whether to use approximate TBR distance, TBR distance or Replug distance to
 #' help estimate the SPR distance.
 #'
+#' @return `USPRDist` returns a vector of SPR distances between each pair of
+#' unrooted trees.
+#'
+#' @examples
+#'   tree1 <- TreeTools::BalancedTree(9)
+#'   tree2 <- TreeTools::PectinateTree(9)
+#'
+#'   # SPR distance
+#'   USPRDist(tree1, tree2)
+#'
+#'
 #' @name TreeRearrangementDistances
+#' @author
+#' Algorithm by Chris Whidden (<cwhidden@fredhutch.org>)
+#'
+#' R wrappers by Martin R. Smith (<martin.smith@durham.ac.uk>)
+#'
+#' @references
+#' If you use _uspr_ in your research, please cite:
+#'
+#' * Chris Whidden and Frederick A. Matsen IV. Calculating the Unrooted
+#' Subtree-Prune-and-Regraft Distance. eprint
+#' [arXiv:1511.07529](http://arxiv.org/abs/1511.07529).
+#'
 #' @export
-#' @template MRS
 USPRDist <- function (tree1, tree2, checks = TRUE,
                       useTbrApproxEstimate = TRUE,
                       useTbrEstimate = TRUE,
@@ -28,6 +50,16 @@ USPRDist <- function (tree1, tree2, checks = TRUE,
 #' @rdname TreeRearrangementDistances
 #' @param maf Logical specifying whether to report a maximum agreement forest
 #' corresponding to the optimal score.
+#'
+#' @return `ReplugDist` returns a vector of Replug distances between each pair
+#' of trees, or (if `maf = TRUE`) a named list whose second and third elements
+#' list a vector of maximum agreement forests for each pair of trees.
+#'
+#' @examples
+#'   # Replug distance
+#'   ReplugDist(tree1, tree2)
+#'   ReplugDist(tree1, tree2, maf = TRUE)
+#'
 #' @export
 ReplugDist <- function (tree1, tree2, checks = TRUE, maf = FALSE) {
   treeLists <- .PrepareTrees(tree1, tree2, checks)
@@ -43,7 +75,9 @@ ReplugDist <- function (tree1, tree2, checks = TRUE, maf = FALSE) {
 #' @rdname TreeRearrangementDistances
 #' @param exact Logical specifying whether to calculate the exact TBR distance.
 #' @param approximate Logical specifying whether to calculate the approximate
-#' TBR distance.  Either this or `exact` should probably be set to `TRUE`.
+#' TBR distance.  By default, is set to the opposite of `exact`; either
+#' `approximate` or `exact` should usually be set to `TRUE` if a distance is
+#' required.
 #' @param countMafs Logical specifying whether to count the number of Maximum
 #' Agreement Forests found.
 #' @param printMafs Logical specifying whether to print Maximum Agreement
@@ -53,6 +87,28 @@ ReplugDist <- function (tree1, tree2, checks = TRUE, maf = FALSE) {
 #' @param optimize Logical specifying whether to use the default optimizations.
 #' @param protectB Logical specifying whether to use the PROTECT_B optimization.
 #' Overrides value inherited from `optimize`.
+#' @return `TBRDist` returns a named list, each element of which bears a vector
+#' corresponding to the requested value for each tree pair.  If only the exact
+#' value is requested (`exact = TRUE`), an unnamed vector of distances is
+#' returned.
+#'
+#' @examples
+#'   # TBR distance between two trees
+#'   TBRDist(tree1, tree2, exact = TRUE)
+#'
+#'   # Compare a list against one tree, using approximate distances
+#'   TBRDist(list(tree1, tree2), tree2, exact = FALSE)
+#'
+#'   # Compare two lists
+#'   TBRDist(list(tree1, tree2, tree2),
+#'           list(tree2, tree1, tree2),
+#'           exact = TRUE, approximate = TRUE, countMafs = TRUE)
+#'
+#'   # Capture maximum agreement forests
+#'   mafs <- capture.output(TBRDist(tree1, tree2, approximate = FALSE,
+#'                           printMafs = TRUE))
+#'   head(mafs)
+#'
 #' @export
 TBRDist <- function (tree1, tree2, checks = TRUE,
                      exact = FALSE, approximate = !exact,
@@ -71,7 +127,9 @@ TBRDist <- function (tree1, tree2, checks = TRUE,
                   keepLabels = FALSE,
                   optimize = optimize, protectB = protectB,
                   exact = exact, approximate = approximate)[whichRets]
-  if (exact && sum(whichRets) == 1) {
+  if (!any(whichRets)) {
+    invisible()
+  } else if (exact && sum(whichRets) == 1) {
     ret[[1]]
   } else {
     names(ret) <- c('tbr_exact', 'tbr_min', 'tbr_max', 'n_maf', 'maf_1', 'maf_2')[whichRets]
