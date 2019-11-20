@@ -34,7 +34,14 @@ test_that("SPR distances are calculated correctly", {
   expect_equivalent(first[[2]][-1], each[[2]][-1, 1])
   expect_equivalent(first[[3]][-1], each[[3]][-1, 1])
 
-  TBRDist(list1, maf = TRUE)
+  expect_equivalent(c(0, 1, 4, 1, 4, 4),
+                    as.integer(TBRDist(list1, exact = TRUE)))
+  expect_equivalent(c(0, 1, 3, 1, 3, 3),
+                    as.integer(TBRDist(list1, exact = FALSE)$tbr_min))
+  first <- TBRDist(list1, list1[[1]], maf = TRUE)
+  each <- TBRDist(list1, maf = TRUE)
+  expect_equivalent(first[[1]], as.matrix(each[[1]])[1, ])
+  expect_equivalent(first[[2]], as.matrix(each[[2]])[, 1])
 
 
   Test <- function (tree1, tree2) {
