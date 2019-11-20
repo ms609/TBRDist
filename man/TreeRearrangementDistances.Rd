@@ -7,17 +7,25 @@
 \alias{TBRDist}
 \title{Calculate Tree Rearrangement Distances}
 \usage{
-USPRDist(tree1, tree2, checks = TRUE, useTbrApproxEstimate = TRUE,
-  useTbrEstimate = TRUE, useReplugEstimate = TRUE)
+USPRDist(tree1, tree2 = NULL, allPairs = is.null(tree2),
+  checks = TRUE, useTbrApproxEstimate = TRUE, useTbrEstimate = TRUE,
+  useReplugEstimate = TRUE)
 
-ReplugDist(tree1, tree2, checks = TRUE, maf = FALSE)
+ReplugDist(tree1, tree2 = NULL, allPairs = is.null(tree2),
+  checks = TRUE, maf = FALSE)
 
-TBRDist(tree1, tree2, checks = TRUE, exact = FALSE,
-  approximate = !exact, maf = FALSE, countMafs = FALSE,
-  printMafs = FALSE, optimize = TRUE, protectB = TRUE)
+TBRDist(tree1, tree2 = NULL, allPairs = is.null(tree2),
+  checks = TRUE, exact = FALSE, approximate = !exact, maf = FALSE,
+  countMafs = FALSE, printMafs = FALSE, optimize = TRUE,
+  protectB = TRUE)
 }
 \arguments{
 \item{tree1, tree2}{Trees of class \code{phylo}, or lists thereof.}
+
+\item{allPairs}{Logical; if \code{TRUE}, compare each tree in \code{tree1} with each
+tree in \code{tree2}; if \code{FALSE}, compare each tree in \code{tree1} only with the
+tree at the corresponding index in \code{tree2}.  If \code{tree2} is not specified,
+each tree in \code{tree1} will be compared with each other tree in \code{tree1}.}
 
 \item{checks}{Logical specifying whether to check that trees are properly
 formatted and labelled.  Specify \code{FALSE} at your peril, as improper
@@ -64,7 +72,21 @@ value is requested (\code{exact = TRUE}), an unnamed vector of distances is
 returned.
 }
 \description{
-Calculate Tree Rearrangement Distances
+Calculate SPR, TBR and Replug distances on unrooted trees.
+}
+\details{
+Note that these distances are NP-hard to compute and most of the algorithms
+used in this software scale exponentially with the distance computed.
+This version of uspr is aimed at trees with up to 50 leaves and uSPR
+distances up to 14.
+
+If you are interested in comparing rooted trees in terms of SPR operations,
+you should use \href{https://github.com/cwhidden/rspr}{rspr} instead. rspr is also
+much more efficient and can easily handle pairs of binary rooted trees with
+200+ leaves and distances > 50.
+rspr is not yet incorporated in this R package; please
+\href{https://github.com/ms609/uspr/issues/2}{contact the maintainer}
+if this would be useful to you.
 }
 \examples{
   tree1 <- TreeTools::BalancedTree(9)
@@ -84,7 +106,11 @@ Calculate Tree Rearrangement Distances
   # Compare a list against one tree, using approximate distances
   TBRDist(list(tree1, tree2), tree2, exact = FALSE)
 
-  # Compare two lists
+  # Compare all pairs in two lists
+  TBRDist(list(tree1, tree2), list(tree1, tree2, tree2), pairwise = TRUE,
+          exact = FALSE)
+
+  # Compare each pair in two lists
   TBRDist(list(tree1, tree2, tree2),
           list(tree2, tree1, tree2),
           exact = TRUE, approximate = TRUE, countMafs = TRUE)
@@ -96,15 +122,15 @@ Calculate Tree Rearrangement Distances
 
 }
 \references{
-If you use \emph{uspr} in your research, please cite:
+If you use these functions in your research, please cite:
 \itemize{
 \item Chris Whidden and Frederick A. Matsen IV. Calculating the Unrooted
-Subtree-Prune-and-Regraft Distance. eprint
-\href{http://arxiv.org/abs/1511.07529}{arXiv:1511.07529}.
+Subtree-Prune-and-Regraft Distance.
+arXiv:\href{http://arxiv.org/abs/1511.07529}{1511.07529}.
 }
 }
 \author{
-Algorithm by Chris Whidden (\href{mailto:cwhidden@fredhutch.org}{cwhidden@fredhutch.org})
+Algorithms implemented by Chris Whidden (\href{mailto:cwhidden@fredhutch.org}{cwhidden@fredhutch.org})
 
 R wrappers by Martin R. Smith (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
 }

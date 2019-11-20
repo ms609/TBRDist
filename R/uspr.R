@@ -1,5 +1,20 @@
 #' Calculate Tree Rearrangement Distances
 #'
+#' Calculate SPR, TBR and Replug distances on unrooted trees.
+#'
+#'
+#' Note that these distances are NP-hard to compute and most of the algorithms
+#' used in this software scale exponentially with the distance computed.
+#' This version of uspr is aimed at trees with up to 50 leaves and uSPR
+#' distances up to 14.
+#'
+#' If you are interested in comparing rooted trees in terms of SPR operations,
+#' you should use [rspr](https://github.com/cwhidden/rspr) instead. rspr is also
+#' much more efficient and can easily handle pairs of binary rooted trees with
+#' 200+ leaves and distances > 50.
+#' rspr is not yet incorporated in this R package; please
+#' [contact the maintainer](https://github.com/ms609/uspr/issues/2)
+#' if this would be useful to you.
 #'
 #'
 #' @param tree1,tree2 Trees of class `phylo`, or lists thereof.
@@ -28,16 +43,16 @@
 #'
 #' @name TreeRearrangementDistances
 #' @author
-#' Algorithm by Chris Whidden (<cwhidden@fredhutch.org>)
+#' Algorithms implemented by Chris Whidden (<cwhidden@fredhutch.org>)
 #'
 #' R wrappers by Martin R. Smith (<martin.smith@durham.ac.uk>)
 #'
 #' @references
-#' If you use _uspr_ in your research, please cite:
+#' If you use these functions in your research, please cite:
 #'
 #' * Chris Whidden and Frederick A. Matsen IV. Calculating the Unrooted
-#' Subtree-Prune-and-Regraft Distance. eprint
-#' [arXiv:1511.07529](http://arxiv.org/abs/1511.07529).
+#' Subtree-Prune-and-Regraft Distance.
+#' arXiv:[1511.07529](http://arxiv.org/abs/1511.07529).
 #'
 #' @export
 USPRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
