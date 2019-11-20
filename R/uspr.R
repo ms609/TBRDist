@@ -1,4 +1,4 @@
-#' Tree Rearrangement Distances
+#' Calculate Tree Rearrangement Distances
 #'
 #'
 #'

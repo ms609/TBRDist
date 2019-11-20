@@ -5,7 +5,7 @@
 \alias{USPRDist}
 \alias{ReplugDist}
 \alias{TBRDist}
-\title{Tree Rearrangement Distances}
+\title{Calculate Tree Rearrangement Distances}
 \usage{
 USPRDist(tree1, tree2, checks = TRUE, useTbrApproxEstimate = TRUE,
   useTbrEstimate = TRUE, useReplugEstimate = TRUE)
@@ -64,7 +64,7 @@ value is requested (\code{exact = TRUE}), an unnamed vector of distances is
 returned.
 }
 \description{
-Tree Rearrangement Distances
+Calculate Tree Rearrangement Distances
 }
 \examples{
   tree1 <- TreeTools::BalancedTree(9)
