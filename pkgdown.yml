@@ -2,7 +2,7 @@ pandoc: '2.2'
 pkgdown: 1.4.1
 pkgdown_sha: ~
 articles:
-  Using-uspr: Using-uspr.html
+  Using-TBRDist: Using-TBRDist.html
 urls:
   reference: https://ms609.github.io/uspr//reference
   article: https://ms609.github.io/uspr//articles
