@@ -209,14 +209,8 @@ TBRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
   }
   .ReturnDist <- function (dat, nTree) {
     if (mode(dat) == 'numeric') {
-      ret <- dat
-      attr(ret, "Size") <- nTree
-      if (!is.null(names(tree1))) {
-        attr(ret, "Labels") <- names(tree1)
-      }
-      attr(ret, "Diag") <- FALSE
-      attr(ret, "Upper") <- FALSE
-      class(ret) <- "dist"
+      ret <- structure(dat, Size = nTree, Diag = FALSE, Upper = FALSE,
+                       Labels = names(tree1), class = 'dist')
     } else {
       ret <- matrix(NA, nTree, nTree)
       ret[lower.tri(ret)] <- dat
