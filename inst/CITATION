@@ -19,7 +19,7 @@ citEntry(entry = "Manual",
         author = personList(as.person("Martin R. Smith")),
         note = vers,
         year = 2019,
-        doi = "10.5281/zenodo.######TODO",
+        doi = "10.5281/zenodo.3548333",
 
         textVersion =
-        paste0("Smith (2019). uspr: Calculate SPR and TBR distance between unrooted phylogenetic trees. doi: 10.5281/zenodo.######TODO"))
+        paste0("Smith (2019). uspr: Calculate SPR and TBR distance between unrooted phylogenetic trees. doi: 10.5281/zenodo.3548333"))

@@ -1,14 +1,17 @@
 {
-  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
-  "identifier": "TreeTools",
-  "description": "Core functions for the creation, modification and analysis of \n  phylogenetic trees.",
-  "name": "TreeTools: Create, modify and analyse phylogenetic trees",
-  "codeRepository": "https://github.com/ms609/TreeTools",
-  "relatedLink": "https://ms609.github.io/TreeTools",
-  "issueTracker": "https://github.com/ms609/TreeTools/issues",
+  "identifier": "uspr",
+  "description": "Fast calculation of the SPR distance between unrooted trees,\n  as well as the TBR and replug distances, using the algorithms of Whidden and \n  Matsen (2017) <arxiv:1511.07529>.",
+  "name": "uspr: Calculate SPR and TBR distance between unrooted phylogenetic trees",
+  "codeRepository": "https://github.com/ms609/uspr/",
+  "relatedLink": ["https://ms609.github.io/TreeTools", "https://ms609.github.io/uspr/", "https://github.com/cwhidden/uspr/"],
+  "issueTracker": "https://github.com/ms609/uspr/issues/",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.1.0",
+  "version": "0.0.0.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -36,15 +39,9 @@
     },
     {
       "@type": "Person",
-      "givenName": "Emmanuel",
-      "familyName": "Paradis",
-      "@id": "https://orcid.org/0000-0003-3092-2199"
-    },
-    {
-      "@type": "Person",
-      "givenName": "Klaus",
-      "familyName": "Schliep",
-      "@id": "https://orcid.org/0000-0003-2941-0161"
+      "givenName": "Chris",
+      "familyName": "Whidden",
+      "email": "cwhidden@fredhutch.org"
     }
   ],
   "funder": {},
@@ -72,18 +69,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "Rcpp",
-      "name": "Rcpp",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=Rcpp"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "Rdpack",
       "name": "Rdpack",
       "provider": {
@@ -105,18 +90,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "shiny",
-      "name": "shiny",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=shiny"
     },
     {
       "@type": "SoftwareApplication",
@@ -142,7 +115,6 @@
       "@type": "SoftwareApplication",
       "identifier": "ape",
       "name": "ape",
-      "version": ">= 5.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -153,41 +125,49 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "colorspace",
-      "name": "colorspace",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=colorspace"
+      "identifier": "TreeTools",
+      "name": "TreeTools",
+      "sameAs": "https://github.com/ms609/TreeTools"
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "phangorn",
-      "name": "phangorn",
-      "version": ">= 2.2.1",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=phangorn"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "stats",
-      "name": "stats"
+      "identifier": "https://sysreqs.r-hub.io/get/cxx11"
     }
   ],
-  "releaseNotes": "https://github.com/ms609/TreeTools/blob/master/NEWS.md",
-  "readme": "https://github.com/ms609/TreeTools/blob/master/README.md",
-  "fileSize": "483.833KB",
-  "contIntegration": ["https://travis-ci.org/ms609/TreeTools", "https://codecov.io/gh/ms609/TreeTools"],
+  "releaseNotes": "https://github.com/ms609/uspr/blob/master/NEWS.md",
+  "readme": "https://github.com/ms609/uspr/blob/master/README.md",
+  "fileSize": "43.667KB",
+  "contIntegration": [
+    "https://travis-ci.org/ms609/TreeTools",
+    "https://codecov.io/gh/ms609/TreeTools"
+  ],
   "developmentStatus": "http://www.repostatus.org/#active",
   "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "datePublished": "2017",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Chris",
+          "familyName": "Whidden"
+        },
+        {
+          "@type": "Person",
+          "givenName": ["Frederick", "A."],
+          "familyName": "Matsen"
+        }
+      ],
+      "name": "Calculating the Unrooted Subtree-Prune-and-Regraft Distance.",
+      "isPartOf": {
+        "@type": "PublicationIssue",
+        "datePublished": "2017",
+        "isPartOf": {
+          "@type": ["PublicationVolume", "Periodical"],
+          "name": "eprint at arXiv"
+        }
+      }
+    },
     {
       "@type": "SoftwareSourceCode",
       "datePublished": "2019",
@@ -198,11 +178,11 @@
           "familyName": "Smith"
         }
       ],
-      "name": "TreeTools: create, modify and analyse phylogenetic trees",
-      "identifier": "10.5281/zenodo.3522725",
+      "name": "uspr: Calculate SPR and TBR distance between unrooted phylogenetic trees",
+      "identifier": "10.5281/zenodo.3548333",
       "description": "R package version ",
-      "@id": "https://doi.org/10.5281/zenodo.3522725",
-      "sameAs": "https://doi.org/10.5281/zenodo.3522725"
+      "@id": "https://doi.org/10.5281/zenodo.3548333",
+      "sameAs": "https://doi.org/10.5281/zenodo.3548333"
     }
   ]
 }
