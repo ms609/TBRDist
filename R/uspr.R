@@ -180,8 +180,9 @@ TBRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
         tree2 <- tree1[t(selector)[lower.tri(selector)]]
         tree1 <- tree1[selector[lower.tri(selector)]]
       } else {
+        nTree1 <- length(tree1)
         tree1 <- rep(tree1, each = length(tree2))
-        tree2 <- rep(tree2, length(tree1))
+        tree2 <- rep(tree2, nTree1)
       }
     } else {
       if (length(tree1) != length(tree2)) {
@@ -219,8 +220,9 @@ TBRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
 #' @keywords internal
 #' @export
 .DistReturn <- function (ret, tree1, tree2, allPairs) {
-  .ReturnEntry <- function (ret) {
-    ret
+  .ReturnMatrix <- function (dat) {
+    matrix(dat, length(tree1), length(tree2), byrow = TRUE,
+           dimnames = list(names(tree1), names(tree2)))
   }
   .ReturnDist <- function (dat, nTree) {
     if (mode(dat) == 'numeric') {
@@ -246,9 +248,9 @@ TBRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
       names1 <- names(tree1)
       names2 <- names(tree2)
       if (mode(ret) == 'list') {
-        lapply(ret, .ReturnEntry)
+        lapply(ret, .ReturnMatrix)
       } else {
-        .ReturnEntry(ret)
+        .ReturnMatrix(ret)
       }
     }
   } else {

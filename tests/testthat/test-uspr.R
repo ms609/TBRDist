@@ -43,6 +43,12 @@ test_that("SPR distances are calculated correctly", {
   expect_equivalent(first[[1]], as.matrix(each[[1]])[1, ])
   expect_equivalent(first[[2]], as.matrix(each[[2]])[, 1])
 
+  expect_equal(matrix(c(0, 2, 0, 2, 2, 0, 5, 4), 4, 2, byrow = TRUE,
+                      dimnames = list(names(list1), names(list2))),
+               ReplugDist(list1, list2, allPairs = TRUE))
+  expect_equivalent(ReplugDist(list1, tree2, maf = TRUE)$maf_2,
+                    ReplugDist(list1, list2, allPairs = TRUE, maf = TRUE)$maf_2[, 2])
+
 
   Test <- function (tree1, tree2) {
     td <- TBRDist(tree1, tree2, exact = TRUE, approximate = TRUE)
