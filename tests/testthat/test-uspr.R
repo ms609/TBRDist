@@ -5,12 +5,17 @@ test_that("Bad tree input is handled correctly", {
   expect_error(USPRDist(PectinateTree(1:8), PectinateTree(2:9)))
   expect_error(USPRDist(PectinateTree(1:8), PectinateTree(1:9)))
   expect_error(USPRDist(PectinateTree(1:9), PectinateTree(1:8)))
+  expect_error(USPRDist(list(PectinateTree(1:8), BalancedTree(1:8)),
+                        list(PectinateTree(1:8), BalancedTree(1:8), BalancedTree(1:8))))
 })
 
 test_that("SPR distances are calculated correctly", {
   tree1 <- BalancedTree(10)
   tree2 <- PectinateTree(10)
   expect_equivalent(2L, USPRDist(tree1, tree2))
+  expect_equivalent(c(0, 2L), USPRDist(list(tree1, tree2), tree1))
+  expect_equivalent(c(0, 2L), USPRDist(tree1, list(tree1, tree2)))
+
 
   Test <- function (tree1, tree2) {
     td <- TBRDist(tree1, tree2, exact = TRUE, approximate = TRUE)
@@ -41,4 +46,6 @@ test_that("SPR distances are calculated correctly", {
   Test(tree1, tree2)
   Test(PectinateTree(13), BalancedTree(13))
 
+  expect_equal(invisible(),
+               TBRDist(tree1, tree2, exact = FALSE, approximate = FALSE))
 })

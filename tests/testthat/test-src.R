@@ -3,11 +3,15 @@ context("uspr bundled tests")
 Tree <- function (text) ape::read.tree(text = text);
 Test <- function (t1, t2, exact, min, max, f1, f2,
                   r, r1, r2,
-                  spr) {
+                  spr, replugTest = FALSE) {
   expect_equivalent(c(exact, min, max, f1, f2),
                     unlist(TBRDist(t1, t2, maf = TRUE,
                                    exact = TRUE, approximate = TRUE)))
-  expect_equivalent(r, ReplugDist(t1, t2, maf = FALSE))
+  if (replugTest) {
+    expect_equivalent(list(r, r1, r2), ReplugDist(t1, t2, maf = TRUE))
+  } else {
+    expect_equivalent(r, ReplugDist(t1, t2, maf = FALSE))
+  }
   if (!is.na(spr)) expect_equivalent(spr, USPRDist(t1, t2))
 }
 
@@ -17,7 +21,7 @@ test_that("neighbour_test", {
   Test(t1, t2, exact = 1, min = 1, max = 3,
        f1 = "(0,3,1); 2;", f2 = "(0,3,1); 2;",
        r = 1, r1 = "(0,2,3); (*,1);", r2 = "(0,2,3); (*,1);",
-       spr = 1)
+       spr = 1, TRUE)
 })
 
 test_that("normalize_test", {
