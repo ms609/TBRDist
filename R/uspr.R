@@ -61,7 +61,7 @@ USPRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
                       useTbrEstimate = TRUE,
                       useReplugEstimate = TRUE) {
   treeLists <- .PrepareTrees(tree1, tree2, allPairs, checks)
-  ret <- uspr_dist(treeLists[[1]], treeLists[[2]], keepLabels = FALSE,
+  ret <- uspr_dist(treeLists[[1]], treeLists[[2]],
                    useTbrApproxEstimate = useTbrApproxEstimate,
                    useTbrEstimate = useTbrEstimate,
                    useReplugEstimate = useReplugEstimate)
@@ -85,7 +85,7 @@ USPRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
 ReplugDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
                         checks = TRUE, maf = FALSE) {
   treeLists <- .PrepareTrees(tree1, tree2, allPairs, checks)
-  ret <- replug_dist(treeLists[[1]], treeLists[[2]], keepLabels = FALSE)
+  ret <- replug_dist(treeLists[[1]], treeLists[[2]])
   if (maf) {
     names(ret) <- c('replug_dist', 'maf_1', 'maf_2')
     .DistReturn(ret, tree1, tree2, allPairs)
@@ -154,7 +154,6 @@ TBRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
 
   ret <- tbr_dist(treeLists[[1]], treeLists[[2]],
                   printMafs = printMafs, countMafs = countMafs,
-                  keepLabels = FALSE,
                   optimize = optimize, protectB = protectB,
                   exact = exact, approximate = approximate)[whichRets]
   if (!any(whichRets)) {

@@ -22,12 +22,10 @@ using namespace std;
 // [[Rcpp::export]]
 IntegerVector uspr_dist (StringVector tree1,
                          StringVector tree2,
-                         LogicalVector keepLabels,
                          LogicalVector useTbrApproxEstimate,
                          LogicalVector useTbrEstimate,
                          LogicalVector useReplugEstimate) {
   /* opt, protectB and *Estimate default to TRUE, all others to FALSE */
-  KEEP_LABELS = keepLabels[0];
 
   USE_TBR_APPROX_ESTIMATE = useTbrApproxEstimate[0];
   USE_TBR_ESTIMATE = useTbrEstimate[0];
@@ -60,7 +58,6 @@ List tbr_dist (StringVector tree1,
                         StringVector tree2,
                         LogicalVector printMafs,
                         LogicalVector countMafs,
-                        LogicalVector keepLabels,
                         LogicalVector optimize,
                         LogicalVector protectB,
                         LogicalVector exact,
@@ -69,7 +66,6 @@ List tbr_dist (StringVector tree1,
   bool PRINT_mAFS = printMafs[0];
   bool COUNT_mAFS = countMafs[0];
 
-  KEEP_LABELS = keepLabels[0];
   bool DEFAULT_OPTIMIZATIONS = optimize[0];
 
   bool COMPUTE_TBR = exact[0];
@@ -141,11 +137,8 @@ List tbr_dist (StringVector tree1,
 
 // [[Rcpp::export]]
 List replug_dist (StringVector tree1,
-                  StringVector tree2,
-                  LogicalVector keepLabels) {
+                  StringVector tree2) {
   /* opt, replugEstimate defaults to TRUE */
-
-  KEEP_LABELS = keepLabels[0];
 
   // label maps to allow string labels
   map<string, int> label_map = map<string, int>();
