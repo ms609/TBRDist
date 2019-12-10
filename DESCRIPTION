@@ -19,7 +19,7 @@ URL: https://ms609.github.io/TBRDist/,
 BugReports: https://github.com/ms609/TBRDist/issues/
 Depends: R (>= 3.4.0),
 Imports:
-    ape,
+    ape
 Suggests:
     knitr,
     Rdpack,

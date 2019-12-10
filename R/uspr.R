@@ -147,7 +147,8 @@ TBRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
   if (!exact && !approximate && !countMafs && !printMafs) {
     message("Nothing to do in TBRDist.")
   }
-  treeLists <- .PrepareTrees(tree1, tree2, allPairs, checks)
+  treeLists <- .PrepareTrees(tree1, tree2, allPairs, checks,
+                             keepLabels = maf)
 
   whichRets <- c(exact, rep(approximate, 2L), countMafs,
                  rep(exact && maf, 2L))
@@ -166,10 +167,23 @@ TBRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
   }
 }
 
-#' @keywords internal
+#' Prepare trees for passing to uspr
+#'
+#' Converts trees to Newick strings, as expected by the `uspr` library.
+#'
+#' @param keepLabels Logical specifying whether to pass text labels to distance
+#' calculator.  This is slower, but makes maximum agreement forests easier
+#' to read.
+#' @return A two-element list, each entry of which is a chacter vector listing
+#' trees in Newick format.
+#'
+#' @template MRS
+#' @importFrom TreeTools as.Newick RenumberTips
 #' @importFrom ape write.tree
+#' @keywords internal
 #' @export
-.PrepareTrees <- function (tree1, tree2, allPairs = FALSE, checks = TRUE) {
+.PrepareTrees <- function (tree1, tree2, allPairs = FALSE, checks = TRUE,
+                           keepLabels = FALSE) {
   if (checks) {
 
     if (class(tree1) == 'phylo') tree1 <- list(tree1)
@@ -201,8 +215,14 @@ TBRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
     vapply(seq_along(tree1), function (i) .CatchBadPair(i, tree1[[i]], tree2[[i]]),
            integer(0))
   }
-  class(tree1) <- class(tree2) <- 'multiPhylo'
-  list(write.tree(tree1), write.tree(tree2))
+  if (keepLabels) {
+    class(tree1) <- class(tree2) <- 'multiPhylo'
+    list(write.tree(tree1), write.tree(tree2))
+  } else {
+    tree1[-1] <- lapply(tree1[-1], RenumberTips, tree1[[1]]$tip.label)
+    tree2 <- lapply(tree2, RenumberTips, tree1[[1]]$tip.label)
+    list(as.Newick(tree1), as.Newick(tree2))
+  }
 }
 
 #' @keywords internal
