@@ -15,8 +15,8 @@ ReplugDist(tree1, tree2 = NULL, allPairs = is.null(tree2),
   checks = TRUE, maf = FALSE)
 
 TBRDist(tree1, tree2 = NULL, allPairs = is.null(tree2),
-  checks = TRUE, exact = FALSE, approximate = !exact, maf = FALSE,
-  countMafs = FALSE, printMafs = FALSE, optimize = TRUE,
+  checks = TRUE, maf = FALSE, countMafs = FALSE, printMafs = FALSE,
+  exact = maf, approximate = !exact, optimize = TRUE,
   protectB = TRUE)
 }
 \arguments{
@@ -38,13 +38,6 @@ help estimate the SPR distance.}
 \item{maf}{Logical specifying whether to report a maximum agreement forest
 corresponding to the optimal score.}
 
-\item{exact}{Logical specifying whether to calculate the exact TBR distance.}
-
-\item{approximate}{Logical specifying whether to calculate the approximate
-TBR distance.  By default, is set to the opposite of \code{exact}; either
-\code{approximate} or \code{exact} should usually be set to \code{TRUE} if a distance is
-required.}
-
 \item{countMafs}{Logical specifying whether to count the number of Maximum
 Agreement Forests found.}
 
@@ -52,6 +45,13 @@ Agreement Forests found.}
 Forests to stdout whilst counting.
 Use \code{\link{capture.output}}\code{(TBRDist(tree1, tree2, printMafs = TRUE))} to access
 these in R.}
+
+\item{exact}{Logical specifying whether to calculate the exact TBR distance.}
+
+\item{approximate}{Logical specifying whether to calculate the approximate
+TBR distance.  By default, is set to the opposite of \code{exact}; either
+\code{approximate} or \code{exact} should usually be set to \code{TRUE} if a distance is
+required.}
 
 \item{optimize}{Logical specifying whether to use the default optimizations.}
 
@@ -100,6 +100,9 @@ if this would be useful to you.
   ReplugDist(tree1, tree2)
   ReplugDist(tree1, tree2, maf = TRUE)
 
+  tree1 <- TreeTools::BalancedTree(6)
+  tree2 <- TreeTools::PectinateTree(6)
+
   # TBR distance between two trees
   TBRDist(tree1, tree2, exact = TRUE)
 
@@ -122,6 +125,8 @@ if this would be useful to you.
   mafs <- capture.output(TBRDist(tree1, tree2, approximate = FALSE,
                           printMafs = TRUE))
   head(mafs)
+
+  MAFInfo(tree1, tree2)
 
 }
 \references{

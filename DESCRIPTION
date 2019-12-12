@@ -25,8 +25,10 @@ Suggests:
     Rdpack,
     rmarkdown,
     testthat,
+    TreeDist,
     TreeTools
 Remotes:
+    ms609/TreeDist
     ms609/TreeTools
 SystemRequirements: C++11
 RdMacros: Rdpack

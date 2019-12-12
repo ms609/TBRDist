@@ -83,4 +83,9 @@ test_that("SPR distances are calculated correctly", {
                TBRDist(tree1, tree2, exact = FALSE, approximate = FALSE))
 })
 
-
+test_that("MAF info is calculated", {
+  tree1 <- BalancedTree(8)
+  tree2 <- PectinateTree(8)
+  expect_equal(LnUnrooted(8) / log(2), MAFInfo(tree1, tree1))
+  expect_lt(MAFInfo(tree1, tree2), LnUnrooted(8) / log(2))
+})

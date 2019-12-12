@@ -115,6 +115,9 @@ ReplugDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
 #' returned.
 #'
 #' @examples
+#'   tree1 <- TreeTools::BalancedTree(6)
+#'   tree2 <- TreeTools::PectinateTree(6)
+#'
 #'   # TBR distance between two trees
 #'   TBRDist(tree1, tree2, exact = TRUE)
 #'
@@ -138,14 +141,20 @@ ReplugDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
 #'                           printMafs = TRUE))
 #'   head(mafs)
 #'
+#'   MAFInfo(tree1, tree2)
+#'   MAFInfo(list(tree2, tree1), list(tree1, tree2))
+#'
 #' @export
 TBRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
                      checks = TRUE,
-                     exact = FALSE, approximate = !exact,
                      maf = FALSE, countMafs = FALSE, printMafs = FALSE,
+                     exact = maf, approximate = !exact,
                      optimize = TRUE, protectB = TRUE) {
   if (!exact && !approximate && !countMafs && !printMafs) {
     message("Nothing to do in TBRDist.")
+  }
+  if (maf && !exact) {
+    message("Maximum agreeement forest requires exact = TRUE")
   }
   treeLists <- .PrepareTrees(tree1, tree2, allPairs, checks,
                              keepLabels = maf)
@@ -162,9 +171,43 @@ TBRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
   } else if (exact && sum(whichRets) == 1) {
     .DistReturn(ret[[1]], tree1, tree2, allPairs)
   } else {
-    names(ret) <- c('tbr_exact', 'tbr_min', 'tbr_max', 'n_maf', 'maf_1', 'maf_2')[whichRets]
+    names(ret) <- c('tbr_exact', 'tbr_min', 'tbr_max', 'n_maf',
+                    'maf_1', 'maf_2')[whichRets]
     .DistReturn(ret, tree1, tree2, allPairs)
   }
+}
+
+.Entropy <- function (p) -sum(p[p > 0] * log2(p[p > 0]))
+
+
+#' @rdname TBRDist
+#' @return `MAFInfo` returns the information content of the maximum agreement
+#' forest, in bits.  This is defined as the sum of the phylogenetic information
+#' content of each constituent subtree, plus the entropy of the clusters implied
+#' by the division of the tree into subtrees.  Note that as there is no
+#' guarantee that the most informative MAF will be encountered,
+#' this measure is approximate only.  `exact` will only serve to guarantee
+#' that a MAF corresponding to the exact TBR distance is among those sampled.
+#' @importFrom TreeDist .TreeDistance
+#' @export
+MAFInfo <- function(tree1, tree2, exact = FALSE) {
+  .TreeDistance(.MAFInfo, tree1, tree2, exact = exact)
+}
+
+.MAFInfo <- function (tree1, tree2 = NULL, exact = FALSE, ...) {
+  mafs <- capture.output(TBRDist(tree1, tree2, exact = exact,
+                                 approximate = FALSE, printMafs = TRUE))
+  # c(F,T) ensures that output of exact = TRUE is disregarded.
+  mafs <- unique(mafs[rep(c(FALSE, TRUE), length.out = length(mafs))])
+  sizes <- lapply(strsplit(mafs, ';'), vapply, function (tr)
+    lengths(regmatches(tr, gregexpr(",", tr))) + 1L, integer(1))
+
+  phylogeneticInfo <- vapply(sizes, function (x) sum(LnUnrooted(x) / log(2)), 0)
+  clusteringInfo <- vapply(sizes, function (x) .Entropy(x / sum(x)), 0)
+  totalInfo <- phylogeneticInfo + clusteringInfo
+
+  # Return:
+  max(totalInfo)
 }
 
 #' Prepare trees for passing to uspr
