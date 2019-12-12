@@ -5,6 +5,7 @@
 \alias{USPRDist}
 \alias{ReplugDist}
 \alias{TBRDist}
+\alias{MAFInfo}
 \title{Calculate Tree Rearrangement Distances}
 \usage{
 USPRDist(tree1, tree2 = NULL, allPairs = is.null(tree2),
@@ -18,6 +19,8 @@ TBRDist(tree1, tree2 = NULL, allPairs = is.null(tree2),
   checks = TRUE, maf = FALSE, countMafs = FALSE, printMafs = FALSE,
   exact = maf, approximate = !exact, optimize = TRUE,
   protectB = TRUE)
+
+MAFInfo(tree1, tree2 = tree1, exact = FALSE)
 }
 \arguments{
 \item{tree1, tree2}{Trees of class \code{phylo}, or lists thereof.}
@@ -70,6 +73,14 @@ list a vector of maximum agreement forests for each pair of trees.
 corresponding to the requested value for each tree pair.  If only the exact
 value is requested (\code{exact = TRUE}), an unnamed vector of distances is
 returned.
+
+\code{MAFInfo} returns the information content of the maximum agreement
+forest, in bits.  This is defined as the sum of the phylogenetic information
+content of each constituent subtree, plus the entropy of the clusters implied
+by the division of the tree into subtrees.  Note that as there is no
+guarantee that the most informative MAF will be encountered,
+this measure is approximate only.  \code{exact} will only serve to guarantee
+that a MAF corresponding to the exact TBR distance is among those sampled.
 }
 \description{
 Calculate SPR, TBR and Replug distances on unrooted trees.
@@ -127,6 +138,7 @@ if this would be useful to you.
   head(mafs)
 
   MAFInfo(tree1, tree2)
+  MAFInfo(list(tree2, tree1), list(tree1, tree2))
 
 }
 \references{

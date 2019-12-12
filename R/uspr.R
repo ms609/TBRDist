@@ -180,7 +180,7 @@ TBRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
 .Entropy <- function (p) -sum(p[p > 0] * log2(p[p > 0]))
 
 
-#' @rdname TBRDist
+#' @rdname TreeRearrangementDistances
 #' @return `MAFInfo` returns the information content of the maximum agreement
 #' forest, in bits.  This is defined as the sum of the phylogenetic information
 #' content of each constituent subtree, plus the entropy of the clusters implied
@@ -190,7 +190,7 @@ TBRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
 #' that a MAF corresponding to the exact TBR distance is among those sampled.
 #' @importFrom TreeDist .TreeDistance
 #' @export
-MAFInfo <- function(tree1, tree2, exact = FALSE) {
+MAFInfo <- function(tree1, tree2 = tree1, exact = FALSE) {
   .TreeDistance(.MAFInfo, tree1, tree2, exact = exact)
 }
 
