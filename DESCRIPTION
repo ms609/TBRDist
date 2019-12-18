@@ -10,7 +10,8 @@ Authors@R: c(person("Martin R.", 'Smith',
             )
 License: GPL (>= 3)
 Copyright: Underlying C++ code copyright 2018 Chris Whidden.
-Description: Fast calculation of the SPR, TBR and Replug distances between 
+Description: Fast calculation of the Subtree Prune and Regraft (SPR),
+  Tree Bisection and Reconnection (TBR) and Replug distances between 
   unrooted trees, using the algorithms of Whidden and 
   Matsen (2017) <arxiv:1511.07529>.
 URL: https://ms609.github.io/TBRDist/,
@@ -29,7 +30,6 @@ Suggests:
     TreeTools
 Remotes:
     ms609/TreeDist
-    ms609/TreeTools
 SystemRequirements: C++11
 RdMacros: Rdpack
 LazyData: true
