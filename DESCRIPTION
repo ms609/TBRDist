@@ -1,5 +1,5 @@
 Package: TBRDist
-Title: Calculate rearrangement distances between unrooted phylogenetic trees
+Title: Calculate Rearrangement Distances Between Unrooted Phylogenetic Trees
 Version: 0.0.0.9000
 Authors@R: c(person("Martin R.", 'Smith',
                   email="martin.smith@durham.ac.uk", 
