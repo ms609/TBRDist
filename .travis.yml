@@ -32,6 +32,11 @@ jobs:
     - r: devel
       r_binary_packages:
         - covr
+        - devtools
+        - Rcpp
+        - Rdpack
+        - roxygen2
+        - testthat
       branches:
         only: master
       after_success:
@@ -41,10 +46,9 @@ jobs:
         only: master
       r: release
       r_packages:
-        - ape
         - devtools
-        - phangorn
         - Rcpp
+        - Rdpack
         - roxygen2
         - testthat
       before_install:
