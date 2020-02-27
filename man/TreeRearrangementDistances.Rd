@@ -116,7 +116,7 @@ you should use '\href{https://github.com/cwhidden/rspr}{rspr}' instead.
 'rspr' is also much more efficient and can easily handle pairs of binary
 rooted trees with 200+ leaves and distances > 50.
 rspr is not yet incorporated in this R package; please
-\href{https://github.com/ms609/TBRDist/issues/2}{contact the maintainer}
+\href{https://github.com/ms609/TBRDist/issues/2/}{contact the maintainer}
 if this would be useful to you.
 }
 \examples{

@@ -4,14 +4,19 @@
     "http://schema.org"
   ],
   "@type": "SoftwareSourceCode",
-  "identifier": "uspr",
-  "description": "Fast calculation of the SPR distance between unrooted trees,\n  as well as the TBR and replug distances, using the algorithms of Whidden and \n  Matsen (2017) <arxiv:1511.07529>.",
-  "name": "uspr: Calculate SPR and TBR distance between unrooted phylogenetic trees",
-  "codeRepository": "https://github.com/ms609/uspr/",
-  "relatedLink": ["https://ms609.github.io/TreeTools", "https://ms609.github.io/uspr/", "https://github.com/cwhidden/uspr/"],
-  "issueTracker": "https://github.com/ms609/uspr/issues/",
+  "identifier": "TBRDist",
+  "description": "Fast calculation of the Subtree Prune and Regraft (SPR),\n  Tree Bisection and Reconnection (TBR) and Replug distances between \n  unrooted trees, using the algorithms of Whidden and \n  Matsen (2017) <arxiv:1511.07529>.",
+  "name": "TBRDist: Calculate Rearrangement Distances Between Unrooted Phylogenetic Trees",
+  "codeRepository": "https://github.com/ms609/TBRDist/",
+  "relatedLink": [
+    "https://ms609.github.io/TreeTools",
+    "https://ms609.github.io/uspr/",
+    "https://github.com/cwhidden/uspr/",
+    "https://ms609.github.io/TBRDist/"
+  ],
+  "issueTracker": "https://github.com/ms609/TBRDist/issues/",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.0.9000",
+  "version": "1.0.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -125,22 +130,31 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "TreeDist",
+      "name": "TreeDist",
+      "sameAs": "https://github.com/ms609/TreeDist"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "TreeTools",
       "name": "TreeTools",
-      "sameAs": "https://github.com/ms609/TreeTools"
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=TreeTools"
     },
     {
       "@type": "SoftwareApplication",
       "identifier": "https://sysreqs.r-hub.io/get/cxx11"
     }
   ],
-  "releaseNotes": "https://github.com/ms609/uspr/blob/master/NEWS.md",
-  "readme": "https://github.com/ms609/uspr/blob/master/README.md",
-  "fileSize": "43.667KB",
-  "contIntegration": [
-    "https://travis-ci.org/ms609/TreeTools",
-    "https://codecov.io/gh/ms609/TreeTools"
-  ],
+  "releaseNotes": "https://github.com/ms609/uspr.git/blob/master/NEWS.md",
+  "readme": "https://github.com/ms609/TBRDist/blob/master/README.md",
+  "fileSize": "46.94KB",
+  "contIntegration": ["https://travis-ci.org/ms609/TBRDist", "https://codecov.io/gh/ms609/TBRDist"],
   "developmentStatus": "http://www.repostatus.org/#active",
   "citation": [
     {
@@ -184,5 +198,11 @@
       "@id": "https://doi.org/10.5281/zenodo.3548333",
       "sameAs": "https://doi.org/10.5281/zenodo.3548333"
     }
+  ],
+  "keywords": [
+    "r",
+    "phylogenetics",
+    "phylogenetic-trees",
+    "distance-calculation"
   ]
 }

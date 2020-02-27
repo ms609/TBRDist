@@ -8,14 +8,14 @@ git:
   depth: 1
 
 r_binary_packages:
- - covr
  - devtools
  - Rcpp
+ - Rdpack
  - roxygen2
  - testthat
 
 r_github_packages:
- - ms609/TreeTools
+ - ms609/TreeDist
 
 before_script:
   - R -e "devtools::load_all(); devtools::document()"
@@ -24,11 +24,14 @@ jobs:
   include:
     - r: 3.4.0
     - r: release
-      before_cache: Rscript -e 'remotes::install_cran("pkgdown")'
+      r_binary_packages:
+        - pkgdown
       deploy:
         provider: script
         script: Rscript -e 'pkgdown::deploy_site_github()'
     - r: devel
+      r_binary_packages:
+        - covr
       branches:
         only: master
       after_success:

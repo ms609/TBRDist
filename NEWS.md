@@ -1,3 +1,3 @@
-# TBRDist 0.0.0.9000
+# TBRDist 1.0.0
 
 - Initial implementation.

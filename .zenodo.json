@@ -1,8 +1,8 @@
 {
-    "description": "An R package to calculate SPR and TBR distance between unrooted phylogenetic trees.",
+    "description": "An R package to calculate exact and approximage TBR, SPR and Replug rearrangement distances between unrooted phylogenetic trees.",
     "license": "gpl-3.0",
-    "title": "uspr: Calculate SPR and TBR distance between unrooted phylogenetic trees",
-    "version": "v0.0.0.9000",
+    "title": "TBRDist: Calculate Rearrangement Distances Between Unrooted Phylogenetic Trees",
+    "version": "v1.0.0",
     "upload_type": "software",
     "creators": [
         {
@@ -11,7 +11,8 @@
             "orcid": "0000-0001-5660-1727"
         },
         {
-            "name": "Chris Whidden"
+            "affiliation": "Fred Hutchinson Cancer Research Center",
+            "name": "Christopher J. Whidden"
         }
     ]
 }
