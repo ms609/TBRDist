@@ -61,11 +61,11 @@ help estimate the SPR distance.}
 \item{maf}{Logical specifying whether to report a maximum agreement forest
 corresponding to the optimal score.}
 
-\item{countMafs}{Logical specifying whether to count the number of Maximum
-Agreement Forests found.}
+\item{countMafs}{Logical specifying whether to count the number of maximum
+agreement forests found.}
 
-\item{printMafs}{Logical specifying whether to print Maximum Agreement
-Forests to stdout whilst counting.
+\item{printMafs}{Logical specifying whether to print maximum agreement
+forests to stdout whilst counting.
 Use \code{\link{capture.output}}\code{(TBRDist(tree1, tree2, printMafs = TRUE))} to access
 these in R.}
 
@@ -82,19 +82,19 @@ required.}
 Overrides value inherited from \code{optimize}.}
 }
 \value{
-\code{USPRDist} returns a vector of SPR distances between each pair of
+\code{USPRDist()} returns a vector of SPR distances between each pair of
 unrooted trees.
 
-\code{ReplugDist} returns a vector of Replug distances between each pair
+\code{ReplugDist()} returns a vector of Replug distances between each pair
 of trees, or (if \code{maf = TRUE}) a named list whose second and third elements
 list a vector of maximum agreement forests for each pair of trees.
 
-\code{TBRDist} returns a named list, each element of which bears a vector
+\code{TBRDist()} returns a named list, each element of which bears a vector
 corresponding to the requested value for each tree pair.  If only the exact
 value is requested (\code{exact = TRUE}), an unnamed vector of distances is
 returned.
 
-\code{MAFInfo} returns the information content of the maximum agreement
+\code{MAFInfo()} returns the information content of the maximum agreement
 forest, in bits.  This is defined as the sum of the phylogenetic information
 content of each constituent subtree, plus the entropy of the clusters implied
 by the division of the tree into subtrees.  Note that as there is no

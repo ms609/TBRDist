@@ -29,7 +29,7 @@
 #' whether to use approximate TBR distance, TBR distance or Replug distance to
 #' help estimate the SPR distance.
 #'
-#' @return `USPRDist` returns a vector of SPR distances between each pair of
+#' @return `USPRDist()` returns a vector of SPR distances between each pair of
 #' unrooted trees.
 #'
 #' @examples
@@ -71,7 +71,7 @@ USPRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
 #' @param maf Logical specifying whether to report a maximum agreement forest
 #' corresponding to the optimal score.
 #'
-#' @return `ReplugDist` returns a vector of Replug distances between each pair
+#' @return `ReplugDist()` returns a vector of Replug distances between each pair
 #' of trees, or (if `maf = TRUE`) a named list whose second and third elements
 #' list a vector of maximum agreement forests for each pair of trees.
 #'
@@ -99,16 +99,16 @@ ReplugDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
 #' TBR distance.  By default, is set to the opposite of `exact`; either
 #' `approximate` or `exact` should usually be set to `TRUE` if a distance is
 #' required.
-#' @param countMafs Logical specifying whether to count the number of Maximum
-#' Agreement Forests found.
-#' @param printMafs Logical specifying whether to print Maximum Agreement
-#' Forests to stdout whilst counting.
+#' @param countMafs Logical specifying whether to count the number of maximum
+#' agreement forests found.
+#' @param printMafs Logical specifying whether to print maximum agreement
+#' forests to stdout whilst counting.
 #' Use [`capture.output`]`(TBRDist(tree1, tree2, printMafs = TRUE))` to access
 #' these in R.
 #' @param optimize Logical specifying whether to use the default optimizations.
 #' @param protectB Logical specifying whether to use the PROTECT_B optimization.
 #' Overrides value inherited from `optimize`.
-#' @return `TBRDist` returns a named list, each element of which bears a vector
+#' @return `TBRDist()` returns a named list, each element of which bears a vector
 #' corresponding to the requested value for each tree pair.  If only the exact
 #' value is requested (`exact = TRUE`), an unnamed vector of distances is
 #' returned.
@@ -180,7 +180,7 @@ TBRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
 
 
 #' @rdname TreeRearrangementDistances
-#' @return `MAFInfo` returns the information content of the maximum agreement
+#' @return `MAFInfo()` returns the information content of the maximum agreement
 #' forest, in bits.  This is defined as the sum of the phylogenetic information
 #' content of each constituent subtree, plus the entropy of the clusters implied
 #' by the division of the tree into subtrees.  Note that as there is no
@@ -211,13 +211,13 @@ MAFInfo <- function(tree1, tree2 = tree1, exact = FALSE) {
 
 #' Prepare trees for passing to uspr
 #'
-#' Converts trees to Newick strings, as expected by the `uspr` library.
+#' Converts trees to Newick strings, as expected by the 'uspr' C++ library.
 #'
 #' @param keepLabels Logical specifying whether to pass text labels to distance
 #' calculator.  This is slower, but makes maximum agreement forests easier
 #' to read.
-#' @return A two-element list, each entry of which is a character vector listing
-#' trees in Newick format.
+#' @return `.PrepareTrees()` returns a two-element list, each entry of which is
+#' a character vector listing trees in Newick format.
 #'
 #' @template MRS
 #' @importFrom TreeTools as.Newick RenumberTips
@@ -267,6 +267,21 @@ MAFInfo <- function(tree1, tree2 = tree1, exact = FALSE) {
   }
 }
 
+
+#' Internal functions
+#'
+#' These helper functions are unlikely to be of day-to-day use, but are
+#' exported in case they are valuable to package developers.
+#'
+#' @template MRS
+#' @name internals
+
+#' @rdname internals
+#' @param i Integer iterating tree pair.
+#' @param tree1,tree2 Trees of class `phylo`.
+#' @return `.CatchBadPair()` returns `integer(0)`, but will `stop` R with an
+#' error message if the labels of `tree1` and `tree2` differ in anything but
+#' order.
 #' @keywords internal
 #' @export
 .CatchBadPair <- function (i, tree1, tree2) {
@@ -281,6 +296,12 @@ MAFInfo <- function(tree1, tree2 = tree1, exact = FALSE) {
   integer(0)
 }
 
+#' @rdname internals
+#' @param ret Output returned from a C call, containing tree distances..
+#' @param allPairs Logical specifying whether all trees were compared with all
+#' other trees, in which case a structure of class `dist` may be returned.
+#' @return `.DistReturn()` returns a structure of class `numeric`, `matrix` or
+#' `dist` containing the distances between each pair of trees.
 #' @keywords internal
 #' @export
 .DistReturn <- function (ret, tree1, tree2, allPairs) {

@@ -18,13 +18,14 @@ calculator.  This is slower, but makes maximum agreement forests easier
 to read.}
 }
 \value{
-A two-element list, each entry of which is a character vector listing
-trees in Newick format.
+\code{.PrepareTrees()} returns a two-element list, each entry of which is
+a character vector listing trees in Newick format.
 }
 \description{
-Converts trees to Newick strings, as expected by the \code{uspr} library.
+Converts trees to Newick strings, as expected by the 'uspr' C++ library.
 }
 \author{
-Martin R. Smith (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
+\href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}
+(\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
 }
 \keyword{internal}
