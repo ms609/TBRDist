@@ -24,7 +24,7 @@ jobs:
   include:
     - r: 3.4.0
     - r: release
-      r_binary_packages:
+      r_packages:
         - pkgdown
       deploy:
         provider: script
