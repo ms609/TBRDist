@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • TBRDist</title>
+<title>Internal functions — internals • TBRDist</title>
 
 
 <!-- jquery -->
@@ -35,7 +35,10 @@
 
 
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="Internal functions — internals" />
+<meta property="og:description" content="These helper functions are unlikely to be of day-to-day use, but are
+exported in case they are valuable to package developers." />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -54,7 +57,7 @@
   </head>
 
   <body>
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -109,28 +112,66 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/ms609/TBRDist/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+    <h1>Internal functions</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ms609/TBRDist/blob/master/R/uspr.R'><code>R/uspr.R</code></a></small>
+    <div class="hidden name"><code>internals.Rd</code></div>
     </div>
 
-    <div id="tbrdist-1-0-0" class="section level1">
-<h1 class="page-header">
-<a href="#tbrdist-1-0-0" class="anchor"></a>TBRDist 1.0.0</h1>
-<ul>
-<li>Initial implementation.</li>
-</ul>
-</div>
-  </div>
+    <div class="ref-description">
+    <p>These helper functions are unlikely to be of day-to-day use, but are
+exported in case they are valuable to package developers.</p>
+    </div>
 
+    <pre class="usage"><span class='fu'>.CatchBadPair</span>(<span class='no'>i</span>, <span class='no'>tree1</span>, <span class='no'>tree2</span>)
+
+<span class='fu'>.DistReturn</span>(<span class='no'>ret</span>, <span class='no'>tree1</span>, <span class='no'>tree2</span>, <span class='no'>allPairs</span>)</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>i</th>
+      <td><p>Integer iterating tree pair.</p></td>
+    </tr>
+    <tr>
+      <th>tree1, tree2</th>
+      <td><p>Trees of class <code>phylo</code>.</p></td>
+    </tr>
+    <tr>
+      <th>ret</th>
+      <td><p>A list containing the results of a tree comparison, probably
+performed in C.  Each element of the list will correspond to an aspect
+of tree distance (e.g. TBR distance, MAF composition).</p></td>
+    </tr>
+    <tr>
+      <th>allPairs</th>
+      <td><p>Logical specifying whether all trees were compared with all
+other trees, in which case a structure of class <code>dist</code> will be returned for
+numeric entries, and a symmetric matrix (with diagonal marked <code>NA</code>) returned
+for non-numeric entries.</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code>.CatchBadPair()</code> returns <code><a href='https://rdrr.io/r/base/integer.html'>integer(0)</a></code>, but will <code>stop</code> R with an
+error message if the labels of <code>tree1</code> and <code>tree2</code> differ in anything but
+order.</p>
+<p><code>.DistReturn()</code> returns a structure of class <code>numeric</code>, <code>matrix</code> or
+<code>dist</code> containing the distances between each pair of trees.</p>
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#tbrdist-1-0-0">1.0.0</a></li>
-      </ul>
-    </div>
-  </div>
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+    </ul>
 
+    <h2>Author</h2>
+    <p><a href='https://orcid.org/0000-0001-5660-1727'>Martin R. Smith</a>
+(<a href='mailto:martin.smith@durham.ac.uk'>martin.smith@durham.ac.uk</a>)</p>
+  </div>
 </div>
 
 

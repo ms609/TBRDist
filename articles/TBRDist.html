@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">TBRDist</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -76,7 +76,7 @@
       <h1>Using TBRDist</h1>
                         <h4 class="author">Martin R. Smith</h4>
             
-            <h4 class="date">2019-11-20</h4>
+            <h4 class="date">2020-02-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ms609/TBRDist/blob/master/vignettes/TBRDist.Rmd"><code>vignettes/TBRDist.Rmd</code></a></small>
       <div class="hidden name"><code>TBRDist.Rmd</code></div>
@@ -85,36 +85,37 @@
 
     
     
-<p>TBRDist is a package to compare phylogenetic trees.</p>
+<p>‘TBRDist’ is an R package to compare unrooted phylogenetic trees using the SPR, TBR and Replug distances.</p>
 <div id="loading-trees" class="section level2">
 <h2 class="hasAnchor">
 <a href="#loading-trees" class="anchor"></a>Loading trees</h2>
-<p>This vignette assumes familiarity with the process of <a href="https://ms609.github.io/TreeTools/articles/load-trees.html">loading trees into R</a>.</p>
-<p>We’ll work with some simple trees generated using the <a href="https://ms609.github.io/TreeTools">TreeTools</a> package.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">'TreeTools'</span>)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">tree1 &lt;-<span class="st"> </span><span class="kw"><a href="https://ms609.github.io/TreeTools/reference/BalancedTree.html">BalancedTree</a></span>(<span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">tree2 &lt;-<span class="st"> </span>TreeTools<span class="op">::</span><span class="kw"><a href="https://ms609.github.io/TreeTools/reference/PectinateTree.html">PectinateTree</a></span>(<span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="dt">mfrow=</span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">mar=</span><span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fl">0.2</span>, <span class="dv">4</span>)) <span class="co"># Set up plotting area</span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(tree1)</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(tree2)</a></code></pre></div>
+<p>This document assumes familiarity with the process of <a href="https://ms609.github.io/TreeTools/articles/load-trees.html">loading trees into R</a>.</p>
+<p>We’ll work with some simple trees generated using the ‘<a href="https://ms609.github.io/TreeTools">TreeTools</a>’ package.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">'TreeTools'</span>)</a></code></pre></div>
+<pre><code>## Loading required package: ape</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">tree1 &lt;-<span class="st"> </span><span class="kw"><a href="https://ms609.github.io/TreeTools/reference/BalancedTree.html">BalancedTree</a></span>(<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">tree2 &lt;-<span class="st"> </span>TreeTools<span class="op">::</span><span class="kw"><a href="https://ms609.github.io/TreeTools/reference/PectinateTree.html">PectinateTree</a></span>(<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="dt">mfrow=</span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">mar=</span><span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fl">0.2</span>, <span class="dv">4</span>)) <span class="co"># Set up plotting area</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(tree1)</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(tree2)</a></code></pre></div>
 <p><img src="TBRDist_files/figure-html/unnamed-chunk-1-1.png" width="672"></p>
 </div>
 <div id="calculating-distances" class="section level2">
 <h2 class="hasAnchor">
 <a href="#calculating-distances" class="anchor"></a>Calculating distances</h2>
 <p>After installing TBRDist (<code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages('TBRDist')</a></code>), load the package into R with</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">'TBRDist'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">'TBRDist'</span>)</a></code></pre></div>
 <p>To generate an approximate SPR distance between two unrooted trees, use:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="../reference/TreeRearrangementDistances.html">USPRDist</a></span>(tree1, tree2)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="../reference/TreeRearrangementDistances.html">USPRDist</a></span>(tree1, tree2)</a></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>For Replug distances, it’s:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="../reference/TreeRearrangementDistances.html">ReplugDist</a></span>(tree1, tree2)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="../reference/TreeRearrangementDistances.html">ReplugDist</a></span>(tree1, tree2)</a></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>For TBR distances, use:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="../reference/TreeRearrangementDistances.html">TBRDist</a></span>(tree1, tree2, <span class="dt">exact =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw"><a href="../reference/TreeRearrangementDistances.html">TBRDist</a></span>(tree1, tree2, <span class="dt">exact =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p>When calculating an exact TBR distance, we receive information on the maximum agreement forest for free (i.e. with no extra processing cost):</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw"><a href="../reference/TreeRearrangementDistances.html">TBRDist</a></span>(tree1, tree2, <span class="dt">exact =</span> <span class="ot">TRUE</span>, <span class="dt">maf =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="../reference/TreeRearrangementDistances.html">TBRDist</a></span>(tree1, tree2, <span class="dt">exact =</span> <span class="ot">TRUE</span>, <span class="dt">maf =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## $tbr_exact
 ## [1] 1
 ## 
@@ -124,7 +125,7 @@
 ## $maf_2
 ## [1] "((t1,t2),(t4,t5),t3); ((t6,t7),(t9,t10),t8);"</code></pre>
 <p>Once trees have more than about a dozen tips, it becomes slow to calculate the exact distance. In the interests of speed, we may wish to approximate the value of the TBR distance:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="../reference/TreeRearrangementDistances.html">TBRDist</a></span>(tree1, tree2, <span class="dt">exact =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="../reference/TreeRearrangementDistances.html">TBRDist</a></span>(tree1, tree2, <span class="dt">exact =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>## $tbr_min
 ## [1] 1
 ## 
@@ -134,8 +135,8 @@
 <div id="comparing-multiple-trees" class="section level2">
 <h2 class="hasAnchor">
 <a href="#comparing-multiple-trees" class="anchor"></a>Comparing multiple trees</h2>
-<p>To avoid multiple calls, each function can also be used to compare lists of trees (or multiPhylo objects) against a single tree:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="../reference/TreeRearrangementDistances.html">TBRDist</a></span>(tree1, <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(tree1, tree2), <span class="dt">exact =</span> <span class="ot">TRUE</span>, <span class="dt">maf =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p>To avoid multiple calls, each function can also be used to compare lists of trees (or <code>multiPhylo</code> objects) against a single tree:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw"><a href="../reference/TreeRearrangementDistances.html">TBRDist</a></span>(tree1, <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(tree1, tree2), <span class="dt">exact =</span> <span class="ot">TRUE</span>, <span class="dt">maf =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## $tbr_exact
 ## [1] 0 1
 ## 
@@ -147,19 +148,19 @@
 ## [1] "((((t1,t2),((t4,t5),t3)),(t6,t7)),(t9,t10),t8);"
 ## [2] "((t1,t2),(t4,t5),t3); ((t6,t7),(t9,t10),t8);"</code></pre>
 <p>Or against each corresponding entry in a second list:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw"><a href="../reference/TreeRearrangementDistances.html">USPRDist</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(tree1, tree2, tree2), <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(tree2, tree1, tree2))</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw"><a href="../reference/TreeRearrangementDistances.html">USPRDist</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(tree1, tree2, tree2), <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(tree2, tree1, tree2))</a></code></pre></div>
 <pre><code>## [1] 2 2 0</code></pre>
 </div>
 <div id="citation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#citation" class="anchor"></a>Citation</h2>
-<p>If you use TBRDist in your research, please cite:</p>
+<p>If you use ‘TBRDist’ in your research, please cite:</p>
 <ul>
 <li>Chris Whidden and Frederick A. Matsen IV (2017). Calculating the Unrooted Subtree-Prune-and-Regraft Distance. eprint arXiv:<a href="http://arxiv.org/abs/1511.07529">1511.07529</a>.</li>
 </ul>
 <p>Optionally, a citation to the TBRDist package would be welcome:</p>
 <ul>
-<li>Smith (2019). TBRDist: Calculate SPR and TBR distance between unrooted phylogenetic treess. <a href="doi:%5B10.5281/zenodo.3548333%5D(https://dx.doi.org/10.5281/zenodo.3548333)" class="uri">doi:[10.5281/zenodo.3548333](https://dx.doi.org/10.5281/zenodo.3548333)</a>
+<li>Smith (2019). TBRDist: Calculate SPR and TBR distance between unrooted phylogenetic trees. <a href="doi:%5B10.5281/zenodo.3548333%5D(https://dx.doi.org/10.5281/zenodo.3548333)" class="uri">doi:[10.5281/zenodo.3548333](https://dx.doi.org/10.5281/zenodo.3548333)</a>
 </li>
 </ul>
 </div>

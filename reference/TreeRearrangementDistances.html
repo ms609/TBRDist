@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculate Tree Rearrangement Distances — TreeRearrangementDistances • TBRDist</title>
+<title>Calculate SPR, TBR and Replug distances on unrooted trees — TreeRearrangementDistances • TBRDist</title>
 
 
 <!-- jquery -->
@@ -35,7 +35,7 @@
 
 
 
-<meta property="og:title" content="Calculate Tree Rearrangement Distances — TreeRearrangementDistances" />
+<meta property="og:title" content="Calculate SPR, TBR and Replug distances on unrooted trees — TreeRearrangementDistances" />
 <meta property="og:description" content="Calculate SPR, TBR and Replug distances on unrooted trees." />
 <meta name="twitter:card" content="summary" />
 
@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">TBRDist</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -111,7 +111,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Calculate Tree Rearrangement Distances</h1>
+    <h1>Calculate SPR, TBR and Replug distances on unrooted trees</h1>
     <small class="dont-index">Source: <a href='https://github.com/ms609/TBRDist/blob/master/R/uspr.R'><code>R/uspr.R</code></a></small>
     <div class="hidden name"><code>TreeRearrangementDistances.Rd</code></div>
     </div>
@@ -143,14 +143,16 @@
   <span class='kw'>tree2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>allPairs</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/NULL.html'>is.null</a></span>(<span class='no'>tree2</span>),
   <span class='kw'>checks</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>exact</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>approximate</span> <span class='kw'>=</span> !<span class='no'>exact</span>,
   <span class='kw'>maf</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>countMafs</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>printMafs</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>exact</span> <span class='kw'>=</span> <span class='no'>maf</span>,
+  <span class='kw'>approximate</span> <span class='kw'>=</span> !<span class='no'>exact</span>,
   <span class='kw'>optimize</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>protectB</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</pre>
+)
+
+<span class='fu'>MAFInfo</span>(<span class='no'>tree1</span>, <span class='kw'>tree2</span> <span class='kw'>=</span> <span class='no'>tree1</span>, <span class='kw'>exact</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -174,14 +176,26 @@ input is likely to crash R.</p></td>
     </tr>
     <tr>
       <th>useTbrApproxEstimate, useTbrEstimate, useReplugEstimate</th>
-      <td><p>Logical specifying
-whether to use approximate TBR distance, TBR distance or Replug distance to
-help estimate the SPR distance.</p></td>
+      <td><p>Logical
+specifying whether to use approximate TBR distance, TBR distance or Replug
+distance to help estimate the SPR distance.</p></td>
     </tr>
     <tr>
       <th>maf</th>
       <td><p>Logical specifying whether to report a maximum agreement forest
 corresponding to the optimal score.</p></td>
+    </tr>
+    <tr>
+      <th>countMafs</th>
+      <td><p>Logical specifying whether to count the number of maximum
+agreement forests found.</p></td>
+    </tr>
+    <tr>
+      <th>printMafs</th>
+      <td><p>Logical specifying whether to print maximum agreement
+forests to stdout whilst counting.
+Use <code><a href='https://rdrr.io/r/utils/capture.output.html'>capture.output</a></code><code>(TBRDist(tree1, tree2, printMafs = TRUE))</code> to access
+these in R.</p></td>
     </tr>
     <tr>
       <th>exact</th>
@@ -193,18 +207,6 @@ corresponding to the optimal score.</p></td>
 TBR distance.  By default, is set to the opposite of <code>exact</code>; either
 <code>approximate</code> or <code>exact</code> should usually be set to <code>TRUE</code> if a distance is
 required.</p></td>
-    </tr>
-    <tr>
-      <th>countMafs</th>
-      <td><p>Logical specifying whether to count the number of Maximum
-Agreement Forests found.</p></td>
-    </tr>
-    <tr>
-      <th>printMafs</th>
-      <td><p>Logical specifying whether to print Maximum Agreement
-Forests to stdout whilst counting.
-Use <code><a href='https://rdrr.io/r/utils/capture.output.html'>capture.output</a></code><code>(TBRDist(tree1, tree2, printMafs = TRUE))</code> to access
-these in R.</p></td>
     </tr>
     <tr>
       <th>optimize</th>
@@ -219,27 +221,34 @@ Overrides value inherited from <code>optimize</code>.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>USPRDist</code> returns a vector of SPR distances between each pair of
+    <p><code>USPRDist()</code> returns a vector of SPR distances between each pair of
 unrooted trees.</p>
-<p><code>ReplugDist</code> returns a vector of Replug distances between each pair
+<p><code>ReplugDist()</code> returns a vector of Replug distances between each pair
 of trees, or (if <code>maf = TRUE</code>) a named list whose second and third elements
 list a vector of maximum agreement forests for each pair of trees.</p>
-<p><code>TBRDist</code> returns a named list, each element of which bears a vector
+<p><code>TBRDist()</code> returns a named list, each element of which bears a vector
 corresponding to the requested value for each tree pair.  If only the exact
 value is requested (<code>exact = TRUE</code>), an unnamed vector of distances is
 returned.</p>
+<p><code>MAFInfo()</code> returns the information content of the maximum agreement
+forest, in bits.  This is defined as the sum of the phylogenetic information
+content of each constituent subtree, plus the entropy of the clusters implied
+by the division of the tree into subtrees.  Note that as there is no
+guarantee that the most informative MAF will be encountered,
+this measure is approximate only.  <code>exact</code> will only serve to guarantee
+that a MAF corresponding to the exact TBR distance is among those sampled.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Note that these distances are NP-hard to compute and most of the algorithms
 used in this software scale exponentially with the distance computed.
-This version of uspr is aimed at trees with up to 50 leaves and uSPR
-distances up to 14.</p>
+The version of 'uspr' linked in this package is aimed at trees with up to
+50 leaves and uSPR distances up to 14.</p>
 <p>If you are interested in comparing rooted trees in terms of SPR operations,
-you should use <a href='https://github.com/cwhidden/rspr'>rspr</a> instead. rspr is also
-much more efficient and can easily handle pairs of binary rooted trees with
-200+ leaves and distances &gt; 50.
+you should use '<a href='https://github.com/cwhidden/rspr/'>rspr</a>' instead.
+'rspr' is also much more efficient and can easily handle pairs of binary
+rooted trees with 200+ leaves and distances &gt; 50.
 rspr is not yet incorporated in this R package; please
-<a href='https://github.com/ms609/uspr/issues/2'>contact the maintainer</a>
+<a href='https://github.com/ms609/TBRDist/issues/2/'>contact the maintainer</a>
 if this would be useful to you.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -251,34 +260,37 @@ arXiv:<a href='http://arxiv.org/abs/1511.07529'>1511.07529</a>.</p></li>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>  <span class='no'>tree1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>TreeTools</span><span class='kw ns'>::</span><span class='fu'><a href='https://ms609.github.io/TreeTools/reference/BalancedTree.html'>BalancedTree</a></span>(<span class='fl'>9</span>)
-  <span class='no'>tree2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>TreeTools</span><span class='kw ns'>::</span><span class='fu'><a href='https://ms609.github.io/TreeTools/reference/PectinateTree.html'>PectinateTree</a></span>(<span class='fl'>9</span>)
+    <pre class="examples"><div class='input'><span class='no'>tree1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>TreeTools</span><span class='kw ns'>::</span><span class='fu'><a href='https://ms609.github.io/TreeTools/reference/BalancedTree.html'>BalancedTree</a></span>(<span class='fl'>9</span>)
+<span class='no'>tree2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>TreeTools</span><span class='kw ns'>::</span><span class='fu'><a href='https://ms609.github.io/TreeTools/reference/PectinateTree.html'>PectinateTree</a></span>(<span class='fl'>9</span>)
 
-  <span class='co'># SPR distance</span>
-  <span class='fu'>USPRDist</span>(<span class='no'>tree1</span>, <span class='no'>tree2</span>)</div><div class='output co'>#&gt; [1] 2</div><div class='input'>
+<span class='co'># SPR distance</span>
+<span class='fu'>USPRDist</span>(<span class='no'>tree1</span>, <span class='no'>tree2</span>)</div><div class='output co'>#&gt; [1] 2</div><div class='input'>
 
-  <span class='co'># Replug distance</span>
-  <span class='fu'>ReplugDist</span>(<span class='no'>tree1</span>, <span class='no'>tree2</span>)</div><div class='output co'>#&gt; [1] 2</div><div class='input'>  <span class='fu'>ReplugDist</span>(<span class='no'>tree1</span>, <span class='no'>tree2</span>, <span class='kw'>maf</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; $replug_dist
+<span class='co'># Replug distance</span>
+<span class='fu'>ReplugDist</span>(<span class='no'>tree1</span>, <span class='no'>tree2</span>)</div><div class='output co'>#&gt; [1] 2</div><div class='input'><span class='fu'>ReplugDist</span>(<span class='no'>tree1</span>, <span class='no'>tree2</span>, <span class='kw'>maf</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; $replug_dist
 #&gt; [1] 2
 #&gt; 
 #&gt; $maf_1
-#&gt; [1] "((((t1,t2),t3),t5),(t8,t9),t7); (*,t4); (*,t6);"
+#&gt; [1] "((((0,1),2),4),(7,8),6); (*,3); (*,5);"
 #&gt; 
 #&gt; $maf_2
-#&gt; [1] "((((t1,t2),t3),t5),(t8,t9),t7); (*,t4); (*,t6);"
+#&gt; [1] "((((0,1),2),4),(7,8),6); (*,3); (*,5);"
 #&gt; </div><div class='input'>
-  <span class='co'># TBR distance between two trees</span>
-  <span class='fu'>TBRDist</span>(<span class='no'>tree1</span>, <span class='no'>tree2</span>, <span class='kw'>exact</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
-  <span class='co'># Compare a list against one tree, using approximate distances</span>
-  <span class='fu'>TBRDist</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>tree1</span>, <span class='no'>tree2</span>), <span class='no'>tree2</span>, <span class='kw'>exact</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; $tbr_min
+<span class='no'>tree1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>TreeTools</span><span class='kw ns'>::</span><span class='fu'><a href='https://ms609.github.io/TreeTools/reference/BalancedTree.html'>BalancedTree</a></span>(<span class='fl'>6</span>)
+<span class='no'>tree2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>TreeTools</span><span class='kw ns'>::</span><span class='fu'><a href='https://ms609.github.io/TreeTools/reference/PectinateTree.html'>PectinateTree</a></span>(<span class='fl'>6</span>)
+
+<span class='co'># TBR distance between two trees</span>
+<span class='fu'>TBRDist</span>(<span class='no'>tree1</span>, <span class='no'>tree2</span>, <span class='kw'>exact</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
+<span class='co'># Compare a list against one tree, using approximate distances</span>
+<span class='fu'>TBRDist</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>tree1</span>, <span class='no'>tree2</span>), <span class='no'>tree2</span>, <span class='kw'>exact</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; $tbr_min
 #&gt; [1] 1 0
 #&gt; 
 #&gt; $tbr_max
 #&gt; [1] 3 0
 #&gt; </div><div class='input'>
-  <span class='co'># Compare all pairs in two lists</span>
-  <span class='fu'>TBRDist</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>tree1</span>, <span class='no'>tree2</span>), <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>tree1</span>, <span class='no'>tree2</span>, <span class='no'>tree2</span>), <span class='kw'>allPairs</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-          <span class='kw'>exact</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; $tbr_min
+<span class='co'># Compare all pairs in two lists</span>
+<span class='fu'>TBRDist</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>tree1</span>, <span class='no'>tree2</span>), <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>tree1</span>, <span class='no'>tree2</span>, <span class='no'>tree2</span>), <span class='kw'>allPairs</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+        <span class='kw'>exact</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; $tbr_min
 #&gt;      [,1] [,2] [,3]
 #&gt; [1,]    0    1    1
 #&gt; [2,]    1    0    0
@@ -288,8 +300,8 @@ arXiv:<a href='http://arxiv.org/abs/1511.07529'>1511.07529</a>.</p></li>
 #&gt; [1,]    0    3    3
 #&gt; [2,]    3    0    0
 #&gt; </div><div class='input'>
-  <span class='co'># Compare each tree in a list against each other</span>
-  <span class='fu'>TBRDist</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>one</span> <span class='kw'>=</span> <span class='no'>tree1</span>, <span class='kw'>two</span> <span class='kw'>=</span> <span class='no'>tree2</span>, <span class='kw'>twoAgain</span> <span class='kw'>=</span> <span class='no'>tree2</span>))</div><div class='output co'>#&gt; $tbr_min
+<span class='co'># Compare each tree in a list against each other</span>
+<span class='fu'>TBRDist</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>one</span> <span class='kw'>=</span> <span class='no'>tree1</span>, <span class='kw'>two</span> <span class='kw'>=</span> <span class='no'>tree2</span>, <span class='kw'>twoAgain</span> <span class='kw'>=</span> <span class='no'>tree2</span>))</div><div class='output co'>#&gt; $tbr_min
 #&gt;          one two
 #&gt; two        1    
 #&gt; twoAgain   1   0
@@ -299,10 +311,10 @@ arXiv:<a href='http://arxiv.org/abs/1511.07529'>1511.07529</a>.</p></li>
 #&gt; two        3    
 #&gt; twoAgain   3   0
 #&gt; </div><div class='input'>
-  <span class='co'># Compare each pair in two lists</span>
-  <span class='fu'>TBRDist</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>tree1</span>, <span class='no'>tree2</span>, <span class='no'>tree2</span>),
-          <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>tree2</span>, <span class='no'>tree1</span>, <span class='no'>tree2</span>),
-          <span class='kw'>exact</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>approximate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>countMafs</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; $tbr_exact
+<span class='co'># Compare each pair in two lists</span>
+<span class='fu'>TBRDist</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>tree1</span>, <span class='no'>tree2</span>, <span class='no'>tree2</span>),
+        <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>tree2</span>, <span class='no'>tree1</span>, <span class='no'>tree2</span>),
+        <span class='kw'>exact</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>approximate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>countMafs</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; $tbr_exact
 #&gt; [1] 1 1 0
 #&gt; 
 #&gt; $tbr_min
@@ -312,14 +324,16 @@ arXiv:<a href='http://arxiv.org/abs/1511.07529'>1511.07529</a>.</p></li>
 #&gt; [1] 3 3 0
 #&gt; 
 #&gt; $n_maf
-#&gt; [1] 12 13  1
+#&gt; [1] 4 4 1
 #&gt; </div><div class='input'>
-  <span class='co'># Capture maximum agreement forests</span>
-  <span class='no'>mafs</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/capture.output.html'>capture.output</a></span>(<span class='fu'>TBRDist</span>(<span class='no'>tree1</span>, <span class='no'>tree2</span>, <span class='kw'>approximate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-                          <span class='kw'>printMafs</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))
-  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>mafs</span>)</div><div class='output co'>#&gt; [1] "(2,3,(0,1)); ((5,4),(7,8),6);"  "((0,1),2,3); ((4,5),(7,8),6);" 
-#&gt; [3] "((((0,1),2),4),(7,8),6); 3; 5;" "((((0,1),2),4),(7,8),6); 3; 5;"
-#&gt; [5] "((((0,1),2),5),(7,8),6); 3; 4;" "((((0,1),2),5),(7,8),6); 3; 4;"</div><div class='input'>
+<span class='co'># Capture maximum agreement forests</span>
+<span class='no'>mafs</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/capture.output.html'>capture.output</a></span>(<span class='fu'>TBRDist</span>(<span class='no'>tree1</span>, <span class='no'>tree2</span>, <span class='kw'>approximate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+                        <span class='kw'>printMafs</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>mafs</span>)</div><div class='output co'>#&gt; [1] "((0,1),(4,5),3); 2;" "((0,1),(4,5),3); 2;" "((0,2),(4,5),3); 1;"
+#&gt; [4] "((0,2),(4,5),3); 1;" "0; ((2,1),(4,5),3);" "0; ((1,2),(4,5),3);"</div><div class='input'>
+<span class='fu'>MAFInfo</span>(<span class='no'>tree1</span>, <span class='no'>tree2</span>)</div><div class='output co'>#&gt; [1] 4.556913</div><div class='input'><span class='fu'>MAFInfo</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>tree2</span>, <span class='no'>tree1</span>), <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>tree1</span>, <span class='no'>tree2</span>))</div><div class='output co'>#&gt;          [,1]     [,2]
+#&gt; [1,] 4.556913 6.714246
+#&gt; [2,] 6.714246 4.556913</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

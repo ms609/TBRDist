@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • TBRDist</title>
+<title>Prepare trees for passing to uspr — .PrepareTrees • TBRDist</title>
 
 
 <!-- jquery -->
@@ -35,7 +35,9 @@
 
 
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="Prepare trees for passing to uspr — .PrepareTrees" />
+<meta property="og:description" content="Converts trees to Newick strings, as expected by the 'uspr' C++ library." />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -54,7 +56,7 @@
   </head>
 
   <body>
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -109,28 +111,51 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/ms609/TBRDist/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+    <h1>Prepare trees for passing to uspr</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ms609/TBRDist/blob/master/R/uspr.R'><code>R/uspr.R</code></a></small>
+    <div class="hidden name"><code>dot-PrepareTrees.Rd</code></div>
     </div>
 
-    <div id="tbrdist-1-0-0" class="section level1">
-<h1 class="page-header">
-<a href="#tbrdist-1-0-0" class="anchor"></a>TBRDist 1.0.0</h1>
-<ul>
-<li>Initial implementation.</li>
-</ul>
-</div>
-  </div>
+    <div class="ref-description">
+    <p>Converts trees to Newick strings, as expected by the 'uspr' C++ library.</p>
+    </div>
 
+    <pre class="usage"><span class='fu'>.PrepareTrees</span>(
+  <span class='no'>tree1</span>,
+  <span class='no'>tree2</span>,
+  <span class='kw'>allPairs</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>checks</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>keepLabels</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>keepLabels</th>
+      <td><p>Logical specifying whether to pass text labels to distance
+calculator.  This is slower, but makes maximum agreement forests easier
+to read.</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code>.PrepareTrees()</code> returns a two-element list, each entry of which is
+a character vector listing trees in Newick format.</p>
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#tbrdist-1-0-0">1.0.0</a></li>
-      </ul>
-    </div>
-  </div>
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+    </ul>
 
+    <h2>Author</h2>
+    <p><a href='https://orcid.org/0000-0001-5660-1727'>Martin R. Smith</a>
+(<a href='mailto:martin.smith@durham.ac.uk'>martin.smith@durham.ac.uk</a>)</p>
+  </div>
 </div>
 
 
