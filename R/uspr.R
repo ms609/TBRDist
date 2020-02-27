@@ -192,6 +192,8 @@ MAFInfo <- function(tree1, tree2 = tree1, exact = FALSE) {
   .TreeDistance(.MAFInfo, tree1, tree2, exact = exact)
 }
 
+#' @importFrom utils capture.output
+#' @importFrom TreeTools LnUnrooted
 .MAFInfo <- function (tree1, tree2 = NULL, exact = FALSE, ...) {
   mafs <- capture.output(TBRDist(tree1, tree2, exact = exact,
                                  approximate = FALSE, printMafs = TRUE))
@@ -200,7 +202,7 @@ MAFInfo <- function(tree1, tree2 = tree1, exact = FALSE) {
   sizes <- lapply(strsplit(mafs, ';'), vapply, function (tr)
     lengths(regmatches(tr, gregexpr(",", tr))) + 1L, integer(1))
 
-  phylogeneticInfo <- vapply(sizes, function (x) sum(LnUnrooted(x) / log(2)), 0)
+  phylogeneticInfo <- vapply(sizes, function (x) sum(LnUnrooted(x)), 0) / log(2)
   clusteringInfo <- vapply(sizes, function (x) .Entropy(x / sum(x)), 0)
   totalInfo <- phylogeneticInfo + clusteringInfo
 
