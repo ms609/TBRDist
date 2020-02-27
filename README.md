@@ -8,8 +8,9 @@
 -->
 [![Project Status: Active – – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 
-`TBRDist` allows the calculation of SPR, TBR and Replug distances between
-unrooted phylogenetic trees from within R, using [algorithms](https://github.com/cwhidden/uspr) written in C++
+'TBRDist' allows the calculation of SPR, TBR and Replug distances between
+unrooted phylogenetic trees from within R, using 
+[algorithms](https://github.com/cwhidden/uspr) written in C++
 by [Chris Whidden](https://web.cs.dal.ca/~whidden/). Whidden and Matsen (2017)
 provide more information on the motivation behind this project, 
 the algorithms used and their expected performance.
