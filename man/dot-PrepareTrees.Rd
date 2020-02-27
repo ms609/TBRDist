@@ -4,8 +4,13 @@
 \alias{.PrepareTrees}
 \title{Prepare trees for passing to uspr}
 \usage{
-.PrepareTrees(tree1, tree2, allPairs = FALSE, checks = TRUE,
-  keepLabels = FALSE)
+.PrepareTrees(
+  tree1,
+  tree2,
+  allPairs = FALSE,
+  checks = TRUE,
+  keepLabels = FALSE
+)
 }
 \arguments{
 \item{keepLabels}{Logical specifying whether to pass text labels to distance
@@ -13,7 +18,7 @@ calculator.  This is slower, but makes maximum agreement forests easier
 to read.}
 }
 \value{
-A two-element list, each entry of which is a chacter vector listing
+A two-element list, each entry of which is a character vector listing
 trees in Newick format.
 }
 \description{

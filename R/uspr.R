@@ -1,7 +1,6 @@
-#' Calculate Tree Rearrangement Distances
+#' Calculate SPR, TBR and Replug distances on unrooted trees
 #'
 #' Calculate SPR, TBR and Replug distances on unrooted trees.
-#'
 #'
 #' Note that these distances are NP-hard to compute and most of the algorithms
 #' used in this software scale exponentially with the distance computed.
@@ -217,7 +216,7 @@ MAFInfo <- function(tree1, tree2 = tree1, exact = FALSE) {
 #' @param keepLabels Logical specifying whether to pass text labels to distance
 #' calculator.  This is slower, but makes maximum agreement forests easier
 #' to read.
-#' @return A two-element list, each entry of which is a chacter vector listing
+#' @return A two-element list, each entry of which is a character vector listing
 #' trees in Newick format.
 #'
 #' @template MRS

@@ -6,19 +6,39 @@
 \alias{ReplugDist}
 \alias{TBRDist}
 \alias{MAFInfo}
-\title{Calculate Tree Rearrangement Distances}
+\title{Calculate SPR, TBR and Replug distances on unrooted trees}
 \usage{
-USPRDist(tree1, tree2 = NULL, allPairs = is.null(tree2),
-  checks = TRUE, useTbrApproxEstimate = TRUE, useTbrEstimate = TRUE,
-  useReplugEstimate = TRUE)
+USPRDist(
+  tree1,
+  tree2 = NULL,
+  allPairs = is.null(tree2),
+  checks = TRUE,
+  useTbrApproxEstimate = TRUE,
+  useTbrEstimate = TRUE,
+  useReplugEstimate = TRUE
+)
 
-ReplugDist(tree1, tree2 = NULL, allPairs = is.null(tree2),
-  checks = TRUE, maf = FALSE)
+ReplugDist(
+  tree1,
+  tree2 = NULL,
+  allPairs = is.null(tree2),
+  checks = TRUE,
+  maf = FALSE
+)
 
-TBRDist(tree1, tree2 = NULL, allPairs = is.null(tree2),
-  checks = TRUE, maf = FALSE, countMafs = FALSE, printMafs = FALSE,
-  exact = maf, approximate = !exact, optimize = TRUE,
-  protectB = TRUE)
+TBRDist(
+  tree1,
+  tree2 = NULL,
+  allPairs = is.null(tree2),
+  checks = TRUE,
+  maf = FALSE,
+  countMafs = FALSE,
+  printMafs = FALSE,
+  exact = maf,
+  approximate = !exact,
+  optimize = TRUE,
+  protectB = TRUE
+)
 
 MAFInfo(tree1, tree2 = tree1, exact = FALSE)
 }

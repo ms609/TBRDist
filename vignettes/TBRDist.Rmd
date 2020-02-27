@@ -11,14 +11,15 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-TBRDist is a package to compare phylogenetic trees.
+'TBRDist' is an R package to compare unrooted phylogenetic trees using the 
+SPR, TBR and Replug distances.
 
 ## Loading trees
 
-This vignette assumes familiarity with the process of [loading trees into R](https://ms609.github.io/TreeTools/articles/load-trees.html).
+This document assumes familiarity with the process of [loading trees into R](https://ms609.github.io/TreeTools/articles/load-trees.html).
 
 We'll work with some simple trees generated using the 
-[TreeTools](https://ms609.github.io/TreeTools) package.
+'[TreeTools](https://ms609.github.io/TreeTools)' package.
 
 ```{r, align='center', fig.width=7}
 library('TreeTools')
@@ -74,7 +75,7 @@ TBRDist(tree1, tree2, exact = FALSE)
 ## Comparing multiple trees
 
 To avoid multiple calls, each function can also be used to compare lists of 
-trees (or multiPhylo objects) against a single tree:
+trees (or `multiPhylo` objects) against a single tree:
 
 ```{r}
 TBRDist(tree1, list(tree1, tree2), exact = TRUE, maf = TRUE)
@@ -88,10 +89,10 @@ USPRDist(list(tree1, tree2, tree2), list(tree2, tree1, tree2))
 
 ## Citation
 
-If you use TBRDist in your research, please cite:
+If you use 'TBRDist' in your research, please cite:
 
 * Chris Whidden and Frederick A. Matsen IV (2017). Calculating the Unrooted Subtree-Prune-and-Regraft Distance. eprint arXiv:[1511.07529](http://arxiv.org/abs/1511.07529).
 
 Optionally, a citation to the TBRDist package would be welcome:
 
-* Smith (2019). TBRDist: Calculate SPR and TBR distance between unrooted phylogenetic treess. doi:[10.5281/zenodo.3548333](https://dx.doi.org/10.5281/zenodo.3548333)
+* Smith (2019). TBRDist: Calculate SPR and TBR distance between unrooted phylogenetic trees. doi:[10.5281/zenodo.3548333](https://dx.doi.org/10.5281/zenodo.3548333)

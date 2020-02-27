@@ -2,11 +2,11 @@ Package: TBRDist
 Title: Calculate Rearrangement Distances Between Unrooted Phylogenetic Trees
 Version: 0.0.0.9000
 Authors@R: c(person("Martin R.", 'Smith',
-                  email="martin.smith@durham.ac.uk", 
-                  role=c("aut", "cre", "cph"), 
-                  comment=c(ORCID = "0000-0001-5660-1727")),
-               person(given = "Chris", family="Whidden",
-                  email="cwhidden@fredhutch.org", role = c("cph"))
+                  email = "martin.smith@durham.ac.uk", 
+                  role = c("aut", "cre", "cph"), 
+                  comment = c(ORCID = "0000-0001-5660-1727")),
+               person(given = "Chris", family = "Whidden",
+                  email = "cwhidden@fredhutch.org", role = c("cph"))
             )
 License: GPL (>= 3)
 Copyright: Underlying C++ code copyright 2018 Chris Whidden.
@@ -39,5 +39,5 @@ Language: en-GB
 LinkingTo: BH,
     Rcpp
 VignetteBuilder: knitr
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 Roxygen: list(markdown = TRUE)
