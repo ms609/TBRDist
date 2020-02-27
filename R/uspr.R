@@ -4,15 +4,15 @@
 #'
 #' Note that these distances are NP-hard to compute and most of the algorithms
 #' used in this software scale exponentially with the distance computed.
-#' This version of uspr is aimed at trees with up to 50 leaves and uSPR
-#' distances up to 14.
+#' The version of 'uspr' linked in this package is aimed at trees with up to
+#' 50 leaves and uSPR distances up to 14.
 #'
 #' If you are interested in comparing rooted trees in terms of SPR operations,
-#' you should use [rspr](https://github.com/cwhidden/rspr) instead. rspr is also
-#' much more efficient and can easily handle pairs of binary rooted trees with
-#' 200+ leaves and distances > 50.
+#' you should use '[rspr](https://github.com/cwhidden/rspr)' instead.
+#' 'rspr' is also much more efficient and can easily handle pairs of binary
+#' rooted trees with 200+ leaves and distances > 50.
 #' rspr is not yet incorporated in this R package; please
-#' [contact the maintainer](https://github.com/ms609/uspr/issues/2)
+#' [contact the maintainer](https://github.com/ms609/TBRDist/issues/2)
 #' if this would be useful to you.
 #'
 #'
@@ -25,19 +25,19 @@
 #' tree at the corresponding index in `tree2`.  If `tree2` is not specified,
 #' each tree in `tree1` will be compared with each other tree in `tree1`.
 #'
-#' @param useTbrApproxEstimate,useTbrEstimate,useReplugEstimate Logical specifying
-#' whether to use approximate TBR distance, TBR distance or Replug distance to
-#' help estimate the SPR distance.
+#' @param useTbrApproxEstimate,useTbrEstimate,useReplugEstimate Logical
+#' specifying whether to use approximate TBR distance, TBR distance or Replug
+#' distance to help estimate the SPR distance.
 #'
 #' @return `USPRDist()` returns a vector of SPR distances between each pair of
 #' unrooted trees.
 #'
 #' @examples
-#'   tree1 <- TreeTools::BalancedTree(9)
-#'   tree2 <- TreeTools::PectinateTree(9)
+#' tree1 <- TreeTools::BalancedTree(9)
+#' tree2 <- TreeTools::PectinateTree(9)
 #'
-#'   # SPR distance
-#'   USPRDist(tree1, tree2)
+#' # SPR distance
+#' USPRDist(tree1, tree2)
 #'
 #'
 #' @name TreeRearrangementDistances
@@ -76,9 +76,9 @@ USPRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
 #' list a vector of maximum agreement forests for each pair of trees.
 #'
 #' @examples
-#'   # Replug distance
-#'   ReplugDist(tree1, tree2)
-#'   ReplugDist(tree1, tree2, maf = TRUE)
+#' # Replug distance
+#' ReplugDist(tree1, tree2)
+#' ReplugDist(tree1, tree2, maf = TRUE)
 #'
 #' @export
 ReplugDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
@@ -114,34 +114,34 @@ ReplugDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
 #' returned.
 #'
 #' @examples
-#'   tree1 <- TreeTools::BalancedTree(6)
-#'   tree2 <- TreeTools::PectinateTree(6)
+#' tree1 <- TreeTools::BalancedTree(6)
+#' tree2 <- TreeTools::PectinateTree(6)
 #'
-#'   # TBR distance between two trees
-#'   TBRDist(tree1, tree2, exact = TRUE)
+#' # TBR distance between two trees
+#' TBRDist(tree1, tree2, exact = TRUE)
 #'
-#'   # Compare a list against one tree, using approximate distances
-#'   TBRDist(list(tree1, tree2), tree2, exact = FALSE)
+#' # Compare a list against one tree, using approximate distances
+#' TBRDist(list(tree1, tree2), tree2, exact = FALSE)
 #'
-#'   # Compare all pairs in two lists
-#'   TBRDist(list(tree1, tree2), list(tree1, tree2, tree2), allPairs = TRUE,
-#'           exact = FALSE)
+#' # Compare all pairs in two lists
+#' TBRDist(list(tree1, tree2), list(tree1, tree2, tree2), allPairs = TRUE,
+#'         exact = FALSE)
 #'
-#'   # Compare each tree in a list against each other
-#'   TBRDist(list(one = tree1, two = tree2, twoAgain = tree2))
+#' # Compare each tree in a list against each other
+#' TBRDist(list(one = tree1, two = tree2, twoAgain = tree2))
 #'
-#'   # Compare each pair in two lists
-#'   TBRDist(list(tree1, tree2, tree2),
-#'           list(tree2, tree1, tree2),
-#'           exact = TRUE, approximate = TRUE, countMafs = TRUE)
+#' # Compare each pair in two lists
+#' TBRDist(list(tree1, tree2, tree2),
+#'         list(tree2, tree1, tree2),
+#'         exact = TRUE, approximate = TRUE, countMafs = TRUE)
 #'
-#'   # Capture maximum agreement forests
-#'   mafs <- capture.output(TBRDist(tree1, tree2, approximate = FALSE,
-#'                           printMafs = TRUE))
-#'   head(mafs)
+#' # Capture maximum agreement forests
+#' mafs <- capture.output(TBRDist(tree1, tree2, approximate = FALSE,
+#'                         printMafs = TRUE))
+#' head(mafs)
 #'
-#'   MAFInfo(tree1, tree2)
-#'   MAFInfo(list(tree2, tree1), list(tree1, tree2))
+#' MAFInfo(tree1, tree2)
+#' MAFInfo(list(tree2, tree1), list(tree1, tree2))
 #'
 #' @export
 TBRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
@@ -177,7 +177,6 @@ TBRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
 }
 
 .Entropy <- function (p) -sum(p[p > 0] * log2(p[p > 0]))
-
 
 #' @rdname TreeRearrangementDistances
 #' @return `MAFInfo()` returns the information content of the maximum agreement
