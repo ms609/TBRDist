@@ -1,7 +1,7 @@
 vers <- paste("R package version", meta$Version)
 
-citHeader("If using uspr in your research, please cite Whidden and Matsen (2017).",
-          "Optionally, a citation to the R package (Smith 2019) would also be welcome.")
+citHeader("If using 'TBRDist' in your research, please cite Whidden and Matsen (2017).",
+          "A citation to the R package (Smith 2019) would also be welcome.")
 
 citEntry(entry = "Article",
         title = "Calculating the Unrooted Subtree-Prune-and-Regraft Distance.",
@@ -15,11 +15,11 @@ citEntry(entry = "Article",
         paste0("Whidden & Matsen (2017). Calculating the Unrooted Subtree Prune-and-Regraft Distance. arXiv:1511.07529"))
 
 citEntry(entry = "Manual",
-        title = "uspr: Calculate SPR and TBR distance between unrooted phylogenetic trees",
+        title = "TBRDist: Calculate Rearrangement Distances Between Unrooted Phylogenetic Trees",
         author = personList(as.person("Martin R. Smith")),
         note = vers,
         year = 2019,
         doi = "10.5281/zenodo.3548333",
 
         textVersion =
-        paste0("Smith (2019). uspr: Calculate SPR and TBR distance between unrooted phylogenetic trees. doi: 10.5281/zenodo.3548333"))
+        paste0("Smith (2019). TBRDist: Calculate Rearrangement Distances Between Unrooted Phylogenetic Trees. ", vers, ". doi: 10.5281/zenodo.3548333"))
