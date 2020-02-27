@@ -112,7 +112,7 @@ The version of 'uspr' linked in this package is aimed at trees with up to
 50 leaves and uSPR distances up to 14.
 
 If you are interested in comparing rooted trees in terms of SPR operations,
-you should use '\href{https://github.com/cwhidden/rspr}{rspr}' instead.
+you should use '\href{https://github.com/cwhidden/rspr/}{rspr}' instead.
 'rspr' is also much more efficient and can easily handle pairs of binary
 rooted trees with 200+ leaves and distances > 50.
 rspr is not yet incorporated in this R package; please

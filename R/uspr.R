@@ -296,9 +296,13 @@ MAFInfo <- function(tree1, tree2 = tree1, exact = FALSE) {
 }
 
 #' @rdname internals
-#' @param ret Output returned from a C call, containing tree distances..
+#' @param ret A list containing the results of a tree comparison, probably
+#' performed in C.  Each element of the list will correspond to an aspect
+#' of tree distance (e.g. TBR distance, MAF composition).
 #' @param allPairs Logical specifying whether all trees were compared with all
-#' other trees, in which case a structure of class `dist` may be returned.
+#' other trees, in which case a structure of class `dist` will be returned for
+#' numeric entries, and a symmetric matrix (with diagonal marked `NA`) returned
+#' for non-numeric entries.
 #' @return `.DistReturn()` returns a structure of class `numeric`, `matrix` or
 #' `dist` containing the distances between each pair of trees.
 #' @keywords internal
