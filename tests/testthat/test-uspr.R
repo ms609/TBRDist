@@ -41,7 +41,8 @@ test_that("SPR distances are calculated correctly", {
   first <- TBRDist(list1, list1[[1]], maf = TRUE)
   each <- TBRDist(list1, maf = TRUE)
   expect_equivalent(first[[1]], as.matrix(each[[1]])[1, ])
-  expect_equivalent(first[[2]], as.matrix(each[[2]])[, 1])
+  # Non-numerics will be replaced with NAs, so [-1]:
+  expect_equivalent(first[[2]][-1], as.matrix(each[[2]])[-1, 1])
 
   expect_equal(matrix(c(0, 2, 0, 2, 2, 0, 5, 4), 4, 2, byrow = TRUE,
                       dimnames = list(names(list1), names(list2))),
