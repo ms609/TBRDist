@@ -8,11 +8,16 @@ git:
   depth: 1
 
 r_binary_packages:
+ - ape
  - devtools
  - Rcpp
  - Rdpack
+ - phangorn
  - roxygen2
  - testthat
+
+r_packages:
+ - TreeTools
 
 r_github_packages:
  - ms609/TreeDist
@@ -31,8 +36,10 @@ jobs:
         script: Rscript -e 'pkgdown::deploy_site_github()'
     - r: devel
       r_binary_packages:
+        - ape
         - covr
         - devtools
+        - phangorn
         - Rcpp
         - Rdpack
         - roxygen2
@@ -45,12 +52,6 @@ jobs:
       branches:
         only: master
       r: release
-      r_packages:
-        - devtools
-        - Rcpp
-        - Rdpack
-        - roxygen2
-        - testthat
       before_install:
       - brew install cairo
       - sudo tlmgr install doi titling hyperref
