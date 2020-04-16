@@ -38,6 +38,7 @@ jobs:
       r_packages:
         - covr
         - devtools
+        - Rdpack # Shouldn't be necessary?
         - testthat
       branches:
         only: master
