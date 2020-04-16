@@ -35,14 +35,9 @@ jobs:
         skip_cleanup: true
         script: Rscript -e 'pkgdown::deploy_site_github()'
     - r: devel
-      r_binary_packages:
-        - ape
+      r_packages:
         - covr
         - devtools
-        - phangorn
-        - Rcpp
-        - Rdpack
-        - roxygen2
         - testthat
       branches:
         only: master
@@ -53,6 +48,5 @@ jobs:
         only: master
       r: release
       before_install:
-      # - brew install cairo # Already installed
       - sudo tlmgr install doi titling hyperref
 #  allow_failures:
