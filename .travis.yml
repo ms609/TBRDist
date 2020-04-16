@@ -7,32 +7,31 @@ r_check_args: --as-cran --no-manual # Workaround error compiling PDF manual
 git:
   depth: 1
 
-r_binary_packages:
- - ape
+r_packages:
+ - pkgload
  - devtools
- - Rcpp
- - Rdpack
- - phangorn
- - roxygen2
  - testthat
 
-r_packages:
- - TreeTools
-
-r_github_packages:
- - ms609/TreeDist
-
 before_script:
-  - R -e "devtools::load_all(); devtools::document()"
+  - R -e "pkgload::load_all(); devtools::document()"
 
 jobs:
   include:
     - r: 3.4.0
     - r: release
+      r_binary_packages:
+       - ape
+       - devtools
+       - Rcpp
+       - Rdpack
+       - phangorn
+       - roxygen2
+       - testthat
       r_packages:
         - pkgdown
       deploy:
         provider: script
+        cleanup: false
         skip_cleanup: true
         script: Rscript -e 'pkgdown::deploy_site_github()'
     - r: devel
@@ -54,6 +53,6 @@ jobs:
         only: master
       r: release
       before_install:
-      - brew install cairo
+      # - brew install cairo # Already installed
       - sudo tlmgr install doi titling hyperref
 #  allow_failures:
