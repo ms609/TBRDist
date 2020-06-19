@@ -234,9 +234,14 @@ MAFInfo <- function(tree1, tree2 = tree1, exact = FALSE) {
     if (allPairs) {
       if (is.null(tree2)) {
         nTree <- length(tree1)
-        selector <- matrix(seq_len(nTree), nTree, nTree)
-        tree2 <- tree1[t(selector)[lower.tri(selector)]]
-        tree1 <- tree1[selector[lower.tri(selector)]]
+        if (length(tree1) < 2L) {
+          warning("Comparing a tree with itself only.")
+          tree2 <- tree1
+        } else {
+          selector <- matrix(seq_len(nTree), nTree, nTree)
+          tree2 <- tree1[t(selector)[lower.tri(selector)]]
+          tree1 <- tree1[selector[lower.tri(selector)]]
+        }
       } else {
         nTree1 <- length(tree1)
         tree1 <- rep(tree1, each = length(tree2))
@@ -316,7 +321,7 @@ MAFInfo <- function(tree1, tree2 = tree1, exact = FALSE) {
            dimnames = list(names(tree1), names(tree2)))
   }
   .ReturnDist <- function (dat, nTree) {
-    if (mode(dat) == 'numeric') {
+    if (is.numeric(dat)) {
       ret <- structure(dat, Size = nTree, Diag = FALSE, Upper = FALSE,
                        Labels = names(tree1), class = 'dist')
     } else {
@@ -328,17 +333,25 @@ MAFInfo <- function(tree1, tree2 = tree1, exact = FALSE) {
     # Return:
     ret
   }
+
+  if (inherits(tree1, 'phylo')) tree1 <- list(tree1)
+
   if (allPairs) {
     if (is.null(tree2)) {
-      if (mode(ret) == 'list') {
-        lapply(ret, .ReturnDist, length(tree1))
+      nTree1 <- length(tree1)
+      if (nTree1 < 2L) {
+        ret
       } else {
-        .ReturnDist(ret, length(tree1))
+        if (is.list(ret)) {
+          lapply(ret, .ReturnDist, nTree1)
+        } else {
+          .ReturnDist(ret, length(tree1))
+        }
       }
     } else {
       names1 <- names(tree1)
       names2 <- names(tree2)
-      if (mode(ret) == 'list') {
+      if (is.list(ret)) {
         lapply(ret, .ReturnMatrix)
       } else {
         .ReturnMatrix(ret)

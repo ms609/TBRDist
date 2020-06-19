@@ -21,6 +21,12 @@ test_that("TBR options", {
   bal8 <- BalancedTree(8)
   pec8 <- PectinateTree(8)
   expect_warning(TBRDist(bal8, pec8, maf = TRUE, exact = FALSE))
+  expect_warning(
+    expect_equal(list(tbr_exact = 0L, n_maf = 1L,
+                      maf_1 = "(((t1,t2),(t3,t4)),(t7,t8),(t5,t6));",
+                      maf_2 = "(((t1,t2),(t3,t4)),(t7,t8),(t5,t6));"),
+                 TBRDist(bal8, maf = TRUE, countMafs = TRUE)))
+  expect_warning(expect_equal(0L, TBRDist(bal8, exact = TRUE)))
   expect_equal(list(tbr_min = 1, tbr_max = 3, n_maf = 13),
                TBRDist(bal8, pec8, optimize = FALSE, countMafs = TRUE))
 })
