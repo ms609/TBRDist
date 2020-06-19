@@ -1,6 +1,7 @@
 #' Calculate SPR, TBR and Replug distances on unrooted trees
 #'
-#' Calculate SPR, TBR and Replug distances on unrooted trees.
+#' Calculate SPR, TBR and Replug distances on unrooted trees, and the
+#' information content of the maximum agreement forest.
 #'
 #' Note that these distances are NP-hard to compute, so the running time of the
 #' algorithms used in this software scale exponentially with the distance
