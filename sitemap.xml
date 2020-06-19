@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://ms609.github.io/uspr//index.html</loc>
+    <loc>https://ms609.github.io/TBRDist//index.html</loc>
   </url>
   <url>
-    <loc>https://ms609.github.io/uspr//reference/TreeRearrangementDistances.html</loc>
+    <loc>https://ms609.github.io/TBRDist//reference/TreeRearrangementDistances.html</loc>
   </url>
   <url>
-    <loc>https://ms609.github.io/uspr//reference/dot-PrepareTrees.html</loc>
+    <loc>https://ms609.github.io/TBRDist//reference/dot-PrepareTrees.html</loc>
   </url>
   <url>
-    <loc>https://ms609.github.io/uspr//reference/internals.html</loc>
+    <loc>https://ms609.github.io/TBRDist//reference/internals.html</loc>
   </url>
   <url>
-    <loc>https://ms609.github.io/uspr//articles/TBRDist.html</loc>
+    <loc>https://ms609.github.io/TBRDist//articles/TBRDist.html</loc>
   </url>
 </urlset>

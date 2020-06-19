@@ -82,7 +82,7 @@
 
 <p>‘TBRDist’ allows the calculation of SPR, TBR and Replug distances between unrooted phylogenetic trees from within R, using <a href="https://github.com/cwhidden/uspr">algorithms</a> written in C++ by <a href="https://web.cs.dal.ca/~whidden/">Chris Whidden</a>. Whidden and Matsen (2017) provide more information on the motivation behind this project, the algorithms used and their expected performance.</p>
 <p>The uSPR distance is a natural distance metric with respect to phylogenetic tree search, as common tree search and sampling software mainly use SPR operations (or NNI operations, a subset of SPR operations). The uSPR distance is also a lower bound on the number of lateral gene transfer events required to explain the difference between a reference/species tree and a gene tree.</p>
-<p>Note that the uSPR distance is NP-hard to compute (as are the TBR and replug distances) and most of the algorithms used in this software scale exponentially with the distance computed. This version of TBRDist is aimed at trees with up to 50 leaves and uSPR distances up to 14.</p>
+<p>Note that the uSPR distance is NP-hard to compute (as are the TBR and replug distances) and the running time of most of the algorithms used in this software scales exponentially with the distance computed. This version of TBRDist is aimed at trees with up to 50 leaves and uSPR distances up to 14.</p>
 <p>If you are interested in comparing rooted trees in terms of SPR operations, you should use <a href="https://github.com/cwhidden/rspr">rspr</a> instead. rspr is also much more efficient and can easily handle pairs of binary rooted trees with 200+ leaves and distances &gt; 50. rspr is not yet incorporated in this R package; please <a href="https://github.com/ms609/TBRDist/issues/2">contact the maintainer</a> if this would be useful to you.</p>
 </div>
 <div id="installation" class="section level1">
@@ -91,17 +91,21 @@
 <p>Install and load the library from CRAN (coming soon!) as follows:</p>
 <pre><code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages('TBRDist')
 library('TBRDist')</a></code></pre>
-<p>If you’re feeling brave, you can install the development version thus:</p>
+<p>You can install the development version thus:</p>
 <div class="sourceCode" id="cb2"><pre class="r"><span class="kw">if</span>(!<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">devtools</span>)) <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)
 <span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">'ms609/TBRDist'</span>)</pre></div>
-<p>Advanced users wishing to use check out the source code using git should note that the project contains <a href="https://github.blog/2016-02-01-working-with-submodules/">submodules</a>. To download the contents of these subdirectories, check out the project using <code>git clone --recursive https://github.com/ms609/TBRDist</code>, or if you’ve already checked out the project, run <code>git submodule update --init --recursive</code>.</p>
+<p>Advanced users wishing to access the source code should note that the project contains <a href="https://github.blog/2016-02-01-working-with-submodules/">submodules</a>. To download the contents of these subdirectories, clone the project using <code>git clone --recursive https://github.com/ms609/TBRDist</code>, or if you’ve already cloned the project, run <code>git submodule update --init --recursive</code>.</p>
 </div>
 <div id="usage" class="section level1">
 <h1 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h1>
-<p>If you use uspr in your research, please cite:</p>
+<p>If you use ‘uspr’ in your research, please cite:</p>
 <p>Chris Whidden and Frederick A. Matsen IV. Calculating the Unrooted Subtree-Prune-and-Regraft Distance. eprint arXiv:1511.07529. <a href="http://arxiv.org/abs/1511.07529" class="uri">http://arxiv.org/abs/1511.07529</a></p>
-<p>Some text in this README file is drawn from the <a href="https://github.com/cwhidden/uspr/blob/master/README.md">uspr readme</a>.</p>
+</div>
+<div id="notes" class="section level1">
+<h1 class="hasAnchor">
+<a href="#notes" class="anchor"></a>Notes</h1>
+<p>Some text in this README file originates from the <a href="https://github.com/cwhidden/uspr/blob/master/README.md">‘uspr’ readme</a>.</p>
 <p>Please note that the ‘TBRDist’ project is released with a <a href="CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 </div>
 
