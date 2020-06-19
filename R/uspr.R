@@ -2,7 +2,7 @@
 #'
 #' Calculate SPR, TBR and Replug distances on unrooted trees.
 #'
-#' Note that these distances are NP-hard to compute and the running time of the
+#' Note that these distances are NP-hard to compute, so the running time of the
 #' algorithms used in this software scale exponentially with the distance
 #' computed.
 #' The version of 'uspr' linked in this package is aimed at trees with up to
@@ -39,8 +39,6 @@
 #'
 #' # SPR distance
 #' USPRDist(tree1, tree2)
-#'
-#'
 #' @name TreeRearrangementDistances
 #' @author
 #' Algorithms implemented by Chris Whidden (<cwhidden@fredhutch.org>)
@@ -80,7 +78,6 @@ USPRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
 #' # Replug distance
 #' ReplugDist(tree1, tree2)
 #' ReplugDist(tree1, tree2, maf = TRUE)
-#'
 #' @export
 ReplugDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
                         checks = TRUE, maf = FALSE) {
@@ -107,11 +104,12 @@ ReplugDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
 #' Use [`capture.output`]`(TBRDist(tree1, tree2, printMafs = TRUE))` to access
 #' these in R.
 #' @param optimize Logical specifying whether to use the default optimizations.
-#' @param protectB Logical specifying whether to use the PROTECT_B optimization.
+#' @param protectB Logical specifying whether to use the 'PROTECT_B'
+#' optimization.
 #' Overrides value inherited from `optimize`.
-#' @return `TBRDist()` returns a named list, each element of which bears a vector
-#' corresponding to the requested value for each tree pair.  If only the exact
-#' value is requested (`exact = TRUE`), an unnamed vector of distances is
+#' @return `TBRDist()` returns a named list, each element of which bears a
+#' vector corresponding to the requested value for each tree pair.  If only the
+#' exact value is requested (`exact = TRUE`), an unnamed vector of distances is
 #' returned.
 #'
 #' @examples
@@ -143,7 +141,6 @@ ReplugDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
 #'
 #' MAFInfo(tree1, tree2)
 #' MAFInfo(list(tree2, tree1), list(tree1, tree2))
-#'
 #' @export
 TBRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
                      checks = TRUE,
@@ -251,12 +248,14 @@ MAFInfo <- function(tree1, tree2 = tree1, exact = FALSE) {
         } else if (length(tree2) == 1L) {
           tree2 <- rep(tree2, length(tree1))
         } else {
-          stop("if allPairs = FALSE, tree1 and tree2 must contain the same number of trees, or a single tree.")
+          stop("if allPairs = FALSE, tree1 and tree2 must contain the same ",
+               "number of trees, or a single tree.")
         }
       }
     }
 
-    vapply(seq_along(tree1), function (i) .CatchBadPair(i, tree1[[i]], tree2[[i]]),
+    vapply(seq_along(tree1),
+           function (i) .CatchBadPair(i, tree1[[i]], tree2[[i]]),
            integer(0))
   }
   if (keepLabels) {
@@ -290,10 +289,10 @@ MAFInfo <- function(tree1, tree2 = tree1, exact = FALSE) {
   lab1 <- tree1$tip.label
   lab2 <- tree2$tip.label
   if (length(lab1) != length(lab2)) {
-    stop("Problem with tree pair " , i, ": Trees must be the same size")
+    stop("Problem with tree pair " , i, ": Trees must be the same size.")
   }
   if (length(setdiff(tree1$tip.label, tree2$tip.label)) > 0){
-    stop("Problem with tree pair " , i, ": Trees must bear identical labels")
+    stop("Problem with tree pair " , i, ": Trees must bear identical labels.")
   }
   integer(0)
 }

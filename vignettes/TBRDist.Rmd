@@ -22,10 +22,12 @@ We'll work with some simple trees generated using the
 '[TreeTools](https://ms609.github.io/TreeTools)' package.
 
 ```{r, align='center', fig.width=7}
-library('TreeTools')
+library('TreeTools', quietly = TRUE, warn.conflicts = FALSE)
+
 tree1 <- BalancedTree(10)
-tree2 <- TreeTools::PectinateTree(10)
-par(mfrow=1:2, mar=rep(0.2, 4)) # Set up plotting area
+tree2 <- PectinateTree(10)
+
+par(mfrow = 1:2, mar = rep(0.2, 4)) # Set up plotting area
 plot(tree1)
 plot(tree2)
 ```
@@ -93,6 +95,6 @@ If you use 'TBRDist' in your research, please cite:
 
 * Chris Whidden and Frederick A. Matsen IV (2017). Calculating the Unrooted Subtree-Prune-and-Regraft Distance. eprint arXiv:[1511.07529](http://arxiv.org/abs/1511.07529).
 
-Optionally, a citation to the TBRDist package would be welcome:
+Optionally, a citation to the 'TBRDist' R package would be welcome:
 
-* Smith (2019). TBRDist: Calculate SPR and TBR distance between unrooted phylogenetic trees. doi:[10.5281/zenodo.3548333](https://dx.doi.org/10.5281/zenodo.3548333)
+* Smith (2019). TBRDist: Calculate SPR and TBR distance between unrooted phylogenetic trees. [doi:10.5281/zenodo.3548333](https://dx.doi.org/10.5281/zenodo.3548333)

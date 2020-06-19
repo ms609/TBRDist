@@ -78,7 +78,8 @@ required.}
 
 \item{optimize}{Logical specifying whether to use the default optimizations.}
 
-\item{protectB}{Logical specifying whether to use the PROTECT_B optimization.
+\item{protectB}{Logical specifying whether to use the 'PROTECT_B'
+optimization.
 Overrides value inherited from \code{optimize}.}
 }
 \value{
@@ -89,9 +90,9 @@ unrooted trees.
 of trees, or (if \code{maf = TRUE}) a named list whose second and third elements
 list a vector of maximum agreement forests for each pair of trees.
 
-\code{TBRDist()} returns a named list, each element of which bears a vector
-corresponding to the requested value for each tree pair.  If only the exact
-value is requested (\code{exact = TRUE}), an unnamed vector of distances is
+\code{TBRDist()} returns a named list, each element of which bears a
+vector corresponding to the requested value for each tree pair.  If only the
+exact value is requested (\code{exact = TRUE}), an unnamed vector of distances is
 returned.
 
 \code{MAFInfo()} returns the information content of the maximum agreement
@@ -106,8 +107,9 @@ that a MAF corresponding to the exact TBR distance is among those sampled.
 Calculate SPR, TBR and Replug distances on unrooted trees.
 }
 \details{
-Note that these distances are NP-hard to compute and most of the algorithms
-used in this software scale exponentially with the distance computed.
+Note that these distances are NP-hard to compute, so the running time of the
+algorithms used in this software scale exponentially with the distance
+computed.
 The version of 'uspr' linked in this package is aimed at trees with up to
 50 leaves and uSPR distances up to 14.
 
@@ -125,12 +127,9 @@ tree2 <- TreeTools::PectinateTree(9)
 
 # SPR distance
 USPRDist(tree1, tree2)
-
-
 # Replug distance
 ReplugDist(tree1, tree2)
 ReplugDist(tree1, tree2, maf = TRUE)
-
 tree1 <- TreeTools::BalancedTree(6)
 tree2 <- TreeTools::PectinateTree(6)
 
@@ -159,7 +158,6 @@ head(mafs)
 
 MAFInfo(tree1, tree2)
 MAFInfo(list(tree2, tree1), list(tree1, tree2))
-
 }
 \references{
 If you use these functions in your research, please cite:
