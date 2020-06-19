@@ -23,14 +23,14 @@ jobs:
     - r: release
       r_binary_packages:
       #- ape
-      #- devtools
+      - devtools
       #- Rcpp
-      #- Rdpack
+      - Rdpack
       #- phangorn
       #- roxygen2
       #- testthat
-#      r_packages:
-#        - pkgdown
+      r_packages:
+        - pkgdown
       deploy:
         provider: script
         cleanup: false
