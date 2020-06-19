@@ -9,6 +9,7 @@ git:
 
 r_packages:
   - devtools
+  - Rdpack # Shouldn't be necessary?
 # - testthat
 
 before_script:
