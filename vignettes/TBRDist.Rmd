@@ -3,8 +3,6 @@ title: "Using TBRDist"
 author: "Martin R. Smith"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
-bibliography: ../inst/REFERENCES.bib
-csl: ../inst/apa-old-doi-prefix.csl
 vignette: >
   %\VignetteIndexEntry{Using TBRDist}
   %\VignetteEngine{knitr::rmarkdown}
