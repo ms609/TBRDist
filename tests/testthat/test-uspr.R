@@ -17,10 +17,12 @@ test_that("Bad tree input is handled correctly", {
   expect_error(uspr_dist(nwk2, nwk3, FALSE, FALSE, FALSE))
 })
 
-test_that("TBR default optimizations can be overridden", {
+test_that("TBR options", {
+  bal8 <- BalancedTree(8)
+  pec8 <- PectinateTree(8)
+  expect_warning(TBRDist(bal8, pec8, maf = TRUE, exact = FALSE))
   expect_equal(list(tbr_min = 1, tbr_max = 3, n_maf = 13),
-               TBRDist(BalancedTree(8), PectinateTree(8),
-                       optimize = FALSE, countMafs = TRUE))
+               TBRDist(bal8, pec8, optimize = FALSE, countMafs = TRUE))
 })
 
 test_that("SPR distances are calculated correctly", {
@@ -94,8 +96,10 @@ test_that("SPR distances are calculated correctly", {
   Test(tree1, tree2)
   Test(PectinateTree(13), BalancedTree(13))
 
-  expect_equal(invisible(),
+  expect_warning(
+    expect_equal(invisible(),
                TBRDist(tree1, tree2, exact = FALSE, approximate = FALSE))
+  )
 })
 
 test_that("MAF info is calculated", {

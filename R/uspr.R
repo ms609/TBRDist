@@ -149,10 +149,10 @@ TBRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
                      exact = maf, approximate = !exact,
                      optimize = TRUE, protectB = TRUE) {
   if (!exact && !approximate && !countMafs && !printMafs) {
-    message("Nothing to do in TBRDist.")
+    warning("Nothing to do in TBRDist.")
   }
   if (maf && !exact) {
-    message("Maximum agreeement forest requires exact = TRUE")
+    warning("Maximum agreeement forest requires exact = TRUE")
   }
   treeLists <- .PrepareTrees(tree1, tree2, allPairs, checks,
                              keepLabels = maf)
