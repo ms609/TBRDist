@@ -9,9 +9,18 @@ test_that("Bad tree input is handled correctly", {
   list3 <- list(PectinateTree(1:8), BalancedTree(1:8), BalancedTree(1:8))
   expect_error(USPRDist(list2, list3))
   expect_error(USPRDist(list2, list3, checks = FALSE))
-  #expect_error(uspr_dist(list2, list3, FALSE, FALSE, FALSE))
-  expect_error(replug_dist(as.Newick(list2), as.Newick(list3),
-                           FALSE, FALSE, FALSE))
+
+  nwk2 <- as.Newick(list2)
+  nwk3 <- as.Newick(list3)
+  expect_error(replug_dist(nwk2, nwk3))
+  expect_error(tbr_dist(nwk2, nwk3, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE))
+  expect_error(uspr_dist(nwk2, nwk3, FALSE, FALSE, FALSE))
+})
+
+test_that("TBR default optimizations can be overridden", {
+  expect_equal(list(tbr_min = 1, tbr_max = 3, n_maf = 13),
+               TBRDist(BalancedTree(8), PectinateTree(8),
+                       optimize = FALSE, countMafs = TRUE))
 })
 
 test_that("SPR distances are calculated correctly", {
