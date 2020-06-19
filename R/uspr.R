@@ -227,8 +227,8 @@ MAFInfo <- function(tree1, tree2 = tree1, exact = FALSE) {
                            keepLabels = FALSE) {
   if (checks) {
 
-    if (class(tree1) == 'phylo') tree1 <- list(tree1)
-    if (class(tree2) == 'phylo') tree2 <- list(tree2)
+    if (inherits(tree1, 'phylo')) tree1 <- list(tree1)
+    if (inherits(tree2, 'phylo')) tree2 <- list(tree2)
 
     if (allPairs) {
       if (is.null(tree2)) {
