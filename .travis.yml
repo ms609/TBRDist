@@ -7,11 +7,9 @@ r_check_args: --as-cran --no-manual # Workaround error compiling PDF manual
 git:
   depth: 1
 
-r_packages:
- - pkgload
- - devtools
- - Rdpack # Shouldn't be necessary?
- - testthat
+#r_packages:
+# - devtools
+# - testthat
 
 before_script:
   - R -e "pkgload::load_all(); devtools::document()"
@@ -19,28 +17,29 @@ before_script:
 jobs:
   include:
     - r: 3.4.0
+      arch: x86
     - r: release
       r_binary_packages:
-       - ape
-       - devtools
-       - Rcpp
-       - Rdpack
-       - phangorn
-       - roxygen2
-       - testthat
-      r_packages:
-        - pkgdown
+      #- ape
+      #- devtools
+      #- Rcpp
+      #- Rdpack
+      #- phangorn
+      #- roxygen2
+      #- testthat
+#      r_packages:
+#        - pkgdown
       deploy:
         provider: script
         cleanup: false
         skip_cleanup: true
         script: Rscript -e 'pkgdown::deploy_site_github()'
     - r: devel
-      r_packages:
-        - covr
-        - devtools
-        - Rdpack # Shouldn't be necessary?
-        - testthat
+#      r_packages:
+#        - covr
+#        - devtools
+#        - Rdpack # Shouldn't be necessary?
+#        - testthat
       branches:
         only: master
       after_success:
