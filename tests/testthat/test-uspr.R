@@ -5,8 +5,13 @@ test_that("Bad tree input is handled correctly", {
   expect_error(USPRDist(PectinateTree(1:8), PectinateTree(2:9)))
   expect_error(USPRDist(PectinateTree(1:8), PectinateTree(1:9)))
   expect_error(USPRDist(PectinateTree(1:9), PectinateTree(1:8)))
-  expect_error(USPRDist(list(PectinateTree(1:8), BalancedTree(1:8)),
-                        list(PectinateTree(1:8), BalancedTree(1:8), BalancedTree(1:8))))
+  list2 <- list(PectinateTree(1:8), BalancedTree(1:8))
+  list3 <- list(PectinateTree(1:8), BalancedTree(1:8), BalancedTree(1:8))
+  expect_error(USPRDist(list2, list3))
+  expect_error(USPRDist(list2, list3, checks = FALSE))
+  #expect_error(uspr_dist(list2, list3, FALSE, FALSE, FALSE))
+  expect_error(replug_dist(as.Newick(list2), as.Newick(list3),
+                           FALSE, FALSE, FALSE))
 })
 
 test_that("SPR distances are calculated correctly", {
