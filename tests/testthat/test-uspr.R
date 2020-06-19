@@ -19,7 +19,7 @@ test_that("SPR distances are calculated correctly", {
   expect_equivalent(c(0, 2L), USPRDist(list(tree1, tree2), tree1))
   expect_equivalent(c(0, 2L), USPRDist(tree1, list(tree1, tree2)))
 
-  goodRet <- structure(c(0, 2, 5, 2, 5, 4),
+  goodRet <- structure(c(0, 2, 4, 2, 4, 4),
                        Size = 4L,
                        Labels = names(list1),
                        Diag = FALSE,
@@ -44,7 +44,7 @@ test_that("SPR distances are calculated correctly", {
   # Non-numerics will be replaced with NAs, so [-1]:
   expect_equivalent(first[[2]][-1], as.matrix(each[[2]])[-1, 1])
 
-  expect_equal(matrix(c(0, 2, 0, 2, 2, 0, 5, 4), 4, 2, byrow = TRUE,
+  expect_equal(matrix(c(0, 2, 0, 2, 2, 0, 4, 4), 4, 2, byrow = TRUE,
                       dimnames = list(names(list1), names(list2))),
                ReplugDist(list1, list2, allPairs = TRUE))
   expect_equivalent(ReplugDist(list1, tree2, maf = TRUE)$maf_2,
