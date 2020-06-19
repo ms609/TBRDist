@@ -1,5 +1,6 @@
 language: r
 os: linux
+dist: xenial
 cache: packages
 warnings_are_errors: true
 r_check_args: --as-cran --no-manual # Workaround error compiling PDF manual
@@ -18,7 +19,7 @@ before_script:
 jobs:
   include:
     - r: 3.4.0
-      arch: x86
+      arch: i386
     - r: release
       r_binary_packages:
       #- ape
