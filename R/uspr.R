@@ -2,8 +2,9 @@
 #'
 #' Calculate SPR, TBR and Replug distances on unrooted trees.
 #'
-#' Note that these distances are NP-hard to compute and most of the algorithms
-#' used in this software scale exponentially with the distance computed.
+#' Note that these distances are NP-hard to compute and the running time of the
+#' algorithms used in this software scale exponentially with the distance
+#' computed.
 #' The version of 'uspr' linked in this package is aimed at trees with up to
 #' 50 leaves and uSPR distances up to 14.
 #'

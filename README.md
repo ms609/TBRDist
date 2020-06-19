@@ -16,9 +16,16 @@ the algorithms used and their expected performance.
 
 The uSPR distance is a natural distance metric with respect to phylogenetic tree search, as common tree search and sampling software mainly use SPR operations (or NNI operations, a subset of SPR operations). The uSPR distance is also a lower bound on the number of lateral gene transfer events required to explain the difference between a reference/species tree and a gene tree.
 
-Note that the uSPR distance is NP-hard to compute (as are the TBR and replug distances) and most of the algorithms used in this software scale exponentially with the distance computed. This version of TBRDist is aimed at trees with up to 50 leaves and uSPR distances up to 14.
+Note that the uSPR distance is NP-hard to compute (as are the TBR and replug
+distances) and the running time of most of the algorithms used in this software
+scales exponentially with the distance computed.
+This version of TBRDist is aimed at trees with up to 50 leaves and uSPR
+distances up to 14.
 
-If you are interested in comparing rooted trees in terms of SPR operations, you should use [rspr](https://github.com/cwhidden/rspr) instead. rspr is also much more efficient and can easily handle pairs of binary rooted trees with 200+ leaves and distances > 50.
+If you are interested in comparing rooted trees in terms of SPR operations,
+you should use [rspr](https://github.com/cwhidden/rspr) instead. rspr is also
+much more efficient and can easily handle pairs of binary rooted trees with 
+200+ leaves and distances > 50.
 rspr is not yet incorporated in this R package; please 
 [contact the maintainer](https://github.com/ms609/TBRDist/issues/2)
 if this would be useful to you.
@@ -32,27 +39,29 @@ install.packages('TBRDist')
 library('TBRDist')
 ```
 
-If you're feeling brave, you can install the development version thus:
+You can install the development version thus:
 ```r
 if(!require(devtools)) install.packages("devtools")
 devtools::install_github('ms609/TBRDist')
 ```
 
-Advanced users wishing to use check out the source code using git should note
-that the project contains
-[submodules](https://github.blog/2016-02-01-working-with-submodules/).
-To download the contents of these subdirectories, check out the project using
+Advanced users wishing to access the source code should note that the project
+contains [submodules](https://github.blog/2016-02-01-working-with-submodules/).
+To download the contents of these subdirectories, clone the project using
 `git clone --recursive https://github.com/ms609/TBRDist`,
-or if you've already checked out the project, run
+or if you've already cloned the project, run
 `git submodule update --init --recursive`.  
 
 # Usage
 
-If you use uspr in your research, please cite:
+If you use 'uspr' in your research, please cite:
 
 Chris Whidden and Frederick A. Matsen IV. Calculating the Unrooted Subtree-Prune-and-Regraft Distance. eprint arXiv:1511.07529. http://arxiv.org/abs/1511.07529
 
-Some text in this README file is drawn from the [uspr readme](https://github.com/cwhidden/uspr/blob/master/README.md).
+
+# Notes
+
+Some text in this README file originates from the ['uspr' readme](https://github.com/cwhidden/uspr/blob/master/README.md).
 
 Please note that the 'TBRDist' project is released with a
 [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
