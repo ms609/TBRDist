@@ -23,13 +23,15 @@ jobs:
     - r: release
       r_binary_packages:
       #- ape
-      - devtools
+      # devtools
       #- Rcpp
-      - Rdpack
+      #- Rdpack
       #- phangorn
       #- roxygen2
       #- testthat
       r_packages:
+        - devtools
+        - Rdpack
         - pkgdown
       deploy:
         provider: script
