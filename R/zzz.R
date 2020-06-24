@@ -9,7 +9,7 @@ release_questions <- function() {
     "Have you cleared GitHub issues for this release milestone?",
     "Is the code free of #TODOs?",
     "Have you checked the Vignette for sanity?",
-    "Have you updated the version number in .zenodo.json, NEWS & DESCRIPTION?"
+    "Have you updated the version number in NEWS.md & DESCRIPTION?"
   )
 }
 

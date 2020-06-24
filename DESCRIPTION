@@ -28,8 +28,6 @@ Suggests:
     Rdpack,
     rmarkdown,
     testthat
-Remotes:
-    ms609/TreeDist
 SystemRequirements: C++11
 RdMacros: Rdpack
 LazyData: true

@@ -20,10 +20,10 @@
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.1",
+    "version": "4.0.2",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.1 (2019-07-05)",
+  "runtimePlatform": "R version 4.0.2 (2020-06-22)",
   "author": [
     {
       "@type": "Person",
@@ -131,8 +131,7 @@
     {
       "@type": "SoftwareApplication",
       "identifier": "TreeDist",
-      "name": "TreeDist",
-      "sameAs": "https://github.com/ms609/TreeDist"
+      "name": "TreeDist"
     },
     {
       "@type": "SoftwareApplication",
@@ -151,10 +150,13 @@
       "identifier": "https://sysreqs.r-hub.io/get/cxx11"
     }
   ],
-  "releaseNotes": "https://github.com/ms609/uspr.git/blob/master/NEWS.md",
+  "releaseNotes": "https://github.com/ms609/uspr/blob/master/NEWS.md",
   "readme": "https://github.com/ms609/TBRDist/blob/master/README.md",
-  "fileSize": "46.94KB",
-  "contIntegration": ["https://travis-ci.org/ms609/TBRDist", "https://codecov.io/gh/ms609/TBRDist"],
+  "fileSize": "41.163KB",
+  "contIntegration": [
+    "https://travis-ci.org/ms609/TBRDist",
+    "https://codecov.io/gh/ms609/TBRDist"
+  ],
   "developmentStatus": "http://www.repostatus.org/#active",
   "citation": [
     {
@@ -192,7 +194,7 @@
           "familyName": "Smith"
         }
       ],
-      "name": "uspr: Calculate SPR and TBR distance between unrooted phylogenetic trees",
+      "name": "TBRDist: Calculate Rearrangement Distances Between Unrooted Phylogenetic Trees",
       "identifier": "10.5281/zenodo.3548333",
       "description": "R package version ",
       "@id": "https://doi.org/10.5281/zenodo.3548333",
