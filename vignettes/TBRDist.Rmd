@@ -25,9 +25,10 @@ library('TreeTools', quietly = TRUE, warn.conflicts = FALSE)
 tree1 <- BalancedTree(10)
 tree2 <- PectinateTree(10)
 
-par(mfrow = 1:2, mar = rep(0.2, 4)) # Set up plotting area
+origPar <- par(mfrow = 1:2, mar = rep(0.2, 4)) # Set up plotting area
 plot(tree1)
 plot(tree2)
+par(origPar)
 ```
 
 ## Calculating distances
