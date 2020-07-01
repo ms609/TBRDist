@@ -18,7 +18,7 @@ URL: https://ms609.github.io/TBRDist/,
     https://github.com/ms609/TBRDist/, 
     https://github.com/cwhidden/uspr/
 BugReports: https://github.com/ms609/TBRDist/issues/
-Depends: R (>= 3.4.0),
+Depends: R (>= 3.4.0)
 Imports:
     ape,
     TreeDist,
