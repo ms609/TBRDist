@@ -33,6 +33,7 @@ RdMacros: Rdpack
 LazyData: true
 ByteCompile: true
 Encoding: UTF-8
+X-schema.org-keywords: phylogenetics, tree-distance
 Language: en-GB
 LinkingTo: BH,
     Rcpp
