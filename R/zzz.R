@@ -6,9 +6,8 @@
 ## Reminders when releasing for CRAN
 release_questions <- function() {
   c(
-    "Have you cleared GitHub issues for this release milestone?",
     "Is the code free of #TODOs?",
-    "Have you checked the Vignette for sanity?",
+    "Have you checked the output of TBRDist.Rmd?",
     "Have you updated the version number in NEWS.md & DESCRIPTION?"
   )
 }
