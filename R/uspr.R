@@ -59,7 +59,7 @@ USPRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
                       useTbrApproxEstimate = TRUE,
                       useTbrEstimate = TRUE,
                       useReplugEstimate = TRUE) {
-  treeLists <- .PrepareTrees(tree1, tree2, allPairs, checks)
+  treeLists <- .PrepareTrees(tree1, tree2, allPairs, checks, unroot = TRUE)
   ret <- uspr_dist(treeLists[[1]], treeLists[[2]],
                    useTbrApproxEstimate = useTbrApproxEstimate,
                    useTbrEstimate = useTbrEstimate,
@@ -82,7 +82,7 @@ USPRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
 #' @export
 ReplugDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
                         checks = TRUE, maf = FALSE) {
-  treeLists <- .PrepareTrees(tree1, tree2, allPairs, checks)
+  treeLists <- .PrepareTrees(tree1, tree2, allPairs, checks, unroot = TRUE)
   ret <- replug_dist(treeLists[[1]], treeLists[[2]])
   if (maf) {
     names(ret) <- c('replug_dist', 'maf_1', 'maf_2')
@@ -154,7 +154,7 @@ TBRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
   if (maf && !exact) {
     warning("Maximum agreeement forest requires exact = TRUE")
   }
-  treeLists <- .PrepareTrees(tree1, tree2, allPairs, checks,
+  treeLists <- .PrepareTrees(tree1, tree2, allPairs, checks, unroot = TRUE,
                              keepLabels = maf)
 
   whichRets <- c(exact, rep(approximate, 2L), countMafs,
@@ -220,12 +220,17 @@ MAFInfo <- function(tree1, tree2 = tree1, exact = FALSE) {
 #' a character vector listing trees in Newick format.
 #'
 #' @template MRS
-#' @importFrom TreeTools as.Newick RenumberTips
+#' @importFrom TreeTools as.Newick RenumberTips UnrootTree
 #' @importFrom ape write.tree
 #' @keywords internal
 #' @export
 .PrepareTrees <- function (tree1, tree2, allPairs = FALSE, checks = TRUE,
-                           keepLabels = FALSE) {
+                           unroot = FALSE, keepLabels = FALSE) {
+  if (unroot) {
+    tree1 <- UnrootTree(tree1)
+    tree2 <- UnrootTree(tree2)
+  }
+
   if (checks) {
 
     if (inherits(tree1, 'phylo')) tree1 <- list(tree1)

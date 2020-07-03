@@ -9,6 +9,7 @@
   tree2,
   allPairs = FALSE,
   checks = TRUE,
+  unroot = FALSE,
   keepLabels = FALSE
 )
 }

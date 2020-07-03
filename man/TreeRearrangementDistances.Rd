@@ -104,7 +104,8 @@ this measure is approximate only.  \code{exact} will only serve to guarantee
 that a MAF corresponding to the exact TBR distance is among those sampled.
 }
 \description{
-Calculate SPR, TBR and Replug distances on unrooted trees.
+Calculate SPR, TBR and Replug distances on unrooted trees, and the
+information content of the maximum agreement forest.
 }
 \details{
 Note that these distances are NP-hard to compute, so the running time of the

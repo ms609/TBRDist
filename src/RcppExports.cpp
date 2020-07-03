@@ -6,34 +6,34 @@
 using namespace Rcpp;
 
 // uspr_dist
-IntegerVector uspr_dist(StringVector tree1, StringVector tree2, LogicalVector useTbrApproxEstimate, LogicalVector useTbrEstimate, LogicalVector useReplugEstimate);
+IntegerVector uspr_dist(const StringVector tree1, const StringVector tree2, const LogicalVector useTbrApproxEstimate, const LogicalVector useTbrEstimate, const LogicalVector useReplugEstimate);
 RcppExport SEXP _TBRDist_uspr_dist(SEXP tree1SEXP, SEXP tree2SEXP, SEXP useTbrApproxEstimateSEXP, SEXP useTbrEstimateSEXP, SEXP useReplugEstimateSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type tree1(tree1SEXP);
-    Rcpp::traits::input_parameter< StringVector >::type tree2(tree2SEXP);
-    Rcpp::traits::input_parameter< LogicalVector >::type useTbrApproxEstimate(useTbrApproxEstimateSEXP);
-    Rcpp::traits::input_parameter< LogicalVector >::type useTbrEstimate(useTbrEstimateSEXP);
-    Rcpp::traits::input_parameter< LogicalVector >::type useReplugEstimate(useReplugEstimateSEXP);
+    Rcpp::traits::input_parameter< const StringVector >::type tree1(tree1SEXP);
+    Rcpp::traits::input_parameter< const StringVector >::type tree2(tree2SEXP);
+    Rcpp::traits::input_parameter< const LogicalVector >::type useTbrApproxEstimate(useTbrApproxEstimateSEXP);
+    Rcpp::traits::input_parameter< const LogicalVector >::type useTbrEstimate(useTbrEstimateSEXP);
+    Rcpp::traits::input_parameter< const LogicalVector >::type useReplugEstimate(useReplugEstimateSEXP);
     rcpp_result_gen = Rcpp::wrap(uspr_dist(tree1, tree2, useTbrApproxEstimate, useTbrEstimate, useReplugEstimate));
     return rcpp_result_gen;
 END_RCPP
 }
 // tbr_dist
-List tbr_dist(StringVector tree1, StringVector tree2, LogicalVector printMafs, LogicalVector countMafs, LogicalVector optimize, LogicalVector protectB, LogicalVector exact, LogicalVector approximate);
+List tbr_dist(const StringVector tree1, const StringVector tree2, const LogicalVector printMafs, const LogicalVector countMafs, const LogicalVector optimize, const LogicalVector protectB, const LogicalVector exact, const LogicalVector approximate);
 RcppExport SEXP _TBRDist_tbr_dist(SEXP tree1SEXP, SEXP tree2SEXP, SEXP printMafsSEXP, SEXP countMafsSEXP, SEXP optimizeSEXP, SEXP protectBSEXP, SEXP exactSEXP, SEXP approximateSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type tree1(tree1SEXP);
-    Rcpp::traits::input_parameter< StringVector >::type tree2(tree2SEXP);
-    Rcpp::traits::input_parameter< LogicalVector >::type printMafs(printMafsSEXP);
-    Rcpp::traits::input_parameter< LogicalVector >::type countMafs(countMafsSEXP);
-    Rcpp::traits::input_parameter< LogicalVector >::type optimize(optimizeSEXP);
-    Rcpp::traits::input_parameter< LogicalVector >::type protectB(protectBSEXP);
-    Rcpp::traits::input_parameter< LogicalVector >::type exact(exactSEXP);
-    Rcpp::traits::input_parameter< LogicalVector >::type approximate(approximateSEXP);
+    Rcpp::traits::input_parameter< const StringVector >::type tree1(tree1SEXP);
+    Rcpp::traits::input_parameter< const StringVector >::type tree2(tree2SEXP);
+    Rcpp::traits::input_parameter< const LogicalVector >::type printMafs(printMafsSEXP);
+    Rcpp::traits::input_parameter< const LogicalVector >::type countMafs(countMafsSEXP);
+    Rcpp::traits::input_parameter< const LogicalVector >::type optimize(optimizeSEXP);
+    Rcpp::traits::input_parameter< const LogicalVector >::type protectB(protectBSEXP);
+    Rcpp::traits::input_parameter< const LogicalVector >::type exact(exactSEXP);
+    Rcpp::traits::input_parameter< const LogicalVector >::type approximate(approximateSEXP);
     rcpp_result_gen = Rcpp::wrap(tbr_dist(tree1, tree2, printMafs, countMafs, optimize, protectB, exact, approximate));
     return rcpp_result_gen;
 END_RCPP
