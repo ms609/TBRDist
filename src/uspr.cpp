@@ -2,7 +2,6 @@
 using namespace Rcpp;
 using namespace std;
 
-
 #include <iostream>
 #include <cstdio>
 #include <cstring>
@@ -50,7 +49,7 @@ IntegerVector uspr_dist (const StringVector tree1,
     F2.normalize_order();
     ret(i) = uspr_distance(F1, F2);
   }
-  return (ret);
+  return ret;
 }
 
 // [[Rcpp::export]]
