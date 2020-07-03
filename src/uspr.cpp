@@ -40,7 +40,7 @@ IntegerVector uspr_dist (const StringVector tree1,
     throw length_error("Number of trees in tree1 and tree2 must match");
   }
   IntegerVector ret(tree1.size());
-  for (int i = 0; i < tree1.size(); i++) {
+  for (int i = 0; i != tree1.size(); i++) {
     // load into data structures
     string tr1 = as<string>(tree1(i));
     string tr2 = as<string>(tree2(i));
