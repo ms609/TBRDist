@@ -1,6 +1,6 @@
-# TBRDist 1.0.0.9000 (development)
+# TBRDist 1.0.1
 
-- Address SegFault in `USPRDist()`.
+- Address memory mismanagement in `USPRDist()`.
 
 # TBRDist 1.0.0
 
