@@ -33,7 +33,7 @@ if this would be useful to you.
 
 # Installation
 
-Install and load the library from CRAN (coming soon!) as follows:
+Install and load the library from CRAN as follows:
 ```
 install.packages('TBRDist')
 library('TBRDist')
