@@ -22,7 +22,7 @@ Depends: R (>= 3.4.0)
 Imports:
     ape,
     TreeDist,
-    TreeTools
+    TreeTools (>= 1.1.0)
 Suggests:
     knitr,
     Rdpack,
