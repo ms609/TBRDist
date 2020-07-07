@@ -35,11 +35,12 @@
 #' unrooted trees.
 #'
 #' @examples
-#' tree1 <- TreeTools::BalancedTree(9)
-#' tree2 <- TreeTools::PectinateTree(9)
+#' tree1 <- TreeTools::BalancedTree(6)
+#' tree2 <- TreeTools::PectinateTree(6)
 #'
 #' # SPR distance
 #' USPRDist(tree1, tree2)
+#'
 #' @name TreeRearrangementDistances
 #' @author
 #' Algorithms implemented by Chris Whidden (<cwhidden@fredhutch.org>)
@@ -79,6 +80,7 @@ USPRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
 #' # Replug distance
 #' ReplugDist(tree1, tree2)
 #' ReplugDist(tree1, tree2, maf = TRUE)
+#'
 #' @export
 ReplugDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
                         checks = TRUE, maf = FALSE) {
@@ -114,9 +116,6 @@ ReplugDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),
 #' returned.
 #'
 #' @examples
-#' tree1 <- TreeTools::BalancedTree(6)
-#' tree2 <- TreeTools::PectinateTree(6)
-#'
 #' # TBR distance between two trees
 #' TBRDist(tree1, tree2, exact = TRUE)
 #'
