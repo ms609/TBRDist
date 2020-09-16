@@ -1,14 +1,5 @@
-This release should address the problem identified by clang-ASAN in CRAN's 
-post-acceptance tests (see e-mail from Prof Ripley, 2020-07-01).
-
-I am not aware of (and r-packages-devel has not suggested) any way for me to 
-test this myself, as a Windows user, as the error is only identified by
-Fedora-clang-asan, which is not available via rhub.
-
-
-r-oldrel-osx-x86_64 also shows an installed size > 5Mb, due to a libs 
-sub-directory of 5.5 Mb; this likely reflects the use of Boost headers,
-and I'm not sure whether anything can be done about this.
+This release addresses the change to the RdMacros mechanism, per e-mail from
+Kurt Hornik on 2020-09-16.
 
 
 ## Test environments
