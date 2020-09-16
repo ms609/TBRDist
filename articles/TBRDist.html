@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">TBRDist</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -76,7 +76,7 @@
       <h1 data-toc-skip>Using TBRDist</h1>
                         <h4 class="author">Martin R. Smith</h4>
             
-            <h4 class="date">2020-07-07</h4>
+            <h4 class="date">2020-09-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ms609/TBRDist/blob/master/vignettes/TBRDist.Rmd"><code>vignettes/TBRDist.Rmd</code></a></small>
       <div class="hidden name"><code>TBRDist.Rmd</code></div>
@@ -91,32 +91,44 @@
 <a href="#loading-trees" class="anchor"></a>Loading trees</h2>
 <p>This document assumes familiarity with the process of <a href="https://ms609.github.io/TreeTools/articles/load-trees.html">loading trees into R</a>.</p>
 <p>We’ll work with some simple trees generated using the ‘<a href="https://ms609.github.io/TreeTools">TreeTools</a>’ package.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">'TreeTools'</span>, <span class="kw">quietly</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">warn.conflicts</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="https://ms609.github.io/TreeTools">'TreeTools'</a></span>, quietly = <span class="fl">TRUE</span>, warn.conflicts = <span class="fl">FALSE</span>)
 
-<span class="no">tree1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://ms609.github.io/TreeTools/reference/GenerateTree.html">BalancedTree</a></span>(<span class="fl">10</span>)
-<span class="no">tree2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://ms609.github.io/TreeTools/reference/GenerateTree.html">PectinateTree</a></span>(<span class="fl">10</span>)
+<span class="kw">tree1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ms609.github.io/TreeTools/reference/GenerateTree.html">BalancedTree</a></span>(<span class="fl">10</span>)
+<span class="kw">tree2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ms609.github.io/TreeTools/reference/GenerateTree.html">PectinateTree</a></span>(<span class="fl">10</span>)
 
-<span class="no">origPar</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">mfrow</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">2</span>, <span class="kw">mar</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fl">0.2</span>, <span class="fl">4</span>)) <span class="co"># Set up plotting area</span>
-<span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">tree1</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">tree2</span>)</pre></body></html></div>
+<span class="kw">origPar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(mfrow = <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, mar = <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fl">0.2</span>, <span class="fl">4</span>)) <span class="co"># Set up plotting area</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">tree1</span>)
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">tree2</span>)
+</pre></div>
 <p><img src="TBRDist_files/figure-html/unnamed-chunk-1-1.png" width="672"></p>
 </div>
 <div id="calculating-distances" class="section level2">
 <h2 class="hasAnchor">
 <a href="#calculating-distances" class="anchor"></a>Calculating distances</h2>
 <p>After installing TBRDist (<code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages('TBRDist')</a></code>), load the package into R with</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">'TBRDist'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="https://ms609.github.io/TBRDist">'TBRDist'</a></span>)
+</pre></div>
 <p>To generate an approximate SPR distance between two unrooted trees, use:</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="../reference/TreeRearrangementDistances.html">USPRDist</a></span>(<span class="no">tree1</span>, <span class="no">tree2</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="fu"><a href="../reference/TreeRearrangementDistances.html">USPRDist</a></span>(<span class="kw">tree1</span>, <span class="kw">tree2</span>)
+</pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>For Replug distances, it’s:</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="../reference/TreeRearrangementDistances.html">ReplugDist</a></span>(<span class="no">tree1</span>, <span class="no">tree2</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="fu"><a href="../reference/TreeRearrangementDistances.html">ReplugDist</a></span>(<span class="kw">tree1</span>, <span class="kw">tree2</span>)
+</pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>For TBR distances, use:</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="../reference/TreeRearrangementDistances.html">TBRDist</a></span>(<span class="no">tree1</span>, <span class="no">tree2</span>, <span class="kw">exact</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="fu"><a href="../reference/TreeRearrangementDistances.html">TBRDist</a></span>(<span class="kw">tree1</span>, <span class="kw">tree2</span>, exact = <span class="fl">TRUE</span>)
+</pre></div>
 <pre><code>## [1] 1</code></pre>
 <p>When calculating an exact TBR distance, we receive information on the maximum agreement forest for free (i.e. with no extra processing cost):</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="../reference/TreeRearrangementDistances.html">TBRDist</a></span>(<span class="no">tree1</span>, <span class="no">tree2</span>, <span class="kw">exact</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">maf</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="fu"><a href="../reference/TreeRearrangementDistances.html">TBRDist</a></span>(<span class="kw">tree1</span>, <span class="kw">tree2</span>, exact = <span class="fl">TRUE</span>, maf = <span class="fl">TRUE</span>)
+</pre></div>
 <pre><code>## $tbr_exact
 ## [1] 1
 ## 
@@ -126,7 +138,9 @@
 ## $maf_2
 ## [1] "(((t1,t2),t3),t4,t5); ((t6,t7),(t9,t10),t8);"</code></pre>
 <p>Once trees have more than about a dozen tips, it becomes slow to calculate the exact distance. In the interests of speed, we may wish to approximate the value of the TBR distance:</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="../reference/TreeRearrangementDistances.html">TBRDist</a></span>(<span class="no">tree1</span>, <span class="no">tree2</span>, <span class="kw">exact</span> <span class="kw">=</span> <span class="fl">FALSE</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="fu"><a href="../reference/TreeRearrangementDistances.html">TBRDist</a></span>(<span class="kw">tree1</span>, <span class="kw">tree2</span>, exact = <span class="fl">FALSE</span>)
+</pre></div>
 <pre><code>## $tbr_min
 ## [1] 1
 ## 
@@ -137,7 +151,9 @@
 <h2 class="hasAnchor">
 <a href="#comparing-multiple-trees" class="anchor"></a>Comparing multiple trees</h2>
 <p>To avoid multiple calls, each function can also be used to compare lists of trees (or <code>multiPhylo</code> objects) against a single tree:</p>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="fu"><a href="../reference/TreeRearrangementDistances.html">TBRDist</a></span>(<span class="no">tree1</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">tree1</span>, <span class="no">tree2</span>), <span class="kw">exact</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">maf</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb13"><pre class="downlit">
+<span class="fu"><a href="../reference/TreeRearrangementDistances.html">TBRDist</a></span>(<span class="kw">tree1</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">tree1</span>, <span class="kw">tree2</span>), exact = <span class="fl">TRUE</span>, maf = <span class="fl">TRUE</span>)
+</pre></div>
 <pre><code>## $tbr_exact
 ## [1] 0 1
 ## 
@@ -149,7 +165,9 @@
 ## [1] "((((t1,t2),t3),(t4,t5)),(t9,t10),((t6,t7),t8));"
 ## [2] "(((t1,t2),t3),t4,t5); ((t6,t7),(t9,t10),t8);"</code></pre>
 <p>Or against each corresponding entry in a second list:</p>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="fu"><a href="../reference/TreeRearrangementDistances.html">USPRDist</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">tree1</span>, <span class="no">tree2</span>, <span class="no">tree2</span>), <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">tree2</span>, <span class="no">tree1</span>, <span class="no">tree2</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb15"><pre class="downlit">
+<span class="fu"><a href="../reference/TreeRearrangementDistances.html">USPRDist</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">tree1</span>, <span class="kw">tree2</span>, <span class="kw">tree2</span>), <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">tree2</span>, <span class="kw">tree1</span>, <span class="kw">tree2</span>))
+</pre></div>
 <pre><code>## [1] 2 2 0</code></pre>
 </div>
 <div id="citation" class="section level2">
@@ -182,7 +200,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

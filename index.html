@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">TBRDist</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -92,8 +92,10 @@
 <pre><code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages('TBRDist')
 library('TBRDist')</a></code></pre>
 <p>You can install the development version thus:</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="kw">if</span>(!<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">devtools</span>)) <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">'ms609/TBRDist'</span>)</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="co">if</span>(<span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="kw"><a href="https://devtools.r-lib.org">devtools</a></span>)) <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)
+<span class="kw">devtools</span>::<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">'ms609/TBRDist'</span>)
+</pre></div>
 <p>Advanced users wishing to access the source code should note that the project contains <a href="https://github.blog/2016-02-01-working-with-submodules/">submodules</a>. To download the contents of these subdirectories, clone the project using <code>git clone --recursive https://github.com/ms609/TBRDist</code>, or if you’ve already cloned the project, run <code>git submodule update --init --recursive</code>.</p>
 </div>
 <div id="usage" class="section level1">
@@ -171,7 +173,7 @@ library('TBRDist')</a></code></pre>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
