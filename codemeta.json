@@ -17,11 +17,10 @@
   ],
   "issueTracker": "https://github.com/ms609/TBRDist/issues/",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "4.0.2",
     "url": "https://r-project.org"
   },
   "runtimePlatform": "R version 4.0.2 (2020-06-22)",
@@ -75,18 +74,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "Rdpack",
-      "name": "Rdpack",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=Rdpack"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "rmarkdown",
       "name": "rmarkdown",
       "provider": {
@@ -131,6 +118,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "Rdpack",
+      "name": "Rdpack",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=Rdpack"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "TreeDist",
       "name": "TreeDist",
       "provider": {
@@ -159,14 +158,11 @@
       "identifier": "https://sysreqs.r-hub.io/get/cxx11"
     }
   ],
-  "releaseNotes": "https://github.com/ms609/uspr/blob/master/NEWS.md",
+  "releaseNotes": "https://github.com/ms609/TBRDist/blob/master/NEWS.md",
   "readme": "https://github.com/ms609/TBRDist/blob/master/README.md",
-  "fileSize": "41.304KB",
-  "contIntegration": [
-    "https://travis-ci.org/ms609/TBRDist",
-    "https://codecov.io/gh/ms609/TBRDist"
-  ],
-  "developmentStatus": "http://www.repostatus.org/#active",
+  "fileSize": "217.411KB",
+  "contIntegration": ["https://travis-ci.org/ms609/TBRDist", "https://codecov.io/gh/ms609/TBRDist"],
+  "developmentStatus": "http://www.repostatus.org/#inactive",
   "citation": [
     {
       "@type": "ScholarlyArticle",
