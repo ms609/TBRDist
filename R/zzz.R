@@ -3,6 +3,10 @@
   library.dynam.unload("TBRDist", libpath)
 }
 
+# Suppress "NOTE: Nothing imported from Rdpack":
+#' @importFrom Rdpack reprompt
+NULL
+
 ## Reminders when releasing for CRAN
 release_questions <- function() {
   c(
