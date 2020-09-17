@@ -3,7 +3,7 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   TBRDist: TBRDist.html
-last_built: 2020-09-16T19:28Z
+last_built: 2020-09-17T09:14Z
 urls:
   reference: https://ms609.github.io/TBRDist//reference
   article: https://ms609.github.io/TBRDist//articles
