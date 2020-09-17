@@ -17,7 +17,7 @@ SPR, TBR and Replug distances.
 This document assumes familiarity with the process of [loading trees into R](https://ms609.github.io/TreeTools/articles/load-trees.html).
 
 We'll work with some simple trees generated using the 
-'[TreeTools](https://ms609.github.io/TreeTools)' package.
+'[TreeTools](https://ms609.github.io/TreeTools/)' package.
 
 ```{r, align='center', fig.width=7}
 library('TreeTools', quietly = TRUE, warn.conflicts = FALSE)
