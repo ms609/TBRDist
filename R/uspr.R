@@ -52,7 +52,7 @@
 #'
 #' * Chris Whidden and Frederick A. Matsen IV. Calculating the Unrooted
 #' Subtree-Prune-and-Regraft Distance.
-#' arXiv:[1511.07529](http://arxiv.org/abs/1511.07529).
+#' arXiv:[1511.07529](https://arxiv.org/abs/1511.07529).
 #'
 #' @export
 USPRDist <- function (tree1, tree2 = NULL, allPairs = is.null(tree2),

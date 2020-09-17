@@ -2,10 +2,10 @@
 
 [![Build Status](https://travis-ci.org/ms609/TBRDist.svg?branch=master)](https://travis-ci.org/ms609/TBRDist)
 [![codecov](https://codecov.io/gh/ms609/TBRDist/branch/master/graph/badge.svg)](https://codecov.io/gh/ms609/TBRDist)
-[![CRAN Status Badge](http://www.r-pkg.org/badges/version/TBRDist)](https://cran.r-project.org/package=TBRDist)
-[![CRAN Downloads](http://cranlogs.r-pkg.org/badges/TBRDist)](https://cran.r-project.org/package=TBRDist)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3548332.svg)](http://doi.org/10.5281/zenodo.3548332)
-[![Project Status: Inactive – The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows.](http://www.repostatus.org/badges/latest/inactive.svg)](http://www.repostatus.org/#inactive)
+[![CRAN Status Badge](https://www.r-pkg.org/badges/version/TBRDist)](https://cran.r-project.org/package=TBRDist)
+[![CRAN Downloads](https://cranlogs.r-pkg.org/badges/TBRDist)](https://cran.r-project.org/package=TBRDist)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3548332.svg)](https://doi.org/10.5281/zenodo.3548332)
+[![Project Status: Inactive – The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows.](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.repostatus.org/#inactive)
 
 'TBRDist' is an R package that calculates SPR, TBR and Replug distances between
 unrooted phylogenetic trees, using algorithms
@@ -56,7 +56,7 @@ or if you've already cloned the project, run
 
 If you use 'uspr' in your research, please cite:
 
-Chris Whidden and Frederick A. Matsen IV. Calculating the Unrooted Subtree-Prune-and-Regraft Distance. eprint arXiv:1511.07529. http://arxiv.org/abs/1511.07529
+Chris Whidden and Frederick A. Matsen IV. Calculating the Unrooted Subtree-Prune-and-Regraft Distance. eprint arXiv:1511.07529. https://arxiv.org/abs/1511.07529
 
 
 # Notes

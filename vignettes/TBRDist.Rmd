@@ -91,7 +91,7 @@ USPRDist(list(tree1, tree2, tree2), list(tree2, tree1, tree2))
 
 If you use 'TBRDist' in your research, please cite:
 
-* Chris Whidden and Frederick A. Matsen IV (2017). Calculating the Unrooted Subtree-Prune-and-Regraft Distance. eprint arXiv:[1511.07529](http://arxiv.org/abs/1511.07529).
+* Chris Whidden and Frederick A. Matsen IV (2017). Calculating the Unrooted Subtree-Prune-and-Regraft Distance. eprint arXiv:[1511.07529](https://arxiv.org/abs/1511.07529).
 
 Optionally, a citation to the 'TBRDist' R package would be welcome:
 

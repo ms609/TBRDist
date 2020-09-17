@@ -160,9 +160,9 @@
   ],
   "releaseNotes": "https://github.com/ms609/TBRDist/blob/master/NEWS.md",
   "readme": "https://github.com/ms609/TBRDist/blob/master/README.md",
-  "fileSize": "217.498KB",
+  "fileSize": "217.637KB",
   "contIntegration": ["https://travis-ci.org/ms609/TBRDist", "https://codecov.io/gh/ms609/TBRDist"],
-  "developmentStatus": "http://www.repostatus.org/#inactive",
+  "developmentStatus": "https://www.repostatus.org/#inactive",
   "citation": [
     {
       "@type": "ScholarlyArticle",

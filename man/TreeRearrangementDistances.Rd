@@ -164,7 +164,7 @@ If you use these functions in your research, please cite:
 \itemize{
 \item Chris Whidden and Frederick A. Matsen IV. Calculating the Unrooted
 Subtree-Prune-and-Regraft Distance.
-arXiv:\href{http://arxiv.org/abs/1511.07529}{1511.07529}.
+arXiv:\href{https://arxiv.org/abs/1511.07529}{1511.07529}.
 }
 }
 \author{
