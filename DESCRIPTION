@@ -34,7 +34,6 @@ LinkingTo:
 SystemRequirements: C++11
 RdMacros: Rdpack
 VignetteBuilder: knitr
-LazyData: true
 ByteCompile: true
 Encoding: UTF-8
 X-schema.org-keywords: phylogenetics, tree-distance
