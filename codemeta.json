@@ -1,29 +1,26 @@
 {
-  "@context": [
-    "https://doi.org/10.5063/schema/codemeta-2.0",
-    "http://schema.org"
-  ],
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "TBRDist",
-  "description": "Fast calculation of the Subtree Prune and Regraft (SPR),\n  Tree Bisection and Reconnection (TBR) and Replug distances between \n  unrooted trees, using the algorithms of Whidden and \n  Matsen (2017) <arxiv:1511.07529>.",
+  "description": "Fast calculation of the Subtree Prune and Regraft (SPR), Tree Bisection and Reconnection (TBR) and Replug distances between unrooted trees, using the algorithms of Whidden and Matsen (2017) <doi:10.48550/arXiv.1511.07529>.",
   "name": "TBRDist: Rearrangement Distances Between Unrooted Phylogenetic Trees",
+  "relatedLink": ["https://ms609.github.io/TBRDist/", "https://github.com/cwhidden/uspr/"],
   "codeRepository": "https://github.com/ms609/TBRDist/",
-  "relatedLink": [
-    "https://ms609.github.io/TreeTools/",
-    "https://ms609.github.io/uspr/",
-    "https://github.com/cwhidden/uspr/",
-    "https://ms609.github.io/TBRDist/",
-    "https://CRAN.R-project.org/package=TBRDist"
-  ],
   "issueTracker": "https://github.com/ms609/TBRDist/issues/",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.2 (2020-06-22)",
+  "runtimePlatform": "R Under development (unstable) (2025-06-17 r88325 ucrt)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
   "author": [
     {
       "@type": "Person",
@@ -33,7 +30,6 @@
       "@id": "https://orcid.org/0000-0001-5660-1727"
     }
   ],
-  "contributor": {},
   "copyrightHolder": [
     {
       "@type": "Person",
@@ -49,7 +45,6 @@
       "email": "cwhidden@fredhutch.org"
     }
   ],
-  "funder": {},
   "maintainer": [
     {
       "@type": "Person",
@@ -97,14 +92,14 @@
       "sameAs": "https://CRAN.R-project.org/package=testthat"
     }
   ],
-  "softwareRequirements": [
-    {
+  "softwareRequirements": {
+    "1": {
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
       "version": ">= 3.4.0"
     },
-    {
+    "2": {
       "@type": "SoftwareApplication",
       "identifier": "ape",
       "name": "ape",
@@ -116,7 +111,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=ape"
     },
-    {
+    "3": {
       "@type": "SoftwareApplication",
       "identifier": "Rdpack",
       "name": "Rdpack",
@@ -128,7 +123,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=Rdpack"
     },
-    {
+    "4": {
       "@type": "SoftwareApplication",
       "identifier": "TreeDist",
       "name": "TreeDist",
@@ -140,7 +135,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=TreeDist"
     },
-    {
+    "5": {
       "@type": "SoftwareApplication",
       "identifier": "TreeTools",
       "name": "TreeTools",
@@ -153,16 +148,10 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=TreeTools"
     },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "https://sysreqs.r-hub.io/get/cxx11"
-    }
-  ],
-  "releaseNotes": "https://github.com/ms609/TBRDist/blob/master/NEWS.md",
-  "readme": "https://github.com/ms609/TBRDist/blob/master/README.md",
-  "fileSize": "217.637KB",
-  "contIntegration": ["https://travis-ci.org/ms609/TBRDist", "https://codecov.io/gh/ms609/TBRDist"],
-  "developmentStatus": "https://www.repostatus.org/#inactive",
+    "SystemRequirements": null
+  },
+  "keywords": ["phylogenetics", "tree-distance"],
+  "fileSize": "209.736KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -201,16 +190,9 @@
       ],
       "name": "TBRDist: Calculate Rearrangement Distances Between Unrooted Phylogenetic Trees",
       "identifier": "10.5281/zenodo.3548333",
-      "description": "R package version ",
+      "description": "R package version 1.0.3",
       "@id": "https://doi.org/10.5281/zenodo.3548333",
       "sameAs": "https://doi.org/10.5281/zenodo.3548333"
     }
-  ],
-  "keywords": ["phylogenetics", "tree-distance", "r", "phylogenetic-trees", "distance-calculation"],
-  "provider": {
-    "@id": "https://cran.r-project.org",
-    "@type": "Organization",
-    "name": "Comprehensive R Archive Network (CRAN)",
-    "url": "https://cran.r-project.org"
-  }
+  ]
 }
