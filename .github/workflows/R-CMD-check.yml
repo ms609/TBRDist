@@ -166,16 +166,7 @@ jobs:
           echo "CXX14STD = -std=gnu++17" >> ~/.R/Makevars
           echo "CXX17STD = -std=gnu++17" >> ~/.R/Makevars
 
-      - name: Set up R dependencies (Windows)
-        if: runner.os == 'Windows'
-        uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          needs: |
-            check
-            coverage
-
-      - name: Set up R dependencies (Non-Windows)
-        if: ${{runner.os != 'Windows'}}
+      - name: Set up R dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           needs: |
@@ -184,12 +175,6 @@ jobs:
       - name: Check package
         uses: r-lib/actions/check-r-package@v2
 
-      - name: Code coverage
-        if: runner.os == 'Windows'
-        run: |
-          covr::codecov()
-        shell: Rscript {0}
-        
       - name: Notify on failure
         if: failure() && github.event_name == 'schedule'
         uses: actions/github-script@v7

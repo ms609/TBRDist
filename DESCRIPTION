@@ -32,6 +32,7 @@ LinkingTo:
   BH,
   Rcpp
 Config/Needs/check: rcmdcheck, testthat
+Config/Needs/coverage: covr
 RdMacros: Rdpack
 VignetteBuilder: knitr
 ByteCompile: true
