@@ -5,6 +5,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // uspr_dist
 IntegerVector uspr_dist(const StringVector tree1, const StringVector tree2, const LogicalVector useTbrApproxEstimate, const LogicalVector useTbrEstimate, const LogicalVector useReplugEstimate);
 RcppExport SEXP _TBRDist_uspr_dist(SEXP tree1SEXP, SEXP tree2SEXP, SEXP useTbrApproxEstimateSEXP, SEXP useTbrEstimateSEXP, SEXP useReplugEstimateSEXP) {

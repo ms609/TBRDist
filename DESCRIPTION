@@ -1,6 +1,6 @@
 Package: TBRDist
 Title: Rearrangement Distances Between Unrooted Phylogenetic Trees
-Version: 1.0.2
+Version: 1.0.3
 Authors@R: c(person("Martin R.", 'Smith',
                   email = "martin.smith@durham.ac.uk", 
                   role = c("aut", "cre", "cph"), 
@@ -13,7 +13,7 @@ Copyright: Underlying C++ code copyright 2018 Chris Whidden.
 Description: Fast calculation of the Subtree Prune and Regraft (SPR),
   Tree Bisection and Reconnection (TBR) and Replug distances between 
   unrooted trees, using the algorithms of Whidden and 
-  Matsen (2017) <arxiv:1511.07529>.
+  Matsen (2017) <doi:10.48550/arXiv.1511.07529>.
 URL: https://ms609.github.io/TBRDist/,
   https://github.com/ms609/TBRDist/, 
   https://github.com/cwhidden/uspr/
@@ -31,12 +31,11 @@ Suggests:
 LinkingTo: 
   BH,
   Rcpp
-SystemRequirements: C++11
 RdMacros: Rdpack
 VignetteBuilder: knitr
 ByteCompile: true
 Encoding: UTF-8
 X-schema.org-keywords: phylogenetics, tree-distance
 Language: en-GB
-RoxygenNote: 7.1.1
+RoxygenNote: 7.3.3
 Roxygen: list(markdown = TRUE)

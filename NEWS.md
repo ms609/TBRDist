@@ -1,3 +1,7 @@
+# TBRDist 1.0.3
+
+- Match updated CRAN policy.
+
 # TBRDist 1.0.2
 
 - Import RdMacros package 'Rdpack'.
