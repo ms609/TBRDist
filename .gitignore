@@ -22,3 +22,4 @@ vignettes/*_cache*
 *.Rproj*
 .Rproj.user
 *.site
+_codeql_detected_source_root
