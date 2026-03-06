@@ -1,20 +1,25 @@
 vers <- paste("R package version", meta$Version)
 
-citHeader("If using 'TBRDist' in your research, please cite Whidden and Matsen (2017).",
+citHeader("If using 'TBRDist' in your research, please cite Whidden and Matsen (2019).",
           "A citation to the R package (Smith 2019) would also be welcome.")
 
 bibentry(bibtype = "Article",
-         key = "Whidden2017",
+         key = "Whidden2019",
          title = "Calculating the Unrooted Subtree-Prune-and-Regraft Distance.",
          author = c(as.person("Chris Whidden"),
                     as.person("Frederick A. Matsen")),
-         journal = "eprint at arXiv",
-         year = 2017,
-         arxiv = "1511.07529",
+         journal = "IEEE/ACM Transactions on Computational Biology and Bioinformatics",
+         issue = 3,
+         volume = 16,
+         pages = "898--911",
+         year = 2019,
+         doi = "10.1109/TCBB.2018.2802911",
 
-         textVersion = paste0("Whidden & Matsen (2017). Calculating the ",
+         textVersion = paste0("Whidden & Matsen (2019). Calculating the ",
                               "Unrooted Subtree Prune-and-Regraft Distance. ",
-                              "arXiv:1511.07529"))
+                              "IEEE/ACM Transactions on Computational Biology ",
+                              " and Bioinformatics 16:898-911. ",
+                              "doi:10.1109/TCBB.2018.2802911"))
 
 bibentry(bibtype = "Manual",
          key = "Smith2019",
