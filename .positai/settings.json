@@ -8,6 +8,13 @@
       "*.r": "allow",
       "*.h": "allow",
       "*.cpp": "allow"
+    },
+    "edit": {
+      "DESCRIPTION": "allow",
+      "*.cpp": "allow",
+      "*.md": "allow",
+      "*.h": "allow",
+      "*.R": "allow"
     }
   }
 }

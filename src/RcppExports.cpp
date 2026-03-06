@@ -10,6 +10,20 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
+// rspr_dist
+List rspr_dist(const StringVector tree1, const StringVector tree2, const LogicalVector approx, const LogicalVector exact);
+RcppExport SEXP _TBRDist_rspr_dist(SEXP tree1SEXP, SEXP tree2SEXP, SEXP approxSEXP, SEXP exactSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const StringVector >::type tree1(tree1SEXP);
+    Rcpp::traits::input_parameter< const StringVector >::type tree2(tree2SEXP);
+    Rcpp::traits::input_parameter< const LogicalVector >::type approx(approxSEXP);
+    Rcpp::traits::input_parameter< const LogicalVector >::type exact(exactSEXP);
+    rcpp_result_gen = Rcpp::wrap(rspr_dist(tree1, tree2, approx, exact));
+    return rcpp_result_gen;
+END_RCPP
+}
 // uspr_dist
 IntegerVector uspr_dist(const StringVector tree1, const StringVector tree2, const LogicalVector useTbrApproxEstimate, const LogicalVector useTbrEstimate, const LogicalVector useReplugEstimate);
 RcppExport SEXP _TBRDist_uspr_dist(SEXP tree1SEXP, SEXP tree2SEXP, SEXP useTbrApproxEstimateSEXP, SEXP useTbrEstimateSEXP, SEXP useReplugEstimateSEXP) {
@@ -57,6 +71,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_TBRDist_rspr_dist", (DL_FUNC) &_TBRDist_rspr_dist, 4},
     {"_TBRDist_uspr_dist", (DL_FUNC) &_TBRDist_uspr_dist, 5},
     {"_TBRDist_tbr_dist", (DL_FUNC) &_TBRDist_tbr_dist, 8},
     {"_TBRDist_replug_dist", (DL_FUNC) &_TBRDist_replug_dist, 2},
