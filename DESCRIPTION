@@ -4,9 +4,10 @@ Version: 1.0.3
 Authors@R: c(person("Martin R.", 'Smith',
                   email = "martin.smith@durham.ac.uk", 
                   role = c("aut", "cre", "cph"), 
-                  comment = c(ORCID = "0000-0001-5660-1727")),
+                  comment = c(ORCID = "0000-0001-5660-1727", GitHub = "ms609")),
                person(given = "Chris", family = "Whidden",
-                  email = "cwhidden@fredhutch.org", role = c("cph"))
+                  email = "cwhidden@fredhutch.org", role = c("cph"),
+                  comment = c("rspr, uspr", GitHub = "cwhidden"))
             )
 License: GPL (>= 3)
 Copyright: Underlying C++ code copyright 2018 Chris Whidden.
@@ -18,6 +19,7 @@ URL: https://ms609.github.io/TBRDist/,
   https://github.com/ms609/TBRDist/, 
   https://github.com/cwhidden/uspr/
 BugReports: https://github.com/ms609/TBRDist/issues/
+SystemRequirements: C++17
 Depends: R (>= 3.4.0)
 Imports:
   ape,

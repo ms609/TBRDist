@@ -1,0 +1,13 @@
+{
+  "model": {
+    "id": "claude-opus-4-6",
+    "provider": "positai"
+  },
+  "permission": {
+    "read": {
+      "*.r": "allow",
+      "*.h": "allow",
+      "*.cpp": "allow"
+    }
+  }
+}
