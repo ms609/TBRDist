@@ -1,7 +1,28 @@
 vers <- paste("R package version", meta$Version)
 
-citHeader("If using 'TBRDist' in your research, please cite Whidden and Matsen (2019).",
+citHeader("If using the rooted SPR distance, cite Whidden et al. (2013); ",
+          "for the unrooted SPR distance, it's Whidden and Matsen (2019).",
           "A citation to the R package (Smith 2019) would also be welcome.")
+
+bibentry(
+  bibtype = "Article",
+  key = "Whidden2013",
+  title = "Fixed-Parameter Algorithms for Maximum Agreement Forests",
+  author = c(as.person("Chris Whidden"),
+             as.person("RG Beiko"),
+             as.person("N Zeh")),
+  year = 2013,
+  journal = "SIAM Journal on Computing",
+  volume = 42,
+  pages = "1431-–1466",
+  doi = "10.1137/110845045",
+  textVersion = paste(
+    "Whidden C, Beiko RG, Zeh N (2013).",
+    "Fixed-Parameter Algorithms for Maximum Agreement Forests.",
+    "SIAM Journal on Computing 42:1431–1466.",
+    "doi:10.1137/110845045"
+  )
+)
 
 bibentry(bibtype = "Article",
          key = "Whidden2019",

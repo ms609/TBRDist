@@ -1,4 +1,8 @@
-# TBRDist 1.0.3
+# TBRDist 1.0.3.9000 (2026-03-07)
+
+- Implement rooted distances.
+
+# TBRDist 1.0.3 (2025-11-28)
 
 - Match updated CRAN policy.
 
