@@ -4,26 +4,53 @@ using namespace std;
 
 #include <climits>
 #include <map>
-#include <sstream>
+#include <ostream>
+#include <streambuf>
 #include <string>
 
+// ── R compatibility shims (must come before rspr headers) ─────────────────────
+//
+// rspr.h and its dependencies reference std::cout (~452 calls) and rand().
+// R CMD check flags both symbols in compiled code.  We replace them at the
+// preprocessor level so neither symbol enters rspr.o.
+//
+// 1. Null output stream -------------------------------------------------------
+//    All rspr diagnostic output is absorbed by a do-nothing streambuf.  This
+//    is a compile-time replacement: the _ZSt4cout symbol is never referenced.
+namespace {
+  struct RsprNullBuf : public std::streambuf {
+    int overflow(int c) override { return c; }
+  };
+  RsprNullBuf rspr_null_buf_;
+  std::ostream rspr_null_stream_(&rspr_null_buf_);
+}
+// NOLINTNEXTLINE: intentional macro to suppress cout in included headers
+#define cout rspr_null_stream_
+
+// 2. R-safe random number generator ------------------------------------------
+//    rand() is used only in randomize_tree_with_spr(), which we do not expose.
+//    Replacing with unif_rand() satisfies R CMD check and keeps the RNG
+//    consistent with R's own state should the function ever be called.
+inline int rspr_r_rand() {
+  GetRNGstate();
+  int r = static_cast<int>(unif_rand() * RAND_MAX);
+  PutRNGstate();
+  return r;
+}
+// NOLINTNEXTLINE: intentional macro to suppress rand in included headers
+#define rand rspr_r_rand
+
+// ── rspr headers ──────────────────────────────────────────────────────────────
 // rspr is a header-only library: all function bodies and global variables are
 // defined in its headers.  We include everything from this single translation
 // unit to avoid multiple-definition errors from the header-defined globals.
 // The same pattern is used for uspr in src/uspr.cpp.
 #include "rspr/rspr.h"
 
-// ── Helpers ───────────────────────────────────────────────────────────────────
+#undef cout
+#undef rand
 
-// RAII streambuf swap: redirects std::cout to a sink on construction and
-// restores it on destruction.  Prevents rspr's internal diagnostic output
-// (452+ cout calls) from reaching the R console.
-struct CoutSuppressor {
-  std::ostringstream sink;
-  std::streambuf *orig;
-  CoutSuppressor() : orig(std::cout.rdbuf(sink.rdbuf())) {}
-  ~CoutSuppressor() { std::cout.rdbuf(orig); }
-};
+// ── Global state reset ────────────────────────────────────────────────────────
 
 // Reset rspr's process-level optimisation globals to the same defaults as
 // rspr.cpp's DEFAULT_OPTIMIZATIONS=true + DEFAULT_ALGORITHM=true blocks.
@@ -105,8 +132,6 @@ List rspr_dist(const StringVector tree1,
   IntegerVector exact_dist (tree1.size(), NA_INTEGER);
   StringVector  maf_1      (tree1.size());
   StringVector  maf_2      (tree1.size());
-
-  CoutSuppressor suppress;
 
   for (int i = 0; i < tree1.size(); i++) {
     const string tr1 = as<string>(tree1(i));
