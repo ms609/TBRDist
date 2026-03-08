@@ -24,6 +24,54 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// spr_table_6
+int spr_table_6(const Rcpp::RawVector& sp1, const Rcpp::RawVector& sp2);
+RcppExport SEXP _TBRDist_spr_table_6(SEXP sp1SEXP, SEXP sp2SEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const Rcpp::RawVector& >::type sp1(sp1SEXP);
+    Rcpp::traits::input_parameter< const Rcpp::RawVector& >::type sp2(sp2SEXP);
+    rcpp_result_gen = Rcpp::wrap(spr_table_6(sp1, sp2));
+    return rcpp_result_gen;
+END_RCPP
+}
+// spr_table_7
+int spr_table_7(const Rcpp::RawVector& sp1, const Rcpp::RawVector& sp2);
+RcppExport SEXP _TBRDist_spr_table_7(SEXP sp1SEXP, SEXP sp2SEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const Rcpp::RawVector& >::type sp1(sp1SEXP);
+    Rcpp::traits::input_parameter< const Rcpp::RawVector& >::type sp2(sp2SEXP);
+    rcpp_result_gen = Rcpp::wrap(spr_table_7(sp1, sp2));
+    return rcpp_result_gen;
+END_RCPP
+}
+// spr_table_8
+int spr_table_8(const Rcpp::RawVector& sp1, const Rcpp::RawVector& sp2);
+RcppExport SEXP _TBRDist_spr_table_8(SEXP sp1SEXP, SEXP sp2SEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const Rcpp::RawVector& >::type sp1(sp1SEXP);
+    Rcpp::traits::input_parameter< const Rcpp::RawVector& >::type sp2(sp2SEXP);
+    rcpp_result_gen = Rcpp::wrap(spr_table_8(sp1, sp2));
+    return rcpp_result_gen;
+END_RCPP
+}
+// spr_table_9
+int spr_table_9(const Rcpp::RawVector& sp1, const Rcpp::RawVector& sp2);
+RcppExport SEXP _TBRDist_spr_table_9(SEXP sp1SEXP, SEXP sp2SEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const Rcpp::RawVector& >::type sp1(sp1SEXP);
+    Rcpp::traits::input_parameter< const Rcpp::RawVector& >::type sp2(sp2SEXP);
+    rcpp_result_gen = Rcpp::wrap(spr_table_9(sp1, sp2));
+    return rcpp_result_gen;
+END_RCPP
+}
 // uspr_dist
 IntegerVector uspr_dist(const StringVector tree1, const StringVector tree2, const LogicalVector useTbrApproxEstimate, const LogicalVector useTbrEstimate, const LogicalVector useReplugEstimate);
 RcppExport SEXP _TBRDist_uspr_dist(SEXP tree1SEXP, SEXP tree2SEXP, SEXP useTbrApproxEstimateSEXP, SEXP useTbrEstimateSEXP, SEXP useReplugEstimateSEXP) {
@@ -72,6 +120,10 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_TBRDist_rspr_dist", (DL_FUNC) &_TBRDist_rspr_dist, 4},
+    {"_TBRDist_spr_table_6", (DL_FUNC) &_TBRDist_spr_table_6, 2},
+    {"_TBRDist_spr_table_7", (DL_FUNC) &_TBRDist_spr_table_7, 2},
+    {"_TBRDist_spr_table_8", (DL_FUNC) &_TBRDist_spr_table_8, 2},
+    {"_TBRDist_spr_table_9", (DL_FUNC) &_TBRDist_spr_table_9, 2},
     {"_TBRDist_uspr_dist", (DL_FUNC) &_TBRDist_uspr_dist, 5},
     {"_TBRDist_tbr_dist", (DL_FUNC) &_TBRDist_tbr_dist, 8},
     {"_TBRDist_replug_dist", (DL_FUNC) &_TBRDist_replug_dist, 2},

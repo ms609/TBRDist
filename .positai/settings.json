@@ -15,6 +15,13 @@
       "*.md": "allow",
       "*.h": "allow",
       "*.R": "allow"
+    },
+    "bash": {
+      "cd C:/Users/pjjg18/GitHub/TBRDist": "allow",
+      "grep *": "allow",
+      "head *": "allow",
+      "rm -f src/*.o src/*.dll": "allow",
+      "R CMD INSTALL --no-multiarch . 2>&1": "allow",
     }
   }
 }

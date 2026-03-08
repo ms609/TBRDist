@@ -28,14 +28,15 @@ Imports:
   ape,
   Rdpack,
   TreeDist,
-  TreeTools (>= 1.1.0)
+  TreeTools (>= 1.1.0),
 Suggests:
   knitr,
   rmarkdown,
-  testthat
-LinkingTo: 
+  testthat,
+LinkingTo:
   BH,
-  Rcpp
+  Rcpp,
+  TreeTools,
 Config/Needs/check: rcmdcheck, testthat
 Config/Needs/coverage: covr
 RdMacros: Rdpack
