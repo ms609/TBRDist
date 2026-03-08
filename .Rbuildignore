@@ -13,6 +13,7 @@ data-raw
 revdep
 vignettes/.RData
 /^\.git/
+^\.positai$
 ^.*\.o$
 ^.*\.dll$
 ^.*\.yml$
@@ -27,4 +28,4 @@ vignettes/.RData
 ^pkgdown$
 ^\.zenodo\.json$
 ^codemeta\.json$
-^src/uspr/\.git$
+^src/[ru]spr/\.git$

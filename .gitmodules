@@ -1,3 +1,6 @@
 [submodule "src/uspr"]
 	path = src/uspr
 	url = https://github.com/ms609/uspr-c.git
+[submodule "src/rspr"]
+	path = src/rspr
+	url = https://github.com/ms609/rspr
