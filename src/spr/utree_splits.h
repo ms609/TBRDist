@@ -75,12 +75,41 @@ inline int count_leaves(utree& T) {
   return n;
 }
 
-// Attempt exact SPR lookup for trees with 6-9 leaves.
+// Exact uSPR for 5 leaves.
+// After reduction, the tree is (r, (p1, p2), (q1, q2)).
+// Two non-trivial splits: the two cherries.
+// XOR of the two splits isolates the root leaf r.
+// If r is the same in both trees: distance 2, otherwise 1.
+using Split5 = uint8_t;
+using SplitSet5 = std::array<Split5, 2>;
+
+inline int lookup5(const SplitSet5& sp1, const SplitSet5& sp2) {
+  const uint8_t MASK5 = 0x1F;
+  Split5 r1 = (sp1[0] ^ sp1[1]) & MASK5;
+  Split5 r2 = (sp2[0] ^ sp2[1]) & MASK5;
+  // XOR of the two cherry splits = complement of {r} within 5 bits,
+  // so invert to get the single root-leaf bit.
+  r1 = (~r1) & MASK5;
+  r2 = (~r2) & MASK5;
+  return (r1 == r2) ? 2 : 1;
+}
+
+// Attempt exact SPR lookup for trees with 4-9 leaves.
 // Returns the exact distance, or -1 if trees are too large/small.
 inline int lookup_utrees(utree& T1, utree& T2) {
   int n = count_leaves(T1);
 
   switch (n) {
+  // After leaf reduction, if 4-leaf trees aren't identical they must
+  // differ in one cherry, which is exactly 1 SPR move.
+  case 4:
+    return 1;
+  case 5: {
+    SplitSet5 sp1{}, sp2{};
+    if (!utree_to_splits<SplitSet5, Split5>(T1, sp1)) return -1;
+    if (!utree_to_splits<SplitSet5, Split5>(T2, sp2)) return -1;
+    return lookup5(sp1, sp2);
+  }
   case 6: {
     SplitSet6 sp1{}, sp2{};
     if (!utree_to_splits<SplitSet6, Split6>(T1, sp1)) return -1;
