@@ -5,6 +5,8 @@
 
 #include <cstdint>
 #include <array>
+#include <map>
+#include <vector>
 #include "lookup.h"
 #include "../uspr/unode.h"
 #include "../uspr/utree.h"
@@ -135,6 +137,123 @@ inline int lookup_utrees(utree& T1, utree& T2) {
     SplitSet9 sp1{}, sp2{};
     if (!utree_to_splits<SplitSet9, Split9>(T1, sp1)) return -1;
     if (!utree_to_splits<SplitSet9, Split9>(T2, sp2)) return -1;
+    for (auto& s : sp1) s = smaller_split9(s);
+    return lookup9(sp1, sp2);
+  }
+  default:
+    return -1;
+  }
+}
+
+// ---- Reduced-tree support (post leaf_reduction_hlpr) ----
+// After leaf_reduction_hlpr, contracted nodes are removed from neighbor lists.
+// Terminal nodes act as leaves. Labels need remapping to 0..n-1 for lookup.
+
+// DFS collecting labels of all terminal nodes reachable from `node`,
+// not traversing back through `parent`.
+inline void collect_terminal_labels(unode* node, unode* parent,
+                                    std::vector<int>& labels) {
+  if (node->get_terminal()) {
+    labels.push_back(node->get_label());
+    return;
+  }
+  for (unode* child : node->const_neighbors()) {
+    if (child != parent) {
+      collect_terminal_labels(child, node, labels);
+    }
+  }
+}
+
+// DFS collecting splits from a reduced tree, using a label remapping.
+// Terminal nodes are treated as leaves with remapped indices.
+template <typename SplitT>
+SplitT collect_splits_reduced_dfs(unode* node, unode* parent,
+                                  SplitT* splits, int& split_idx,
+                                  bool is_root_internal,
+                                  const std::map<int, int>& remap) {
+  if (node->get_terminal()) {
+    return static_cast<SplitT>(1) << remap.at(node->get_label());
+  }
+  SplitT mask = 0;
+  for (unode* child : node->const_neighbors()) {
+    if (child != parent) {
+      mask |= collect_splits_reduced_dfs<SplitT>(child, node, splits,
+                                                  split_idx, false, remap);
+    }
+  }
+  if (!is_root_internal) {
+    splits[split_idx++] = mask;
+  }
+  return mask;
+}
+
+// Extract splits from a reduced tree. root_terminal is a terminal node
+// acting as the root leaf; its single neighbor is the root internal node.
+template <typename SplitSetT, typename SplitT>
+bool utree_to_splits_reduced(utree& T, unode* root_terminal,
+                              const std::map<int, int>& remap,
+                              SplitSetT& out) {
+  const auto& nbrs = root_terminal->const_neighbors();
+  if (nbrs.empty()) return false;
+  unode* root_internal = nbrs.front();
+  if (root_internal->get_terminal()) return false;
+
+  SplitT buf[8];
+  int idx = 0;
+  collect_splits_reduced_dfs<SplitT>(root_internal, root_terminal,
+                                      buf, idx, true, remap);
+
+  constexpr int expected = std::tuple_size<SplitSetT>::value;
+  if (idx != expected) return false;
+
+  for (int i = 0; i < expected; ++i) {
+    out[i] = buf[i];
+  }
+  return true;
+}
+
+// Exact lookup on reduced tree pair. Requires:
+//   - root1/root2: corresponding terminal nodes in T1/T2 (via nodemapping)
+//   - remap1/remap2: terminal label → index [0..n-1], consistent across both trees
+//   - n: number of terminals
+inline int lookup_reduced_utrees(utree& T1, utree& T2,
+                                  unode* root1, unode* root2,
+                                  const std::map<int, int>& remap1,
+                                  const std::map<int, int>& remap2,
+                                  int n) {
+  switch (n) {
+  case 4:
+    return 1;
+  case 5: {
+    SplitSet5 sp1{}, sp2{};
+    if (!utree_to_splits_reduced<SplitSet5, Split5>(T1, root1, remap1, sp1)) return -1;
+    if (!utree_to_splits_reduced<SplitSet5, Split5>(T2, root2, remap2, sp2)) return -1;
+    return lookup5(sp1, sp2);
+  }
+  case 6: {
+    SplitSet6 sp1{}, sp2{};
+    if (!utree_to_splits_reduced<SplitSet6, Split6>(T1, root1, remap1, sp1)) return -1;
+    if (!utree_to_splits_reduced<SplitSet6, Split6>(T2, root2, remap2, sp2)) return -1;
+    return lookup6(sp1, sp2);
+  }
+  case 7: {
+    SplitSet7 sp1{}, sp2{};
+    if (!utree_to_splits_reduced<SplitSet7, Split7>(T1, root1, remap1, sp1)) return -1;
+    if (!utree_to_splits_reduced<SplitSet7, Split7>(T2, root2, remap2, sp2)) return -1;
+    for (auto& s : sp1) s = smaller_split7(s);
+    return lookup7(sp1, sp2);
+  }
+  case 8: {
+    SplitSet8 sp1{}, sp2{};
+    if (!utree_to_splits_reduced<SplitSet8, Split8>(T1, root1, remap1, sp1)) return -1;
+    if (!utree_to_splits_reduced<SplitSet8, Split8>(T2, root2, remap2, sp2)) return -1;
+    for (auto& s : sp1) s = smaller_split8(s);
+    return lookup8(sp1, sp2);
+  }
+  case 9: {
+    SplitSet9 sp1{}, sp2{};
+    if (!utree_to_splits_reduced<SplitSet9, Split9>(T1, root1, remap1, sp1)) return -1;
+    if (!utree_to_splits_reduced<SplitSet9, Split9>(T2, root2, remap2, sp2)) return -1;
     for (auto& s : sp1) s = smaller_split9(s);
     return lookup9(sp1, sp2);
   }

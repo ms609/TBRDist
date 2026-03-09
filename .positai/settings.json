@@ -7,7 +7,9 @@
     "read": {
       "*.r": "allow",
       "*.h": "allow",
-      "*.cpp": "allow"
+      "*.cpp": "allow",
+      "*.R": "allow",
+      "*": "allow"
     },
     "edit": {
       "DESCRIPTION": "allow",
@@ -22,6 +24,10 @@
       "head *": "allow",
       "rm -f src/*.o src/*.dll": "allow",
       "R CMD INSTALL --no-multiarch . 2>&1": "allow",
+      "timeout 120 Rscript /tmp/benchmark_cases.R 2>&1": "allow",
+      "cd /c/Users/pjjg18/GitHub/TBRDist": "allow",
+      "R CMD INSTALL . 2>&1": "allow",
+      "tail *": "allow"
     }
   }
 }

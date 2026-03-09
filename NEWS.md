@@ -1,6 +1,14 @@
-# TBRDist 1.0.3.9000 (2026-03-07)
+# TBRDist 1.0.3.9004 (2026-03-09)
 
-- Implement rooted distances.
+- Add `RSPRDist()` for rooted Subtree Prune-and-Regraft (rSPR) distances,
+  wrapping the exact FPT algorithm (with cluster decomposition) of Whidden,
+  Beiko & Zeh (2013). Supports exact distances, a linear-time 3-approximation,
+  and maximum agreement forest output.
+- Improve performance of `USPRDist()` by replacing string-based tree
+  representation in the A\* search with 256-bit integer tree numbers
+  (Tromp encoding), giving O(1) equality and hash lookup.
+- Add exact SPR distance lookup tables for trees with 4–9 leaves, eliminating
+  A\* search for small trees and subtrees encountered during reduction.
 
 # TBRDist 1.0.3 (2025-11-28)
 

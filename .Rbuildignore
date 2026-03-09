@@ -29,3 +29,4 @@ vignettes/.RData
 ^\.zenodo\.json$
 ^codemeta\.json$
 ^src/[ru]spr/\.git$
+^\.claude$

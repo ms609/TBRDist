@@ -42,9 +42,29 @@ bibentry(bibtype = "Article",
                               " and Bioinformatics 16:898-911. ",
                               "doi:10.1109/TCBB.2018.2802911"))
 
+bibentry(
+  bibtype = "Article",
+  key = "Whidden2014",
+  title = "Supertrees based on the subtree prune-and-regraft distance",
+  author = c(as.person("Chris Whidden"),
+             as.person("N Zeh"),
+             as.person("RG Beiko")),
+  year = 2014,
+  journal = "Systematic Biology",
+  volume = 63,
+  pages = "566--581",
+  doi = "10.1093/sysbio/syu023",
+  textVersion = paste(
+    "Whidden C, Zeh N, Beiko RG (2014).",
+    "Supertrees based on the subtree prune-and-regraft distance.",
+    "Systematic Biology 63:566-581.",
+    "doi:10.1093/sysbio/syu023"
+  )
+)
+
 bibentry(bibtype = "Manual",
          key = "Smith2019",
-         title = "TBRDist: Calculate Rearrangement Distances Between Unrooted Phylogenetic Trees",
+         title = "TBRDist: Rearrangement Distances Between Phylogenetic Trees",
          author = as.person("Martin R. Smith"),
          note = vers,
          publisher = "Comprehensive R Archive Network",
@@ -52,7 +72,7 @@ bibentry(bibtype = "Manual",
          doi = "10.5281/zenodo.3548333",
 
          textVersion =
-         paste0("Smith (2019). TBRDist: Calculate Rearrangement Distances ",
-                "Between Unrooted Phylogenetic Trees. ", vers,
+         paste0("Smith (2019). TBRDist: Rearrangement Distances ",
+                "Between Phylogenetic Trees. ", vers,
                 ". Comprehensive R Archive Network. ",
                 "doi: 10.5281/zenodo.3548333"))
