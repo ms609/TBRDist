@@ -98,32 +98,50 @@ The outer A* loop therefore does NOT call it; the Phase 3 copies do call it
 - After `normalize_order()`, each node's neighbor list is sorted: parent
   first, then children by smallest-descendant leaf label.
 
-## Benchmark results (same-session A/B, 15 pairs, 10–12 leaves, Windows)
-| Version | Mean | Notes |
+## Benchmark methodology
+**Fixed pairs** (reproducible): 60 random 10-tip pairs generated via
+`as.phylo(floor(runif(60)*NUnrooted(10L)), nTip=10L)` with `set.seed(3141)`.
+All pairs have SPR distances 3–5 (table: 5×d=3, 40×d=4, 15×d=5). Using
+nearby-index (small-offset) pairs is NOT appropriate: distance 1–2 pairs are
+leaf-reduced to ≤9 leaves and go straight to the lookup table, never
+exercising the A* loop or `normalize_order`.
+
+## Benchmark results
+### Session 1 — same-session A/B, 15 pairs, 10–12 leaves, Windows
+| Version | Time | Notes |
 |---------|------|-------|
 | Newick roundtrip in A* loop | 11.68 s | baseline |
 | Direct utree construction | 11.18 s | −4.3% |
 | + removed redundant `distances_from_leaf_decorator` | 11.30 s | ≈0% (noise) |
 | + `priority_queue` (binary min-heap) replacing `multiset` | 8.94 s | **−21%** |
 
-**Key finding**: The `multiset` red-black tree caused significant cache-miss
-overhead. Replacing with `priority_queue` (contiguous `vector` storage) gave
-the largest single speedup. The O(n) per-pop items are negligible; queue
-operations were the hidden cost.
+### Session 2 — fixed 60-pair benchmark, 10-tip random, Windows
+| Version | Time | Notes |
+|---------|------|-------|
+| `map`-based `normalize_order_hlpr` | 19.14 s | baseline |
+| inline 3-array + insertion sort | 17.88–19.31 s | ≈0% (noise) |
+
+**Key findings**:
+- The `multiset` → `priority_queue` change was the dominant win (−21%).
+  Queue operations had hidden cache-miss overhead; the fix was structural.
+- `normalize_order()` is **not** a bottleneck: the TBR/replug branch-and-bound
+  so completely dominates that eliminating all map heap allocations is
+  invisible in measurement. The inline-array change is kept for code quality
+  but should not be listed as a performance improvement.
+- Random pairs tend to be at maximum SPR distance and exercise the full A*
+  path. Easy (low-distance) pairs mostly bypass A* via the lookup tables.
 
 ## Known remaining optimisation candidates
-1. **`multiset` priority queue** — O(log Q) insert/erase with poor cache
-   behaviour (scattered red-black tree nodes). Replacing with `priority_queue`
-   (binary min-heap, contiguous storage) keeps O(log Q) complexity but
-   improves cache performance. Worth trying; the multiset is not known to be
-   a bottleneck but hasn't been measured either.
+1. **Memory allocation patterns** — `list<unode*>` for neighbor lists causes
+   many small heap allocations per node. Fixed-size inline arrays (degree ≤ 3)
+   or an arena allocator would reduce fragmentation and improve cache behaviour,
+   but given that `normalize_order` (which manipulates these lists) proved
+   negligible, this is unlikely to move the needle either.
 2. **Phase 3 per-pop overhead** — every BFS pop deep-copies T and T2 and runs
-   `leaf_reduction_hlpr`. Could be gated on n > some threshold.
-3. **`normalize_order()` constant factor** — uses `map<int, unode*>` per
-   internal node. Each internal node has exactly 2 children; the map could be
-   replaced with a two-element compare-and-swap for a small constant-factor win.
-4. **Memory allocation patterns** — `list<unode*>` for neighbor lists causes
-   many small heap allocations. At scale, fixed-size arrays or an arena
-   allocator would improve cache behaviour.
-5. **Extending lookup tables to 10–11 leaves** — would eliminate A* for pairs
+   `leaf_reduction_hlpr`. Could be gated on n > some threshold to avoid the
+   copy overhead when the reduced tree cannot possibly hit the 4–9-leaf window.
+3. **TBR/replug branch-and-bound** — the measured dominant cost. Speedups here
+   require either better pruning (algorithmic, hard) or profiling to find any
+   unexpected constant-factor bottleneck within `tbr.h`.
+4. **Extending lookup tables to 10–11 leaves** — would eliminate A* for pairs
    reducing to ≤11 leaves. Tables too large to ship in the package per user.
