@@ -9,6 +9,10 @@
   (Tromp encoding), giving O(1) equality and hash lookup.
 - Add exact SPR distance lookup tables for trees with 4–9 leaves, eliminating
   A\* search for small trees and subtrees encountered during reduction.
+- Improve performance of `USPRDist()` A\* search by replacing the
+  `multiset`-based priority queue (pointer-chasing red-black tree) with a
+  binary min-heap (`priority_queue` over a contiguous `vector`), giving better
+  cache behaviour for queue operations.
 
 # TBRDist 1.0.3 (2025-11-28)
 
