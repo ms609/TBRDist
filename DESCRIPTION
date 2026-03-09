@@ -37,7 +37,7 @@ LinkingTo:
   BH,
   Rcpp,
   TreeTools,
-Remotes: ms609/TreeTools
+Remotes: ms609/TreeTools@external-tree-number
 Config/Needs/check: rcmdcheck, testthat
 Config/Needs/coverage: covr
 RdMacros: Rdpack
