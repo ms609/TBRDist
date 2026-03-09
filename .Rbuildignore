@@ -5,6 +5,7 @@
 /^src\-/
 CONTRIBUTING.md
 LICENSE
+AGENTS.md
 README.md
 cran-comments.md
 .covrignore
