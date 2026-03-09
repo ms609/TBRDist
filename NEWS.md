@@ -13,6 +13,8 @@
   `multiset`-based priority queue (pointer-chasing red-black tree) with a
   binary min-heap (`priority_queue` over a contiguous `vector`), giving better
   cache behaviour for queue operations.
+- Reduce heap allocations in `normalize_order()` by replacing per-node
+  `map<int,unode*>` with a 3-element inline array sort.
 
 # TBRDist 1.0.3 (2025-11-28)
 
