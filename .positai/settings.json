@@ -28,7 +28,8 @@
       "cd /c/Users/pjjg18/GitHub/TBRDist": "allow",
       "R CMD INSTALL . 2>&1": "allow",
       "tail *": "allow",
-      "ls *": "allow"
+      "ls *": "allow",
+      "echo *": "allow"
     }
   }
 }
