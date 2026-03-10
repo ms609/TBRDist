@@ -22,3 +22,6 @@ vignettes/*_cache*
 *.Rproj*
 .Rproj.user
 *.site
+/TBRDist.Rcheck
+*.gz
+/vtune_result*

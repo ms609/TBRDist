@@ -1,6 +1,6 @@
 Package: TBRDist
 Title: Rearrangement Distances Between Phylogenetic Trees
-Version: 1.0.3.9000
+Version: 1.0.3.9005
 Authors@R: c(person("Martin R.", 'Smith',
                   email = "martin.smith@durham.ac.uk", 
                   role = c("aut", "cre", "cph"), 
@@ -23,19 +23,21 @@ URL: https://ms609.github.io/TBRDist/,
   https://github.com/cwhidden/rspr/
 BugReports: https://github.com/ms609/TBRDist/issues/
 SystemRequirements: C++17
-Depends: R (>= 3.4.0)
+Depends: R (>= 3.6.0)
 Imports:
   ape,
   Rdpack,
   TreeDist,
-  TreeTools (>= 1.1.0)
+  TreeTools (>= 2.1.0.9003),
 Suggests:
   knitr,
   rmarkdown,
-  testthat
-LinkingTo: 
+  testthat,
+LinkingTo:
   BH,
-  Rcpp
+  Rcpp,
+  TreeTools,
+Remotes: ms609/TreeTools
 Config/Needs/check: rcmdcheck, testthat
 Config/Needs/coverage: covr
 RdMacros: Rdpack

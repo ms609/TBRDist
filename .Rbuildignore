@@ -5,6 +5,7 @@
 /^src\-/
 CONTRIBUTING.md
 LICENSE
+AGENTS.md
 README.md
 cran-comments.md
 .covrignore
@@ -29,3 +30,4 @@ vignettes/.RData
 ^\.zenodo\.json$
 ^codemeta\.json$
 ^src/[ru]spr/\.git$
+^\.claude$

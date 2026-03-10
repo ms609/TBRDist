@@ -7,7 +7,9 @@
     "read": {
       "*.r": "allow",
       "*.h": "allow",
-      "*.cpp": "allow"
+      "*.cpp": "allow",
+      "*.R": "allow",
+      "*": "allow"
     },
     "edit": {
       "DESCRIPTION": "allow",
@@ -15,6 +17,20 @@
       "*.md": "allow",
       "*.h": "allow",
       "*.R": "allow"
+    },
+    "bash": {
+      "cd C:/Users/pjjg18/GitHub/TBRDist": "allow",
+      "grep *": "allow",
+      "head *": "allow",
+      "rm -f src/*.o src/*.dll": "allow",
+      "R CMD INSTALL --no-multiarch . 2>&1": "allow",
+      "timeout 120 Rscript /tmp/benchmark_cases.R 2>&1": "allow",
+      "cd /c/Users/pjjg18/GitHub/TBRDist": "allow",
+      "R CMD INSTALL . 2>&1": "allow",
+      "tail *": "allow",
+      "ls *": "allow",
+      "echo *": "allow",
+      "rm -f \"C:/Users/pjjg18/GitHub/TBRDist/src/\"*.o \"C:/Users/pjjg18/GitHub/TBRDist/src/TBRDist.dll\"": "allow"
     }
   }
 }
