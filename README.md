@@ -61,16 +61,26 @@ To download the contents of these subdirectories, clone the project using
 or if you've already cloned the project, run
 `git submodule update --init --recursive`.  
 
-# Usage
+# Citation
 
 If you use unrooted distances (`TBRDist`, `USPRDist`, `ReplugDist`) in your
 research, please cite:
 
-Chris Whidden and Frederick A. Matsen IV. Calculating the Unrooted Subtree-Prune-and-Regraft Distance. eprint arXiv:1511.07529. https://arxiv.org/abs/1511.07529
+> Whidden C, Matsen FA IV (2019). Calculating the Unrooted
+> Subtree-Prune-and-Regraft Distance. _IEEE/ACM Transactions on Computational
+> Biology and Bioinformatics_ 16(3):898–911.
+> doi:[10.1109/TCBB.2018.2802911](https://doi.org/10.1109/TCBB.2018.2802911)
 
-If you use rooted SPR distances (`RSPRDist`) in your research, please cite:
+If you use rooted SPR distances (`RSPRDist`), please cite:
 
-Chris Whidden, Robert G. Beiko, and Norbert Zeh. Fixed-Parameter Algorithms for Maximum Agreement Forests. _SIAM Journal on Computing_ 42(4):1431–1466, 2013. https://doi.org/10.1137/110845045
+> Whidden C, Beiko RG, Zeh N (2013). Fixed-Parameter Algorithms for Maximum
+> Agreement Forests. _SIAM Journal on Computing_ 42(4):1431–1466.
+> doi:[10.1137/110845045](https://doi.org/10.1137/110845045)
+
+A citation to the R package itself would also be appreciated:
+
+> Smith MR (2019). TBRDist: Rearrangement Distances Between Phylogenetic Trees.
+> doi:[10.5281/zenodo.3548333](https://doi.org/10.5281/zenodo.3548333)
 
 
 # Notes
