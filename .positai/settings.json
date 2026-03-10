@@ -27,7 +27,8 @@
       "timeout 120 Rscript /tmp/benchmark_cases.R 2>&1": "allow",
       "cd /c/Users/pjjg18/GitHub/TBRDist": "allow",
       "R CMD INSTALL . 2>&1": "allow",
-      "tail *": "allow"
+      "tail *": "allow",
+      "ls *": "allow"
     }
   }
 }
