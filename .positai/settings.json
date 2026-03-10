@@ -29,7 +29,8 @@
       "R CMD INSTALL . 2>&1": "allow",
       "tail *": "allow",
       "ls *": "allow",
-      "echo *": "allow"
+      "echo *": "allow",
+      "rm -f \"C:/Users/pjjg18/GitHub/TBRDist/src/\"*.o \"C:/Users/pjjg18/GitHub/TBRDist/src/TBRDist.dll\"": "allow"
     }
   }
 }
