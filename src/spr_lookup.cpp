@@ -22,12 +22,11 @@ inline Shape7 detect_shape7(const SplitSet7& sp) {
 }
 
 inline Shape8 detect_shape8(const SplitSet8& sp) {
-  int n4 = 0, n3 = 0, n2 = 0;
+  int n4 = 0, n3 = 0;
   for (auto s : sp) {
     const int t = tips_in_smallest8(s);
     if (t == 4) ++n4;
     else if (t == 3) ++n3;
-    else if (t == 2) ++n2;
   }
   
   if (n4 == 1 && n3 == 2) return Shape8::Pectinate;
@@ -37,13 +36,12 @@ inline Shape8 detect_shape8(const SplitSet8& sp) {
 }
 
 inline Shape9 detect_shape9(const SplitSet9& sp) {
-  int n4 = 0, n3 = 0, n2 = 0;
+  int n4 = 0, n3 = 0;
   
   for (auto s : sp) {
     const int t = tips_in_smallest9(s);
     if      (t == 4) ++n4;
     else if (t == 3) ++n3;
-    else if (t == 2) ++n2;
   }
   
   if (n4 == 2 && n3 == 2) return Shape9::s0;
