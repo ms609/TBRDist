@@ -1,4 +1,4 @@
-# TBRDist 1.0.3.9004 (2026-03-09)
+# TBRDist 1.0.3.9005 (2026-03-09)
 
 - Add `RSPRDist()` for rooted Subtree Prune-and-Regraft (rSPR) distances,
   wrapping the exact FPT algorithm (with cluster decomposition) of Whidden,
@@ -15,6 +15,10 @@
   cache behaviour for queue operations.
 - Reduce heap allocations in `normalize_order()` by replacing per-node
   `map<int,unode*>` with a 3-element inline array sort.
+- Reduce heap allocations in TBR/replug branch-and-bound search by replacing
+  `list<unode*>` neighbour storage with fixed-capacity inline arrays, replacing
+  `list`/`map` book-keeping containers with `vector`/`unordered_map`, and
+  allocating tree nodes from a block arena instead of individual `new`/`delete`.
 
 # TBRDist 1.0.3 (2025-11-28)
 
