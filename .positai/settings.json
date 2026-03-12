@@ -9,14 +9,16 @@
       "*.h": "allow",
       "*.cpp": "allow",
       "*.R": "allow",
-      "*": "allow"
+      "*": "allow",
+      "*.yml": "allow"
     },
     "edit": {
       "DESCRIPTION": "allow",
       "*.cpp": "allow",
       "*.md": "allow",
       "*.h": "allow",
-      "*.R": "allow"
+      "*.R": "allow",
+      "*/.Rbuildignore": "allow"
     },
     "bash": {
       "cd C:/Users/pjjg18/GitHub/TBRDist": "allow",
@@ -30,7 +32,9 @@
       "tail *": "allow",
       "ls *": "allow",
       "echo *": "allow",
-      "rm -f \"C:/Users/pjjg18/GitHub/TBRDist/src/\"*.o \"C:/Users/pjjg18/GitHub/TBRDist/src/TBRDist.dll\"": "allow"
+      "rm -f \"C:/Users/pjjg18/GitHub/TBRDist/src/\"*.o \"C:/Users/pjjg18/GitHub/TBRDist/src/TBRDist.dll\"": "allow",
+      "find *": "allow",
+      "cat *": "allow"
     }
   }
 }

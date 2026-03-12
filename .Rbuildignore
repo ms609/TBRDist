@@ -31,3 +31,4 @@ vignettes/.RData
 ^codemeta\.json$
 ^src/[ru]spr/\.git$
 ^\.claude$
+^memcheck$
