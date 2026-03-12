@@ -80,6 +80,7 @@ jobs:
         with:
           needs: |
             check
+          cache-version: 2-${{ runner.arch }}
 
       - name: Check package
         uses: r-lib/actions/check-r-package@v2
@@ -172,6 +173,7 @@ jobs:
         with:
           needs: |
             check
+          cache-version: 2-${{ runner.arch }}
 
       - name: Check package
         uses: r-lib/actions/check-r-package@v2
