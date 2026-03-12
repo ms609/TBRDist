@@ -41,13 +41,12 @@ name: R-CMD-check
 
 jobs:
   check-release:
-    runs-on: ubuntu-24.04
-    name: ubuntu-24.04 (release)
+    runs-on: ubuntu-24.04-arm
+    name: ubuntu-24.04-arm (release)
 
     env:
       _R_CHECK_CRAN_INCOMING_: true # Seemingly not set by --as-cran
       _R_CHECK_FORCE_SUGGESTS_: false # CRAN settings
-      R_COMPILE_AND_INSTALL_PACKAGES: 'never'
       _R_CHECK_THINGS_IN_CHECK_DIR_: false
       R_REMOTES_STANDALONE: true
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
@@ -96,9 +95,9 @@ jobs:
         config:
           - {os: windows-latest, r: 'release', compile_packages: 'never'}
           - {os: macos-15-intel, r: 'release'} # Until Intel architecture retired 2027-11; must compile from source (arm64 binaries incompatible)
-          - {os: macOS-latest, r: 'release', compile_packages: 'never'}
+          - {os: macOS-latest, r: 'release'} # arm64; compile from source when no arm64 binary available
           - {os: ubuntu-24.04, r: '4.0', rspm: "https://packagemanager.posit.co/cran/2022-10-11", compile_packages: 'never'}
-          - {os: ubuntu-24.04, r: 'devel', rspm: "https://packagemanager.posit.co/cran/__linux__/noble/latest", compile_packages: 'never'}
+          - {os: ubuntu-24.04-arm, r: 'devel', rspm: "https://packagemanager.posit.co/cran/__linux__/noble/latest"}
 
     env:
       _R_CHECK_CRAN_INCOMING_: ${{ github.event_name == 'pull_request' }}
