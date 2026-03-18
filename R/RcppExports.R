@@ -18,22 +18,6 @@ rspr_dist <- function(tree1, tree2, approx, exact) {
     .Call('_TBRDist_rspr_dist', PACKAGE = 'TBRDist', tree1, tree2, approx, exact)
 }
 
-spr_table_6 <- function(sp1, sp2) {
-    .Call('_TBRDist_spr_table_6', PACKAGE = 'TBRDist', sp1, sp2)
-}
-
-spr_table_7 <- function(sp1, sp2) {
-    .Call('_TBRDist_spr_table_7', PACKAGE = 'TBRDist', sp1, sp2)
-}
-
-spr_table_8 <- function(sp1, sp2) {
-    .Call('_TBRDist_spr_table_8', PACKAGE = 'TBRDist', sp1, sp2)
-}
-
-spr_table_9 <- function(sp1, sp2) {
-    .Call('_TBRDist_spr_table_9', PACKAGE = 'TBRDist', sp1, sp2)
-}
-
 uspr_dist <- function(tree1, tree2, useTbrApproxEstimate, useTbrEstimate, useReplugEstimate) {
     .Call('_TBRDist_uspr_dist', PACKAGE = 'TBRDist', tree1, tree2, useTbrApproxEstimate, useTbrEstimate, useReplugEstimate)
 }
