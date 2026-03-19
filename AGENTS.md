@@ -1,5 +1,11 @@
 # TBRDist — Agent Memory
 
+## Standing instructions
+
+**Always obtain human approval before running `git push` or any command that
+writes to a remote.** Stage and commit freely, but show the diff/commit summary
+and wait for an explicit go-ahead before pushing.
+
 ## Package overview
 R package for phylogenetic tree rearrangement distances. Wraps two C++ libraries
 (uspr and rspr) as git submodules in `src/uspr/` and `src/rspr/`.
