@@ -40,6 +40,7 @@ LinkingTo:
 Remotes: ms609/TreeTools
 Config/Needs/check: rcmdcheck, testthat
 Config/Needs/coverage: covr
+Config/Needs/memcheck: testthat
 RdMacros: Rdpack
 VignetteBuilder: knitr
 ByteCompile: true
