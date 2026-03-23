@@ -25,3 +25,4 @@ vignettes/*_cache*
 /TBRDist.Rcheck
 *.gz
 /vtune_result*
+.positai
