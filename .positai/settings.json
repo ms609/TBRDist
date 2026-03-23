@@ -35,6 +35,9 @@
       "rm -f \"C:/Users/pjjg18/GitHub/TBRDist/src/\"*.o \"C:/Users/pjjg18/GitHub/TBRDist/src/TBRDist.dll\"": "allow",
       "find *": "allow",
       "cat *": "allow"
+    },
+    "webfetch": {
+      "https://raw.githubusercontent.com/*": "allow"
     }
   }
 }
