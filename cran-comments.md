@@ -6,7 +6,16 @@
 ## R CMD check results
 There were no ERRORs or WARNINGs.
 
-One NOTE:
+Two NOTEs:
+
+* checking pragmas in C/C++ headers and code ... NOTE
+  File which contains pragma(s) suppressing diagnostics: 'src/uspr/tbr.h'
+
+  This pragma suppresses a `-Wnonnull` warning triggered by Boost's
+  concept-check headers (`boost/graph/adjacency_list.hpp`), which use
+  `((Model*)0)->~Model()`.  This is a known Boost issue (not a TBRDist bug)
+  that fires on GCC 12+.  The suppression is tightly scoped to the two
+  `#include` lines that pull in the affected Boost headers.
 
 * checking compiled code ... NOTE
 
