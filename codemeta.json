@@ -2,19 +2,19 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "TBRDist",
-  "description": "Fast calculation of the Subtree Prune and Regraft (SPR), Tree Bisection and Reconnection (TBR) and Replug distances between unrooted trees, using the algorithms of Whidden and Matsen (2017) <doi:10.48550/arXiv.1511.07529>.",
-  "name": "TBRDist: Rearrangement Distances Between Unrooted Phylogenetic Trees",
-  "relatedLink": ["https://ms609.github.io/TBRDist/", "https://github.com/cwhidden/uspr/"],
+  "description": "Fast calculation of tree rearrangement distances. For unrooted trees: Subtree Prune and Regraft (SPR), Tree Bisection and Reconnection (TBR), and Replug distances, using the algorithms of Whidden and Matsen (2017) <doi:10.48550/arXiv.1511.07529>. For rooted trees: rooted SPR (rSPR) distance, using the fixed-parameter algorithms of Whidden, Beiko, and Zeh (2013) <doi:10.1137/110845045>.",
+  "name": "TBRDist: Rearrangement Distances Between Phylogenetic Trees",
+  "relatedLink": ["https://ms609.github.io/TBRDist/", "https://github.com/cwhidden/uspr/", "https://github.com/cwhidden/rspr/"],
   "codeRepository": "https://github.com/ms609/TBRDist/",
   "issueTracker": "https://github.com/ms609/TBRDist/issues/",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R Under development (unstable) (2025-06-17 r88325 ucrt)",
+  "runtimePlatform": "R Under development (unstable) (2025-11-23 r89052 ucrt)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -97,7 +97,7 @@
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
-      "version": ">= 3.4.0"
+      "version": ">= 3.6.0"
     },
     "2": {
       "@type": "SoftwareApplication",
@@ -139,7 +139,7 @@
       "@type": "SoftwareApplication",
       "identifier": "TreeTools",
       "name": "TreeTools",
-      "version": ">= 1.1.0",
+      "version": ">= 2.2.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -148,14 +148,49 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=TreeTools"
     },
-    "SystemRequirements": null
+    "SystemRequirements": "C++17"
   },
   "keywords": ["phylogenetics", "tree-distance"],
-  "fileSize": "209.736KB",
+  "fileSize": "1510.79KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
-      "datePublished": "2017",
+      "datePublished": "2013",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Chris",
+          "familyName": "Whidden"
+        },
+        {
+          "@type": "Person",
+          "givenName": "RG",
+          "familyName": "Beiko"
+        },
+        {
+          "@type": "Person",
+          "givenName": "N",
+          "familyName": "Zeh"
+        }
+      ],
+      "name": "Fixed-Parameter Algorithms for Maximum Agreement Forests",
+      "identifier": "10.1137/110845045",
+      "pagination": "1431-–1466",
+      "@id": "https://doi.org/10.1137/110845045",
+      "sameAs": "https://doi.org/10.1137/110845045",
+      "isPartOf": {
+        "@type": "PublicationIssue",
+        "datePublished": "2013",
+        "isPartOf": {
+          "@type": ["PublicationVolume", "Periodical"],
+          "volumeNumber": "42",
+          "name": "SIAM Journal on Computing"
+        }
+      }
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "datePublished": "2019",
       "author": [
         {
           "@type": "Person",
@@ -169,12 +204,52 @@
         }
       ],
       "name": "Calculating the Unrooted Subtree-Prune-and-Regraft Distance.",
+      "identifier": "10.1109/TCBB.2018.2802911",
+      "pagination": "898--911",
+      "@id": "https://doi.org/10.1109/TCBB.2018.2802911",
+      "sameAs": "https://doi.org/10.1109/TCBB.2018.2802911",
       "isPartOf": {
         "@type": "PublicationIssue",
-        "datePublished": "2017",
+        "datePublished": "2019",
         "isPartOf": {
           "@type": ["PublicationVolume", "Periodical"],
-          "name": "eprint at arXiv"
+          "volumeNumber": "16",
+          "name": "IEEE/ACM Transactions on Computational Biology and Bioinformatics"
+        }
+      }
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "datePublished": "2014",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Chris",
+          "familyName": "Whidden"
+        },
+        {
+          "@type": "Person",
+          "givenName": "N",
+          "familyName": "Zeh"
+        },
+        {
+          "@type": "Person",
+          "givenName": "RG",
+          "familyName": "Beiko"
+        }
+      ],
+      "name": "Supertrees based on the subtree prune-and-regraft distance",
+      "identifier": "10.1093/sysbio/syu023",
+      "pagination": "566--581",
+      "@id": "https://doi.org/10.1093/sysbio/syu023",
+      "sameAs": "https://doi.org/10.1093/sysbio/syu023",
+      "isPartOf": {
+        "@type": "PublicationIssue",
+        "datePublished": "2014",
+        "isPartOf": {
+          "@type": ["PublicationVolume", "Periodical"],
+          "volumeNumber": "63",
+          "name": "Systematic Biology"
         }
       }
     },
@@ -188,9 +263,9 @@
           "familyName": "Smith"
         }
       ],
-      "name": "TBRDist: Calculate Rearrangement Distances Between Unrooted Phylogenetic Trees",
+      "name": "TBRDist: Rearrangement Distances Between Phylogenetic Trees",
       "identifier": "10.5281/zenodo.3548333",
-      "description": "R package version 1.0.3",
+      "description": "R package version 2.0.0",
       "@id": "https://doi.org/10.5281/zenodo.3548333",
       "sameAs": "https://doi.org/10.5281/zenodo.3548333"
     }

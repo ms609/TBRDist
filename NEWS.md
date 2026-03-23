@@ -1,4 +1,4 @@
-# TBRDist 1.0.3.9005 (2026-03-09)
+# TBRDist 2.0.0 (2026-03-23)
 
 - Add `RSPRDist()` for rooted Subtree Prune-and-Regraft (rSPR) distances,
   wrapping the exact FPT algorithm (with cluster decomposition) of Whidden,
