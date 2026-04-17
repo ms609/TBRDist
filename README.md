@@ -3,7 +3,7 @@
 [![R-CMD-check](https://github.com/ms609/TBRDist/actions/workflows/R-CMD-check.yml/badge.svg)](https://github.com/ms609/TBRDist/actions/workflows/R-CMD-check.yml)
 [![codecov](https://codecov.io/gh/ms609/TBRDist/branch/master/graph/badge.svg)](https://codecov.io/gh/ms609/TBRDist)
 [![CRAN Status Badge](https://www.r-pkg.org/badges/version/TBRDist)](https://cran.r-project.org/package=TBRDist)
-[![CRAN Downloads](https://cranlogs.r-pkg.org/badges/TBRDist)](https://cran.r-project.org/package=TBRDist)
+[![CRAN Downloads](https://cranlogs.r-pkg.org/badges/TBRDist)](https://ms609.github.io/usage#tbrdist)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3548332.svg)](https://doi.org/10.5281/zenodo.3548332)
 [![Project Status: Inactive – The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows.](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.repostatus.org/#inactive)
 
