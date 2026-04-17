@@ -1,10 +1,9 @@
-pandoc: '2.2'
-pkgdown: 1.6.1
+pandoc: 3.1.11
+pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
   TBRDist: TBRDist.html
-last_built: 2020-09-17T09:14Z
+last_built: 2026-04-17T12:56Z
 urls:
-  reference: https://ms609.github.io/TBRDist//reference
-  article: https://ms609.github.io/TBRDist//articles
-
+  reference: https://ms609.github.io/TBRDist/reference
+  article: https://ms609.github.io/TBRDist/articles

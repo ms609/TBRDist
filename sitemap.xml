@@ -1,18 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://ms609.github.io/TBRDist//index.html</loc>
-  </url>
-  <url>
-    <loc>https://ms609.github.io/TBRDist//reference/TreeRearrangementDistances.html</loc>
-  </url>
-  <url>
-    <loc>https://ms609.github.io/TBRDist//reference/dot-PrepareTrees.html</loc>
-  </url>
-  <url>
-    <loc>https://ms609.github.io/TBRDist//reference/internals.html</loc>
-  </url>
-  <url>
-    <loc>https://ms609.github.io/TBRDist//articles/TBRDist.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://ms609.github.io/TBRDist/404.html</loc></url>
+<url><loc>https://ms609.github.io/TBRDist/AGENTS.html</loc></url>
+<url><loc>https://ms609.github.io/TBRDist/CODE_OF_CONDUCT.html</loc></url>
+<url><loc>https://ms609.github.io/TBRDist/CONTRIBUTING.html</loc></url>
+<url><loc>https://ms609.github.io/TBRDist/LICENSE-text.html</loc></url>
+<url><loc>https://ms609.github.io/TBRDist/articles/TBRDist.html</loc></url>
+<url><loc>https://ms609.github.io/TBRDist/articles/index.html</loc></url>
+<url><loc>https://ms609.github.io/TBRDist/authors.html</loc></url>
+<url><loc>https://ms609.github.io/TBRDist/index.html</loc></url>
+<url><loc>https://ms609.github.io/TBRDist/news/index.html</loc></url>
+<url><loc>https://ms609.github.io/TBRDist/reference/RSPRDist.html</loc></url>
+<url><loc>https://ms609.github.io/TBRDist/reference/TreeRearrangementDistances.html</loc></url>
+<url><loc>https://ms609.github.io/TBRDist/reference/dot-CheckRooted.html</loc></url>
+<url><loc>https://ms609.github.io/TBRDist/reference/dot-PrepareTrees.html</loc></url>
+<url><loc>https://ms609.github.io/TBRDist/reference/index.html</loc></url>
+<url><loc>https://ms609.github.io/TBRDist/reference/internals.html</loc></url>
+<url><loc>https://ms609.github.io/TBRDist/reference/rspr_dist.html</loc></url>
 </urlset>
+
