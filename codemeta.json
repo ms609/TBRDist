@@ -8,13 +8,13 @@
   "codeRepository": "https://github.com/ms609/TBRDist/",
   "issueTracker": "https://github.com/ms609/TBRDist/issues/",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R Under development (unstable) (2025-11-23 r89052 ucrt)",
+  "runtimePlatform": "R Under development (unstable) (2026-06-29 r90199 ucrt)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -151,7 +151,7 @@
     "SystemRequirements": "C++17"
   },
   "keywords": ["phylogenetics", "tree-distance"],
-  "fileSize": "1510.79KB",
+  "fileSize": "1496.967KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -265,7 +265,7 @@
       ],
       "name": "TBRDist: Rearrangement Distances Between Phylogenetic Trees",
       "identifier": "10.5281/zenodo.3548333",
-      "description": "R package version 2.0.0",
+      "description": "R package version 2.0.1",
       "@id": "https://doi.org/10.5281/zenodo.3548333",
       "sameAs": "https://doi.org/10.5281/zenodo.3548333"
     }
