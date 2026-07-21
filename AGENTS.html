@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">TBRDist</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.1</span>
       </span>
     </div>
 
@@ -111,31 +111,31 @@
 </div>
 <div class="section level2">
 <h2 id="key-files-modified--created">Key files modified / created<a class="anchor" aria-label="anchor" href="#key-files-modified--created"></a></h2>
-<table class="table"><colgroup><col width="31%"><col width="68%"></colgroup><thead><tr class="header"><th>File</th>
+<table class="table"><colgroup><col width="31%"><col width="68%"></colgroup><thead><tr><th>File</th>
 <th>Description</th>
-</tr></thead><tbody><tr class="odd"><td><code>src/uspr/uspr.h</code></td>
+</tr></thead><tbody><tr><td><code>src/uspr/uspr.h</code></td>
 <td>Main A* dispatch + numbered search loop</td>
-</tr><tr class="even"><td><code>src/uspr/uspr_neighbors_numbered.h</code></td>
+</tr><tr><td><code>src/uspr/uspr_neighbors_numbered.h</code></td>
 <td>SPR neighbor generation → tree numbers</td>
-</tr><tr class="odd"><td><code>src/uspr/tree_numbering.h</code></td>
+</tr><tr><td><code>src/uspr/tree_numbering.h</code></td>
 <td>utree ↔︎ tree_num_t bridge</td>
-</tr><tr class="even"><td><code>src/uspr/utree.h</code></td>
+</tr><tr><td><code>src/uspr/utree.h</code></td>
 <td>Default ctor, move ctor, arena-based allocation</td>
-</tr><tr class="odd"><td><code>src/uspr/unode.h</code></td>
+</tr><tr><td><code>src/uspr/unode.h</code></td>
 <td>
 <code>neighbor_list</code>, <code>contracted_list</code> inline arrays</td>
-</tr><tr class="even"><td><code>src/uspr/unode_arena.h</code></td>
+</tr><tr><td><code>src/uspr/unode_arena.h</code></td>
 <td>Block arena allocator for unode objects</td>
-</tr><tr class="odd"><td><code>src/uspr/uforest.h</code></td>
+</tr><tr><td><code>src/uspr/uforest.h</code></td>
 <td>Added <code>uforest(utree&amp;&amp;)</code> move ctor</td>
-</tr><tr class="even"><td><code>src/rspr.cpp</code></td>
+</tr><tr><td><code>src/rspr.cpp</code></td>
 <td>Rcpp wrapper for rspr rooted-distance library</td>
-</tr><tr class="odd"><td><code>R/rspr.R</code></td>
+</tr><tr><td><code>R/rspr.R</code></td>
 <td>
 <code><a href="reference/RSPRDist.html">RSPRDist()</a></code> user-facing function</td>
-</tr><tr class="even"><td><code>tests/testthat/test-rspr.R</code></td>
+</tr><tr><td><code>tests/testthat/test-rspr.R</code></td>
 <td>33 regression tests for RSPRDist</td>
-</tr><tr class="odd"><td><code>TreeTools/inst/include/TreeTools/tree_number.h</code></td>
+</tr><tr><td><code>TreeTools/inst/include/TreeTools/tree_number.h</code></td>
 <td>256-bit tree_num_t + encoding</td>
 </tr></tbody></table></div>
 <div class="section level2">
@@ -178,50 +178,50 @@
 <h2 id="benchmark-results">Benchmark results<a class="anchor" aria-label="anchor" href="#benchmark-results"></a></h2>
 <div class="section level3">
 <h3 id="session-1--same-session-ab-15-pairs-1012-leaves-windows">Session 1 — same-session A/B, 15 pairs, 10–12 leaves, Windows<a class="anchor" aria-label="anchor" href="#session-1--same-session-ab-15-pairs-1012-leaves-windows"></a></h3>
-<table class="table"><colgroup><col width="40%"><col width="27%"><col width="31%"></colgroup><thead><tr class="header"><th>Version</th>
+<table class="table"><colgroup><col width="40%"><col width="27%"><col width="31%"></colgroup><thead><tr><th>Version</th>
 <th>Time</th>
 <th>Notes</th>
-</tr></thead><tbody><tr class="odd"><td>Newick roundtrip in A* loop</td>
+</tr></thead><tbody><tr><td>Newick roundtrip in A* loop</td>
 <td>11.68 s</td>
 <td>baseline</td>
-</tr><tr class="even"><td>Direct utree construction</td>
+</tr><tr><td>Direct utree construction</td>
 <td>11.18 s</td>
 <td>−4.3%</td>
-</tr><tr class="odd"><td>+ removed redundant <code>distances_from_leaf_decorator</code>
+</tr><tr><td>+ removed redundant <code>distances_from_leaf_decorator</code>
 </td>
 <td>11.30 s</td>
 <td>≈0% (noise)</td>
-</tr><tr class="even"><td>+ <code>priority_queue</code> (binary min-heap) replacing <code>multiset</code>
+</tr><tr><td>+ <code>priority_queue</code> (binary min-heap) replacing <code>multiset</code>
 </td>
 <td>8.94 s</td>
 <td><strong>−21%</strong></td>
 </tr></tbody></table></div>
 <div class="section level3">
 <h3 id="session-2--fixed-60-pair-benchmark-10-tip-random-windows">Session 2 — fixed 60-pair benchmark, 10-tip random, Windows<a class="anchor" aria-label="anchor" href="#session-2--fixed-60-pair-benchmark-10-tip-random-windows"></a></h3>
-<table class="table"><thead><tr class="header"><th>Version</th>
+<table class="table"><thead><tr><th>Version</th>
 <th>Time</th>
 <th>Notes</th>
-</tr></thead><tbody><tr class="odd"><td>
+</tr></thead><tbody><tr><td>
 <code>map</code>-based <code>normalize_order_hlpr</code>
 </td>
 <td>19.14 s</td>
 <td>baseline</td>
-</tr><tr class="even"><td>inline 3-array + insertion sort</td>
+</tr><tr><td>inline 3-array + insertion sort</td>
 <td>17.88–19.31 s</td>
 <td>≈0% (noise)</td>
 </tr></tbody></table></div>
 <div class="section level3">
 <h3 id="session-3--allocation-optimizations-60-pair-benchmark-windows">Session 3 — allocation optimizations, 60-pair benchmark, Windows<a class="anchor" aria-label="anchor" href="#session-3--allocation-optimizations-60-pair-benchmark-windows"></a></h3>
-<table class="table"><colgroup><col width="32%"><col width="21%"><col width="46%"></colgroup><thead><tr class="header"><th>Version</th>
+<table class="table"><colgroup><col width="32%"><col width="21%"><col width="46%"></colgroup><thead><tr><th>Version</th>
 <th>Time</th>
 <th>Δ from prev</th>
-</tr></thead><tbody><tr class="odd"><td>Inline neighbor/contracted arrays</td>
+</tr></thead><tbody><tr><td>Inline neighbor/contracted arrays</td>
 <td>9.72 s</td>
 <td>−49% from 19.14 s</td>
-</tr><tr class="even"><td>+ container replacements (vectors, unordered_maps)</td>
+</tr><tr><td>+ container replacements (vectors, unordered_maps)</td>
 <td>9.94 s</td>
 <td>≈0% (noise)</td>
-</tr><tr class="odd"><td>+ unode arena allocator (block size 32)</td>
+</tr><tr><td>+ unode arena allocator (block size 32)</td>
 <td>7.20 s</td>
 <td><strong>−26%</strong></td>
 </tr></tbody></table><p><strong>Cumulative</strong>: 19.14 s → 7.20 s = <strong>2.66× faster</strong> (62% reduction).</p>
@@ -291,7 +291,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer></div>
