@@ -1,3 +1,7 @@
+# TBRDist 2.0.0.9000 (2026-07-21)
+
+- Check for interrupts during calls to `USPRDist()`.
+
 # TBRDist 2.0.0 (2026-03-23)
 
 - Add `RSPRDist()` for rooted Subtree Prune-and-Regraft (rSPR) distances,
