@@ -1,6 +1,6 @@
 # TBRDist 2.0.0.9000 (2026-07-21)
 
-- Check for interrupts during calls to `USPRDist()`.
+- Check for interrupts during calls to `USPRDist()` & `RSPRDist()`.
 
 # TBRDist 2.0.0 (2026-03-23)
 
