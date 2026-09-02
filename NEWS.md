@@ -1,3 +1,7 @@
+# TBRDist 2.0.2 (2026-09-02)
+
+- Fix segfault in `RSPRDist()`.
+
 # TBRDist 2.0.1 (2026-07-21)
 
 - Check for interrupts during calls to `USPRDist()` & `RSPRDist()`.

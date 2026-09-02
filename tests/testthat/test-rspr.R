@@ -196,3 +196,17 @@ test_that("allPairs across two lists returns a matrix", {
   expect_true(is.matrix(m))
   expect_equal(dim(m), c(2L, 2L))
 })
+
+# ── Sibling pairs whose twins are singletons ───────────────────────────
+
+test_that("sibling pairs whose T2 twins are singletons give the right distance", {
+  # rspr's Case 3 requires the deeper twin to have a parent.  The search
+  # reaches a sibling pair whose twins are both singleton components of F2,
+  # where neither does; these trees are the smallest case to hand.
+  t1 <- Tree("((((t12,t5),t3),t11),(t1,(t8,((t2,t6),(t4,((t7,t9),t10))))));")
+  t2 <- Tree("((t2,(t11,((t1,t3),(t12,(t7,((t8,t4),t10)))))),(t9,(t5,t6)));")
+  result <- RSPRDist(t1, t2, allPairs = FALSE, maf = TRUE)
+  expect_identical(result$exact, 7L)
+  nComponents <- length(strsplit(trimws(result$maf_1), "\\s+")[[1]])
+  expect_identical(nComponents, result$exact + 1L)
+})

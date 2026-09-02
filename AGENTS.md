@@ -1,5 +1,3 @@
-# TBRDist — Agent Memory
-
 ## Standing instructions
 
 **Always obtain human approval before running `git push` or any command that
@@ -21,12 +19,6 @@ Currently **1.1.0** (ready for CRAN). All 147 tests pass.
 `cran-comments.md`).
 
 ## Dependencies
-- `TreeTools (>= 2.1.0.9003)` — required because `tree_number.h` is defined
-  in `TreeTools/inst/include/TreeTools/tree_number.h`. This header was written
-  for TBRDist but lives in TreeTools as its natural home (it implements the C++
-  backend of TreeTools' tree-numbering functionality). TreeTools 2.1.0.9003 is
-  the first version containing it; pin will be relaxed once TreeTools releases
-  to CRAN.
 - `LinkingTo: BH, Rcpp, TreeTools`
 
 ## Architecture: numbered A* search (the fast path)
