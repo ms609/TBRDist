@@ -4,17 +4,20 @@
   "identifier": "TBRDist",
   "description": "Fast calculation of tree rearrangement distances. For unrooted trees: Subtree Prune and Regraft (SPR), Tree Bisection and Reconnection (TBR), and Replug distances, using the algorithms of Whidden and Matsen (2017) <doi:10.48550/arXiv.1511.07529>. For rooted trees: rooted SPR (rSPR) distance, using the fixed-parameter algorithms of Whidden, Beiko, and Zeh (2013) <doi:10.1137/110845045>.",
   "name": "TBRDist: Rearrangement Distances Between Phylogenetic Trees",
-  "relatedLink": ["https://ms609.github.io/TBRDist/", "https://github.com/cwhidden/uspr/", "https://github.com/cwhidden/rspr/"],
+  "relatedLink": [
+    "https://ms609.github.io/TBRDist/",
+    "https://github.com/cwhidden/uspr/",
+    "https://github.com/cwhidden/rspr/"
+  ],
   "codeRepository": "https://github.com/ms609/TBRDist/",
   "issueTracker": "https://github.com/ms609/TBRDist/issues/",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R Under development (unstable) (2026-06-29 r90199 ucrt)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -92,14 +95,14 @@
       "sameAs": "https://CRAN.R-project.org/package=testthat"
     }
   ],
-  "softwareRequirements": {
-    "1": {
+  "softwareRequirements": [
+    {
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
       "version": ">= 3.6.0"
     },
-    "2": {
+    {
       "@type": "SoftwareApplication",
       "identifier": "ape",
       "name": "ape",
@@ -111,7 +114,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=ape"
     },
-    "3": {
+    {
       "@type": "SoftwareApplication",
       "identifier": "Rdpack",
       "name": "Rdpack",
@@ -123,7 +126,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=Rdpack"
     },
-    "4": {
+    {
       "@type": "SoftwareApplication",
       "identifier": "TreeDist",
       "name": "TreeDist",
@@ -135,7 +138,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=TreeDist"
     },
-    "5": {
+    {
       "@type": "SoftwareApplication",
       "identifier": "TreeTools",
       "name": "TreeTools",
@@ -148,10 +151,12 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=TreeTools"
     },
-    "SystemRequirements": "C++17"
-  },
-  "keywords": ["phylogenetics", "tree-distance"],
-  "fileSize": "1496.967KB",
+    "C++17"
+  ],
+  "keywords": [
+    "phylogenetics",
+    "tree-distance"
+  ],
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -182,7 +187,10 @@
         "@type": "PublicationIssue",
         "datePublished": "2013",
         "isPartOf": {
-          "@type": ["PublicationVolume", "Periodical"],
+          "@type": [
+            "PublicationVolume",
+            "Periodical"
+          ],
           "volumeNumber": "42",
           "name": "SIAM Journal on Computing"
         }
@@ -199,7 +207,10 @@
         },
         {
           "@type": "Person",
-          "givenName": ["Frederick", "A."],
+          "givenName": [
+            "Frederick",
+            "A."
+          ],
           "familyName": "Matsen"
         }
       ],
@@ -212,7 +223,10 @@
         "@type": "PublicationIssue",
         "datePublished": "2019",
         "isPartOf": {
-          "@type": ["PublicationVolume", "Periodical"],
+          "@type": [
+            "PublicationVolume",
+            "Periodical"
+          ],
           "volumeNumber": "16",
           "name": "IEEE/ACM Transactions on Computational Biology and Bioinformatics"
         }
@@ -247,7 +261,10 @@
         "@type": "PublicationIssue",
         "datePublished": "2014",
         "isPartOf": {
-          "@type": ["PublicationVolume", "Periodical"],
+          "@type": [
+            "PublicationVolume",
+            "Periodical"
+          ],
           "volumeNumber": "63",
           "name": "Systematic Biology"
         }
@@ -259,13 +276,16 @@
       "author": [
         {
           "@type": "Person",
-          "givenName": ["Martin", "R."],
+          "givenName": [
+            "Martin",
+            "R."
+          ],
           "familyName": "Smith"
         }
       ],
       "name": "TBRDist: Rearrangement Distances Between Phylogenetic Trees",
       "identifier": "10.5281/zenodo.3548333",
-      "description": "R package version 2.0.1",
+      "description": "R package version 2.0.2",
       "@id": "https://doi.org/10.5281/zenodo.3548333",
       "sameAs": "https://doi.org/10.5281/zenodo.3548333"
     }
